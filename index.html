@@ -21,8 +21,13 @@
 <div id="map"></div>
 
 <script>
-  var map = L.map('map').setView([437.75, 322.23], 10);
+ var geocoder = new L.esri.Geocoding.Services.Geocoding();
+  var map = L.map('map');
   console.log(L, L.esri);
+ geocoder.geocode().text('Cape Town').run(function (error, response) {
+    map.fitBounds(response.results[0].bounds);
+  });
+
   L.esri.basemapLayer('Topographic').addTo(map);
 </script>
 
