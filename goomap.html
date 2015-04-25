@@ -45,6 +45,7 @@ function codeAddress() {
       var marker = new google.maps.Marker({
           map: map,
           position: results[0].geometry.location
+          title: results[0].geometry.location
       });
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
