@@ -1,0 +1,38 @@
+<html>
+<head>
+  <meta charset=utf-8 />
+  <title>Current Map: Windhoek</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+  <!-- Load Leaflet from CDN-->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/leaflet/0.7.3/leaflet.css" />
+  <script src="//cdn.jsdelivr.net/leaflet/0.7.3/leaflet.js"></script>
+
+  <!-- Load Esri Leaflet from CDN -->
+  <script src="//cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.6/esri-leaflet.js"></script>
+
+  <style>
+    body {margin:0;padding:0;}
+    #map {position: absolute;top:0;bottom:0;right:0;left:0;}
+  </style>
+</head>
+<body>
+
+<script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/1.0.0-rc.4/esri-leaflet-geocoder.js"></script>
+<link rel="stylesheet" type="text/css" href="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/1.0.0-rc.4/esri-leaflet-geocoder.css">
+
+<div id="map"></div>
+
+<script>
+ var geocoder = new L.esri.Geocoding.Services.Geocoding();
+  var map = L.map('map');
+  console.log(L, L.esri);
+ geocoder.geocode().text('Windhoek').run(function (error, response) {
+    map.fitBounds(response.results[0].bounds);
+  });
+
+  L.esri.basemapLayer('Topographic').addTo(map);
+</script>
+
+</body>
+</html>
