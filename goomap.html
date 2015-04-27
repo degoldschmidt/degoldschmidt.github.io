@@ -5,7 +5,7 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Current location: Windhoek, Namibia (25/04/15::10:28pm)</title>
+    <title>Current location: Maun, Botsuana (27/04/15::12:26pm)</title>
     <style>
       html, body, #map-canvas {
         height: 100%;
@@ -27,15 +27,107 @@
     <script>
 var geocoder;
 var map;
+var directionsDisplay;
+var directionsService = new google.maps.DirectionsService();
 function initialize() {
+  // Change a few 'var variableName' to 'window.' This lets us set global variables from within our function
+  directionsDisplay = new google.maps.DirectionsRenderer();
+
   geocoder = new google.maps.Geocoder();
-  var latlng = new google.maps.LatLng(-34.397, 150.644);
+  var latlng = new google.maps.LatLng(-26.02, 22.405556);
   var mapOptions = {
-    zoom: 8,
+    zoom: 5,
     center: latlng
   }
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  setMarkers(map, stops);
+
+  // Set the current route - default: walking
+  calcRoute();
+
+  // Render our directions on the map
+  directionsDisplay.setMap(map);
 }
+
+// Calculate our route between the markers & set/change the mode of travel
+function calcRoute() {
+    var request = {
+        origin: "Cape Town, South Africa",
+        destination: "Maun, Botsuana",
+        waypoints: [
+        {location:"Windhoek, Namibia",
+         stopover:false},
+	{location:"Swakopmund, Namibia",
+         stopover:false},
+	{location:"Windhoek, Namibia",
+         stopover:false}
+	],
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    directionsService.route(request, function(response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+        }
+    });
+}
+
+/**
+ * Data for the markers consisting of a name, a LatLng and a zIndex for
+ * the order in which these markers should display on top of each
+ * other.
+ */
+var stops = [
+  ['Cape Town', -33.9248685, 18.4240553, 1],
+  ['Keetmanshoop', -26.578611, 18.133333, 2],
+  ['Windhoek', -22.57, 17.083611, 3],
+  ['Swakopmund', -22.683333, 14.533333, 4],
+  ['The Junction', -22.06, 21.53, 5],
+  ['Ghanzi', -21.698306, 21.64872, 6],
+  ['Maun', -19.983333, 23.416667, 7]
+];
+
+function setMarkers(map, locations) {
+  // Add markers to the map
+
+  // Marker sizes are expressed as a Size of X,Y
+  // where the origin of the image (0,0) is located
+  // in the top left of the image.
+
+  // Origins, anchor positions and coordinates of the marker
+  // increase in the X direction to the right and in
+  // the Y direction down.
+  var image = {
+    url: 'images/beachflag.png',
+    // This marker is 20 pixels wide by 32 pixels tall.
+    size: new google.maps.Size(20, 32),
+    // The origin for this image is 0,0.
+    origin: new google.maps.Point(0,0),
+    // The anchor for this image is the base of the flagpole at 0,32.
+    anchor: new google.maps.Point(0, 32)
+  };
+  // Shapes define the clickable region of the icon.
+  // The type defines an HTML &lt;area&gt; element 'poly' which
+  // traces out a polygon as a series of X,Y points. The final
+  // coordinate closes the poly by connecting to the first
+  // coordinate.
+  var shape = {
+      coords: [1, 1, 1, 20, 18, 20, 18 , 1],
+      type: 'poly'
+  };
+  for (var i = 0; i < locations.length; i++) {
+    var stop = locations[i];
+    var myLatLng = new google.maps.LatLng(stop[1], stop[2]);
+    var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        //icon: image,
+        shape: shape,
+        title: stop[0],
+        zIndex: stop[3]
+    });
+  }
+}
+
 
 function codeAddress() {
   var address = document.getElementById('address').value;
@@ -58,10 +150,10 @@ google.maps.event.addDomListener(window, 'load', initialize);
     </script>
   </head>
   <body>
-    <div id="panel">
+<!--    <div id="panel">
       <input id="address" type="textbox" value="Sydney, NSW">
       <input type="button" value="Geocode" onclick="codeAddress()">
-    </div>
+    </div> -->
     <div id="map-canvas"></div>
   </body>
 </html>
