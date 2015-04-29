@@ -1,38 +1,42 @@
 <html>
 <head>
   <meta charset=utf-8 />
-  <title>Cape Town</title>
-  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-
-  <!-- Load Leaflet from CDN-->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/leaflet/0.7.3/leaflet.css" />
-  <script src="//cdn.jsdelivr.net/leaflet/0.7.3/leaflet.js"></script>
-
-  <!-- Load Esri Leaflet from CDN -->
-  <script src="//cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.6/esri-leaflet.js"></script>
-
-  <style>
-    body {margin:0;padding:0;}
-    #map {position: absolute;top:0;bottom:0;right:0;left:0;}
-  </style>
+  <title>Currently in Windhoek (Namibia)</title>
 </head>
 <body>
+<a href="https://degoldschmidt.github.io/goomap.html">View current route</a>
+<hr>
+<p style="font-family: calibri"><h2>18.04.: Exploring Cape Town and the peninsula || Kapstadt und die Halbinsel</h2></p>
+<p style="font-family: calibri"> </p>
 
-<script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/1.0.0-rc.4/esri-leaflet-geocoder.js"></script>
-<link rel="stylesheet" type="text/css" href="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/1.0.0-rc.4/esri-leaflet-geocoder.css">
 
-<div id="map"></div>
+<hr>
+<p style="font-family: calibri"><h2>17.04.: Arrival in Cape Town || Ankunft in Kapstadt</h2></p>
+<p style="font-family: calibri"> After 12 hours, my plane finally landed in Cape Town. Luckily, Gerick and Rayne already waited to pick me up in the entrance hall.</p>
 
-<script>
- var geocoder = new L.esri.Geocoding.Services.Geocoding();
-  var map = L.map('map');
-  console.log(L, L.esri);
- geocoder.geocode().text('Windhoek').run(function (error, response) {
-    map.fitBounds(response.results[0].bounds);
-  });
+<p align="center"><img src="pics/17.04-ArrivalCapeTown/17-04-3.JPG" width="608" height="465"></p>
+<p align="center" style="font-family: helvetica"><b>
+Fig.1: My plane arrives safely in Cape Town. || Mein Flugzeug ist sicher in Kapstadt gelandet.</b></b></p>
 
-  L.esri.basemapLayer('Topographic').addTo(map);
-</script>
+<p align="center"><img src="pics/17.04-ArrivalCapeTown/17-04-6.JPG" width="608" height="465"></p>
+<p align="center" style="font-family: helvetica"><b>
+Fig.2: .</b></b></p>
+
+<p align="center"><img src="pics/17.04-ArrivalCapeTown/17-04-7.JPG" width="608" height="465"></p>
+<p align="center" style="font-family: helvetica"><b>
+Fig.3: "Welcome to Mother City".</b></b></p>
+
+<p align="center"><img src="pics/17.04-ArrivalCapeTown/17-04-9.JPG" width="608" height="465"></p>
+<p align="center" style="font-family: helvetica"><b>
+Fig.4: Us awkwardly standing in front of the postcard view of Table Mountain.</b></b></p>
+
+<p align="center"><img src="pics/17.04-ArrivalCapeTown/17-04-11.JPG" width="465" height="608"></p>
+<p align="center" style="font-family: helvetica"><b>
+Fig.5: Only 9086 km to Zurich.</b></b></p>
+
+<p align="center"><img src="pics/17.04-ArrivalCapeTown/17-04-12.JPG" width="608" height="465"></p>
+<p align="center" style="font-family: helvetica"><b>
+Fig.6: View from Quay Four.</b></b></p>
 
 </body>
 </html>

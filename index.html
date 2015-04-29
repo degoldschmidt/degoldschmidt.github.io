@@ -1,15 +1,252 @@
+
+
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset=utf-8 />
-  <title>Currently in Windhoek (Namibia)</title>
-</head>
-<body>
-<a href="https://degoldschmidt.github.io/goomap.html">View map</a>
-<hr>
-<h2>17.04.: Arrival in Cape Town || Ankunft in Kapstadt</h2>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Current location: Maun, Botsuana (27/04/15::12:26pm)</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+      #panel {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        margin-left: -180px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script>
+var geocoder;
+var map;
+var directionsDisplay;
+var infowindow = null;
+var directionsService = new google.maps.DirectionsService();
+function initialize() {
+  // Change a few 'var variableName' to 'window.' This lets us set global variables from within our function
+  var colors = ["#8b0013", "#138b13", "#131355"]
+  directionsDisplay = new google.maps.DirectionsRenderer({ polylineOptions: { strokeColor: "#8b0013" } });
+  geocoder = new google.maps.Geocoder();
+  var latlng = new google.maps.LatLng(-26.02, 22.405556);
+  var mapOptions = {
+    zoom: 5,
+    center: latlng,
+    mapTypeId: google.maps.MapTypeId.TERRAIN
+  }
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  /* now inside your initialise function */
+  infowindow = new google.maps.InfoWindow({
+    content: "holding..."
+  });
+  setMarkers(map, stops);
+  setMarkers(map, planstops);
 
- 
-</body>
+
+  // Set the current route - default: walking
+  calcRoute();
+  //calcPlanAfrRoute();
+
+  // Render our directions on the map
+   directionsDisplay.setMap(map);
+   directionsDisplay.setOptions( { suppressMarkers: true } );
+}
+
+// Calculate our route between the markers & set/change the mode of travel
+function calcRoute() {
+    var request = {
+        origin: "Cape Town, South Africa",
+        destination: "Maun, Botsuana",
+        waypoints: [
+        {location:"Windhoek, Namibia",
+         stopover:false},
+	{location:"Swakopmund, Namibia",
+         stopover:false},
+	{location:"Windhoek, Namibia",
+         stopover:false}
+	],
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    directionsService.route(request, function(response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+        }
+    });
+}
+
+function calcPlanAfrRoute() {
+    var request = {
+        origin: "Maun, Botswana",
+        destination: "Dar Es Salaam, Tanzania",
+        waypoints: [
+        {location:"Victoria Falls, Zambia",
+         stopover:false},
+	{location:"Lusaka, Zambia",
+         stopover:false},
+	{location:"Dar Es Saleem, Tanzania",
+         stopover:false},
+        {location:"Zanzibar, Tanzania",
+         stopover:false}
+	],
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    directionsService.route(request, function(response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+        }
+    });
+}
+
+function calcPlanIndRoute() {
+    var request = {
+        origin: "Mombay, India",
+        destination: "Kolkata, India",
+        waypoints: [
+        {location:"Udaipur, India",
+         stopover:false},
+	{location:"Jaipur, India",
+         stopover:false},
+        {location:"Agra, India",
+         stopover:false},
+	{location:"New Delhi, India",
+         stopover:false},
+        {location:"Shimla, India",
+         stopover:false},
+        {location:"Varanasi, India",
+         stopover:false},
+        {location:"Patna, India",
+         stopover:false},
+	],
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    directionsService.route(request, function(response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+        }
+    });
+}
+
+/**
+ * Data for the markers consisting of a name, a LatLng and a zIndex for
+ * the order in which these markers should display on top of each
+ * other.
+ */
+var stops = [
+  ['Cape Town', -33.9248685, 18.4240553, 1, '17.04.-21.04.', 'red'],
+  ['Keetmanshoop', -26.578611, 18.133333, 2, '22.04.', 'red'],
+  ['Windhoek', -22.57, 17.083611, 3, '22.04.-23.04.', 'red'],
+  ['Swakopmund', -22.683333, 14.533333, 4, '23.04.-25.04.', 'red'],
+  ['The Junction', -22.06, 21.53, 5, '25.04.-26.04.', 'red'],
+  ['Ghanzi', -21.698306, 21.64872, 6, '26.04.', 'red'],
+  ['Maun', -19.983333, 23.416667, 7, '26.04.-28.04.', 'yellow']
+];
+
+var contstops = ['17.04.-21.04.', '22.04.', '22.-23.04.', '23.04.-25.04.', '25.04.-26.04.', '26.04.', '26.04.-28.04.', '~ 07.05.', '~ 09.05.', '~ 13.05.', '~ 16.05.', '~ 19.05.', '~ 21.05.', '~ 23.05.']
+
+var planstops = [
+  ['Kasane', -17.816667, 25.15, 8, '~ 07.05.'],
+  ['Victoria Falls', -17.924444, 25.856667, 9, '~ 09.05.'],
+  ['Livingstone', -17.8519791, 25.8285153, 10, '~ 13.05.'],
+  ['Lusaka', -15.416667, 28.283333, 11, '~ 16.05.'],
+  ['Kapiri Mposhi', -13.9778684,  28.6848112, 12, '~ 19.05.'],
+  ['Dar Es Salaam', -6.8, 39.283333, 13, '~ 21.05.'],
+  ['Zanzibar', -6.165917, 39.202641, 14, '~ 23.05.']
+];
+
+
+function setMarkers(map, locations) {
+  // Add markers to the map
+
+  // Marker sizes are expressed as a Size of X,Y
+  // where the origin of the image (0,0) is located
+  // in the top left of the image.
+
+  // Origins, anchor positions and coordinates of the marker
+  // increase in the X direction to the right and in
+  // the Y direction down.
+  var imagesarray = ['<img src="pics/17.04-ArrivalCapeTown/17-04-6.JPG" width="608" height="465"> <img src="pics/17.04-ArrivalCapeTown/17-04-7.JPG" width="608" height="465"> <img src="pics/18.04-CityAndPeninsula/18-04-1-7.JPG" width="608" height="465"> <img src="pics/18.04-CityAndPeninsula/18-04-3-6.JPG" width="608" height="465">',
+		     '',
+		     '',
+		     '',
+		     '',
+		     '',
+		     '',
+		     '',
+		     '',
+		     '',
+		     '']
+
+  var image = {
+    url: 'images/beachflag.png',
+    // This marker is 20 pixels wide by 32 pixels tall.
+    size: new google.maps.Size(20, 32),
+    // The origin for this image is 0,0.
+    origin: new google.maps.Point(0,0),
+    // The anchor for this image is the base of the flagpole at 0,32.
+    anchor: new google.maps.Point(0, 32)
+  };
+  // Shapes define the clickable region of the icon.
+  // The type defines an HTML &lt;area&gt; element 'poly' which
+  // traces out a polygon as a series of X,Y points. The final
+  // coordinate closes the poly by connecting to the first
+  // coordinate.
+  for (var i = 0; i < locations.length; i++) {
+    var stop = locations[i];
+    var shape = {
+      coords: [1, 1, 1, 20, 18, 20, 18 , 1],
+      type: 'poly',
+      fillColor: stop[5]
+    };
+    var myLatLng = new google.maps.LatLng(stop[1], stop[2])
+    var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        //icon: image,
+        //shape: shape,
+        title: stop[0],
+        zIndex: stop[3]
+    });
+   google.maps.event.addListener(marker, 'click', function () {
+     // where I have added .html to the marker object.
+     infowindow.setContent(contstops[this.getZIndex()-1] + imagesarray[this.getZIndex()-1]);
+     infowindow.open(map, this);
+   });
+  }
+}
+
+
+function codeAddress() {
+  var address = document.getElementById('address').value;
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location,
+          title: results[0].geometry.location.toString()
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+<!--    <div id="panel">
+      <input id="address" type="textbox" value="Sydney, NSW">
+      <input type="button" value="Geocode" onclick="codeAddress()">
+    </div> -->
+    <div id="map-canvas"></div>
+  </body>
 </html>
-
-
