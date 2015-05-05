@@ -5,7 +5,7 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Current location: Gweta, Botswana (04/05/15::17:48pm)</title>
+    <title>Current location: Gweta, Botswana (05/05/15::10:04am)</title>
     <style>
       html, body, #map-canvas {
         height: 100%;
@@ -141,23 +141,23 @@ function calcPlanIndRoute() {
  * other.
  */
 var stops = [
-  ['Cape Town', -33.9248685, 18.4240553, 1, '17.04.-21.04.', 'red'],
+  ['Cape Town', -33.9248685, 18.4240553, 1, '17.-21.04.', 'red'],
   ['Keetmanshoop', -26.578611, 18.133333, 2, '22.04.', 'red'],
-  ['Windhoek', -22.57, 17.083611, 3, '22.04.-23.04.', 'red'],
+  ['Windhoek', -22.57, 17.083611, 3, '22.-23.04. & 25.-26.04.', 'red'],
   ['Swakopmund', -22.683333, 14.533333, 4, '23.04.-25.04.', 'red'],
-  ['The Junction', -22.06, 21.53, 5, '25.04.-26.04.', 'red'],
+  ['The Junction', -22.06, 21.53, 5, '26.04.', 'red'],
   ['Ghanzi', -21.698306, 21.64872, 6, '26.04.', 'red'],
   ['Maun', -19.983333, 23.416667, 7, '26.04.-04.05.', 'yellow'],
   ['Moremi Game Reserve', -19.2395708,  23.3544449, 8, '03.05.', 'yellow'],
   ['Gweta', -20.2111684,  25.2541233, 9, '04.05.-06.05.', 'yellow']
 ];
 
-var contstops = ['<h3>17.04.-21.04.</h3>', '22.04.', '22.-23.04.', '23.04.-25.04.', '25.04.-26.04.', '26.04.', '26.04.-28.04.', '~ 07.05.', '~ 09.05.', '~ 13.05.', '~ 16.05.', '~ 19.05.', '~ 21.05.', '~ 23.05.']
+var contstops = ['<h3>17.-21.04.</h3>', '22.04.', '22.-23.04. & 25.-26.04.', '23.04.-25.04.', '26.04.', '26.04.', '26.04.-04.05.', '03.05.', '04.05.-06.05.', '~ 06.05.', '~ 09.05.', '~ 13.05.', '~ 16.05.', '~ 19.05.', '~ 21.05.', '~ 23.05.']
 
 var planstops = [
   ['Kasane', -17.816667, 25.15, 10, '~ 07.05.'],
-  ['Victoria Falls', -17.924444, 25.856667, 11, '~ 09.05.'],
-  ['Livingstone', -17.8519791, 25.8285153, 12, '~ 13.05.'],
+  ['Livingstone', -17.8519791, 25.8285153, 11, '~ 09.05.'],
+  ['Victoria Falls', -17.924444, 25.856667, 12, '~ 13.05.'],
   ['Lusaka', -15.416667, 28.283333, 13, '~ 16.05.'],
   ['Kapiri Mposhi', -13.9778684,  28.6848112, 14, '~ 19.05.'],
   ['Dar Es Salaam', -6.8, 39.283333, 15, '~ 21.05.'],
@@ -178,8 +178,7 @@ function setMarkers(map, locations) {
   var imagesarray = ['<h4>17.04.: Arriving in Cape Town</h4> <img src="pics/17.04-ArrivalCapeTown/17-04-6.JPG" width="608" height="465"> <img src="pics/17.04-ArrivalCapeTown/17-04-7.JPG" width="608" height="465"> <img src="pics/17.04-ArrivalCapeTown/17-04-9.JPG" width="608" height="465"> <h4>18.04.: Exploring Cape Town and the Peninsula</h4> <p>Visiting the <b>Neighbourgoods Market</b> at the <b>Old Biscuit Mill</b> (<a href="https://www.theoldbiscuitmill.co.za/">visit link</a>) </p> <img src="pics/18.04-CityAndPeninsula/18-04-1-1.JPG" width="608" height="465"> <img src="pics/18.04-CityAndPeninsula/18-04-1-2.JPG" width="608" height="465"> <img src="pics/18.04-CityAndPeninsula/18-04-1-5.JPG" width="608" height="465"> <img src="pics/18.04-CityAndPeninsula/18-04-1-7.JPG" width="608" height="465"> Special drink: Strawberry Pulp, Ginger Beer & Double Vodka <br></br> <img src="pics/18.04-CityAndPeninsula/18-04-1-8.JPG" width="608" height="465"> Scenic view on the Table Mountain <br></br> <p style="font-size:18">The <b>Bo-Kaap</b>: The former Malay quarter of Cape Town. </p> <img src="pics/18.04-CityAndPeninsula/18-04-2-6.JPG" width="465" height="608"> <img src="pics/18.04-CityAndPeninsula/18-04-3-6.JPG" width="608" height="465"> <p style="font-size:18">The peninsula of Cape Town </p> <img src="pics/18.04-CityAndPeninsula/18-04-3-13.JPG" width="608" height="465"> <img src="pics/18.04-CityAndPeninsula/18-04-4-1.JPG" width="608" height="465"> <img src="pics/18.04-CityAndPeninsula/18-04-4-4.JPG" width="608" height="465"> <b>Lion\'s Head</b> from the back<br></br> <img src="pics/18.04-CityAndPeninsula/18-04-4-9.JPG" width="608" height="465"> <img src="pics/18.04-CityAndPeninsula/18-04-4-12.JPG" width="608" height="465"> Hout Bay from Chapman\'s Peak<br></br> <img src="pics/18.04-CityAndPeninsula/18-04-4-13.JPG" width="608" height="465"> Dinner at Olympia Café in Kalk Bay<br></br> <h4>20.04.: Last day in Cape Town</h4> <img src="pics/20.04-LastDayInCapeTown/20-04-1-0.JPG" width="608" height="465"> Backyard area of our hostel<br></br> <img src="pics/20.04-LastDayInCapeTown/20-04-1-3.JPG" width="608" height="465"> Buying snacks (Namibian Beef & Ostrich Biltong, Samoosas) & drinks (Ginger beer) for the hike and the bus trip<br></br> <p style="font-size:18"> Hiking on top of the Table Mountain </p> <img src="pics/20.04-LastDayInCapeTown/20-04-1-10.JPG" width="608" height="465"> <img src="pics/20.04-LastDayInCapeTown/20-04-2-1.JPG" width="608" height="465"> <img src="pics/20.04-LastDayInCapeTown/20-04-2-6.JPG" width="608" height="465"> <img src="pics/20.04-LastDayInCapeTown/20-04-3-0.JPG" width="608" height="465"> <img src="pics/20.04-LastDayInCapeTown/20-04-3-3.JPG" width="608" height="465"> <img src="pics/20.04-LastDayInCapeTown/20-04-3-8.JPG" width="608" height="465"> <img src="pics/20.04-LastDayInCapeTown/20-04-4-6.JPG" width="608" height="465"> <img src="pics/20.04-LastDayInCapeTown/20-04-5-5.JPG" width="608" height="465"> <p> Lunch time at Moyo\'s & face painting </p> <img src="pics/20.04-LastDayInCapeTown/20-04-5-9.JPG" width="608" height="465"> <img src="pics/20.04-LastDayInCapeTown/20-04-5-11.JPG" width="608" height="465"> <img src="pics/20.04-LastDayInCapeTown/20-04-5-12.JPG" width="608" height="465"> <h4>21.04.: Going to Namibia</h4> <img src="pics/21-22.04-BusToWindhoek/21-04-1-0.JPG" width="608" height="465"> Beginning of the 22-hours bus trip <br></br> <img src="pics/21-22.04-BusToWindhoek/21-04-1-6.JPG" width="608" height="465"> South-african desert',
 		     '',
 		     '<h4>22.04.: First impressions of Windhoek</h4> <img src="pics/21-22.04-BusToWindhoek/21-04-2-9.JPG" width="608" height="465"> <img src="pics/21-22.04-BusToWindhoek/21-04-2-12.JPG" width="608" height="465"> <img src="pics/21-22.04-BusToWindhoek/21-04-2-14.JPG" width="608" height="465"> <img src="pics/22.04-ExploringWindhoek/22-04-1-5.JPG" width="608" height="465"> <img src="pics/22.04-ExploringWindhoek/22-04-1-7.JPG" width="608" height="465"> <img src="pics/22.04-ExploringWindhoek/22-04-1-8.JPG" width="608" height="465"> <img src="pics/22.04-ExploringWindhoek/22-04-1-9.JPG" width="608" height="465"> <img src="pics/22.04-ExploringWindhoek/22-04-2-3.JPG" width="608" height="465"> <img src="pics/22.04-ExploringWindhoek/22-04-2-6.JPG" width="608" height="465"> <img src="pics/22.04-ExploringWindhoek/22-04-2-8.JPG" width="608" height="465">',
-		     '',
-		     '',
+		     '<h4>23.04.: Swakopmund</h4> <p style="font-size:18">Swakopmund township</p> <img src="pics/23.04-Swakopmund/23-04-1-6.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-1-7.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-1-8.JPG" width="608" height="465"> <p style="font-size:18">Swakopmund Strand</p> <img src="pics/23.04-Swakopmund/23-04-1-10.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-2-3.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-2-4.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-2-5.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-2-7.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-2-8.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-2-11.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-3-1.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-1-8.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-3-2.JPG" width="608" height="465"><br> Map of Swakopmund in the Transnamibian museum <br></br> <img src="pics/23.04-Swakopmund/23-04-3-4.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-3-6.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-4-0.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-4-6.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-4-9.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-4-13.JPG" width="608" height="465">',
 		     '',
 		     '',
 		     '',
