@@ -148,20 +148,21 @@ var stops = [
   ['The Junction', -22.06, 21.53, 5, '26.04.', 'red'],
   ['Ghanzi', -21.698306, 21.64872, 6, '26.04.', 'red'],
   ['Maun', -19.983333, 23.416667, 7, '26.04.-04.05.', 'yellow'],
-  ['Moremi Game Reserve', -19.2395708,  23.3544449, 8, '03.05.', 'yellow'],
-  ['Gweta', -20.2111684,  25.2541233, 9, '04.05.-06.05.', 'yellow'],
-  ['Kasane', -17.816667, 25.15, 10, '~ 07.05.']
+  ['Okavango delta', -19.3045433, 22.6437025, 8, '03.05.', 'yellow'],
+  ['Moremi Game Reserve', -19.2395708, 23.3544449, 9, '03.05.', 'yellow'],
+  ['Gweta', -20.2111684,  25.2541233, 10, '04.05.-06.05.', 'yellow'],
+  ['Kasane', -17.816667, 25.15, 11, '~ 07.05.']
 ];
 
-var contstops = ['<h3>17.-21.04.</h3>', '22.04.', '22.-23.04. & 25.-26.04.', '23.-25.04.', '26.04.', '26.04.', '26.-04.05.', '03.05.', '04.-06.05.', '06.-09.07.', '~ 09.05.', '~ 13.05.', '~ 16.05.', '~ 19.05.', '~ 21.05.', '~ 23.05.']
+var contstops = ['<h3>17.-21.04.</h3>', '22.04.', '22.-23.04. & 25.-26.04.', '23.-25.04.', '26.04.', '26.04.', '26.-04.05.', '01.05.', '03.05.', '04.-06.05.', '06.-09.07.', '~ 09.05.', '~ 13.05.', '~ 16.05.', '~ 19.05.', '~ 21.05.', '~ 23.05.']
 
 var planstops = [
-  ['Livingstone', -17.8519791, 25.8285153, 11, '~ 09.05.'],
-  ['Victoria Falls', -17.924444, 25.856667, 12, '~ 13.05.'],
-  ['Lusaka', -15.416667, 28.283333, 13, '~ 16.05.'],
-  ['Kapiri Mposhi', -13.9778684,  28.6848112, 14, '~ 19.05.'],
-  ['Dar Es Salaam', -6.8, 39.283333, 15, '~ 21.05.'],
-  ['Zanzibar', -6.165917, 39.202641, 16, '~ 23.05.']
+  ['Livingstone', -17.8519791, 25.8285153, 12, '~ 09.05.'],
+  ['Victoria Falls', -17.924444, 25.856667, 13, '~ 13.05.'],
+  ['Lusaka', -15.416667, 28.283333, 14, '~ 16.05.'],
+  ['Kapiri Mposhi', -13.9778684,  28.6848112, 15, '~ 19.05.'],
+  ['Dar Es Salaam', -6.8, 39.283333, 16, '~ 21.05.'],
+  ['Zanzibar', -6.165917, 39.202641, 17, '~ 23.05.']
 ];
 
 
@@ -182,9 +183,10 @@ function setMarkers(map, locations) {
 		     '',
 		     '',
 		     '',
+		     '<h4>01.05.: Mokoro trip in the Okavango delta</h4> <img src="pics/Mokoro/01-05-1-0.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-1-1.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-1-2.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-1-5.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-1-6.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-1-9.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-1-11.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-2-9.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-3-1.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-3-5.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-3-13.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-4-13.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-4-15.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-5-1.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-5-2.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-5-3.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-5-4.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-5-5.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-5-12.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-5-13.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-6-2.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-6-9.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-6-11.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-6-15.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-7-1.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-7-4.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-7-5.JPG" width="608" height="465">',
+		     '<h4>03.05.: Oneday 4x4 safari in the Moremi national park</h4> <img src="pics/Moremi/03-05-1-0.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-1-2.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-1-4.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-1-5.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-1-6.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-1-7.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-1-8.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-1-9.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-1-11.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-1-12.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-1-13.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-1-14.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-0.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-1.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-2.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-3.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-4.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-6.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-7.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-8.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-9.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-11.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-12.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-13.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-14.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-15.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-3-0.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-3-2.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-3-6.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-3-7.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-3-8.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-3-9.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-3-10.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-3-11.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-3-12.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-3-14.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-3-15.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-4-4.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-4-5.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-4-7.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-4-8.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-4-10.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-4-14.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-5-7.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-5-8.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-5-9.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-5-13.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-6-0.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-6-7.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-6-8.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-6-10.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-6-11.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-6-13.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-6-14.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-6-15.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-7-0.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-7-1.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-7-2.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-7-3.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-7-4.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-7-5.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-7-6.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-7-7.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-7-8.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-7-10.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-7-11.JPG" width="608" height="465">  <img src="pics/Moremi/03-05-7-14.JPG" width="608" height="465">',
 		     '',
-		     '',
-		     '',
+		     '<h4>07. & 08.05.: River cruise and overnight 4x4 safari in the Chobe national park</h4> ',
                      '',
 		     '']
 
