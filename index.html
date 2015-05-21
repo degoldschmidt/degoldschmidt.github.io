@@ -5,7 +5,7 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Current location: Livingstone, Zambia (15/05/15::12:21pm)</title>
+    <title>Current location: Lusaka, Zambia (17/05/15::10:11pm)</title>
     <style>
       html, body, #map-canvas {
         height: 100%;
@@ -63,7 +63,7 @@ function initialize() {
 function calcRoute() {
     var request = {
         origin: "Cape Town, South Africa",
-        destination: "Livingstone, Zambia",
+        destination: "Dar Es Salaam, Tanzania",
         waypoints: [
         {location:"Windhoek, Namibia",
          stopover:false},
@@ -74,6 +74,12 @@ function calcRoute() {
 	{location:"Maun, Botsuana",
          stopover:false},
 	{location:"Kasane, Botsuana",
+         stopover:false},
+	{location:"Livingstone, Zambia",
+         stopover:false},
+	{location:"Lusaka, Zambia",
+         stopover:false},
+	{location:"Kapiri Mposhi, Zambia",
          stopover:false}
 	],
         travelMode: google.maps.TravelMode.DRIVING
