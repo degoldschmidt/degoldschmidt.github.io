@@ -24,8 +24,9 @@
 <script>
 	function initialize() {
 		var mapCanvas = document.getElementById('map-canvas');
+		var myLatLng = new google.maps.LatLng(53.246421, 10.411518); // Lüneburg
 		var mapOptions = {
-			center : new google.maps.LatLng(53.246421, 10.411518),
+			center : myLatLng,
 			zoom : 8,
 			draggable : false,
 			scrollwheel : false,
@@ -39,10 +40,10 @@
 					                     "visibility": "simplified"
 					                 },
 					                 {
-					                     "color": "#000000"
+					                     "color": "#224477"
 					                 },
 					                 {
-					                     "lightness": 25
+					                     "lightness": 0
 					                 }
 			             ]
 			         },
@@ -222,13 +223,13 @@
 			                     "visibility": "on"
 			                 },
 			                 {
-			                     "color": "#000000"
+			                     "color": "#16FA71"
 			                 },
 			                 {
 			                     "saturation": 0
 			                 },
 			                 {
-			                     "lightness": 40
+			                     "lightness": 0
 			                 }
 			             ]
 			         },
@@ -299,6 +300,17 @@
 		}
 
 		var map = new google.maps.Map(mapCanvas, mapOptions)
+		
+		var image = new google.maps.MarkerImage(
+				'images/dot.png', new google.maps.Size(10, 10),
+				new google.maps.Point(0, 0),
+				new google.maps.Point(5, 5));
+		
+		var marker = new google.maps.Marker({
+			  icon: image,
+		      position: myLatLng,
+		      map: map
+		  });
 
 		google.maps.event.addListener(map, 'click', function() {
 			window.location.href = 'map.html';
@@ -306,6 +318,81 @@
 	}
 	google.maps.event.addDomListener(window, 'load', initialize);
 </script>
+
+
+<style>
+      .progress-pie-chart {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: #E5E5E5;
+  position: relative;
+}
+.progress-pie-chart.gt-50 {
+  background-color: #81CE97;
+}
+
+.ppc-progress {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 100px);
+  top: calc(50% - 100px);
+  width: 200px;
+  height: 200px;
+  clip: rect(0, 200px, 200px, 100px);
+}
+.ppc-progress .ppc-progress-fill {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 100px);
+  top: calc(50% - 100px);
+  width: 200px;
+  height: 200px;
+  clip: rect(0, 100px, 200px, 0);
+  background: #81CE97;
+  transform: rotate(60deg);
+}
+.gt-50 .ppc-progress {
+  clip: rect(0, 100px, 200px, 0);
+}
+.gt-50 .ppc-progress .ppc-progress-fill {
+  clip: rect(0, 200px, 200px, 100px);
+  background: #E5E5E5;
+}
+
+.ppc-percents {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 173.91304px/2);
+  top: calc(50% - 173.91304px/2);
+  width: 173.91304px;
+  height: 173.91304px;
+  background: #fff;
+  text-align: center;
+  display: table;
+}
+.ppc-percents span {
+  display: block;
+  font-size: 2.6em;
+  font-weight: bold;
+  color: #81CE97;
+}
+
+.pcc-percents-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.progress-pie-chart {
+  margin: 50px auto 0;
+}
+
+    </style>
+
+<script src="js/prefixfree.min.js"></script>
 
 </head>
 <body>
@@ -319,6 +406,7 @@
 			<li><a href="#pubs">PUBLICATIONS</a></li>
 			<li><a href="https://github.com/degoldcode">CODE</a></li>
 			<li><a href="#where">WHERE AM I?</a></li>
+			<li><a href="#contact">CONTACT</a></li>
 		</ul>
 	</nav>
 
@@ -348,7 +436,7 @@
 			<br>
 			<br>
 			<center>
-				<a href="#work" class="button big scrolly">Learn about what I do</a>
+				<a href="#me" class="button big scrolly">Who am I?</a>
 			</center>
 		</article>
 	</div>
@@ -413,6 +501,79 @@
 				</li>
 			</ul>
 
+			<!-- <div class="container" style="text-align:center">
+			
+				<div class="row">
+					<div class="3u 12u(mobile)">
+						
+<div class="progress-pie-chart" data-percent="60">
+  <div class="ppc-progress">
+    <div class="ppc-progress-fill"></div>
+  </div>
+  <div class="ppc-percents">
+    <div class="pcc-percents-wrapper">
+    <span>English</span>
+      <span>50%</span>
+    </div>
+  </div>
+</div>
+
+					</div>
+					<div class="3u 12u(mobile)">
+<div class="progress-pie-chart" data-percent="60">
+  <div class="ppc-progress">
+    <div class="ppc-progress-fill"></div>
+  </div>
+  <div class="ppc-percents">
+    <div class="pcc-percents-wrapper">
+    <span>English</span>
+      <span>50%</span>
+    </div>
+  </div>
+</div>
+					</div>
+					<div class="3u 12u(mobile)">
+						
+<div class="progress-pie-chart" data-percent="60">
+  <div class="ppc-progress">
+    <div class="ppc-progress-fill"></div>
+  </div>
+  <div class="ppc-percents">
+    <div class="pcc-percents-wrapper">
+    <span>English</span>
+      <span>50%</span>
+    </div>
+  </div>
+</div>
+
+					</div>
+					
+										<div class="3u 12u(mobile)">
+						
+<div class="progress-pie-chart" data-percent="60">
+  <div class="ppc-progress">
+    <div class="ppc-progress-fill"></div>
+  </div>
+  <div class="ppc-percents">
+    <div class="pcc-percents-wrapper">
+    <span>English</span>
+      <span>50%</span>
+    </div>
+  </div>
+</div>
+
+					</div>
+				
+				</div>
+				
+			</div> -->
+
+			<br>
+			<br>
+			<center>
+				<a href="#work" class="button big scrolly">What am I doing?</a>
+			</center>
+
 		</article>
 	</div>
 
@@ -423,37 +584,10 @@
 				<h2>Here's all the stuff I do.</h2>
 				<p>Odio turpis amet sed consequat eget posuere consequat.</p>
 			</header>
-			<div class="container">
-				<div class="row">
-					<div class="4u 12u(mobile)">
-						<section class="box style1">
-							<span class="icon featured fa-comments-o"></span>
-							<h3>Consequat lorem</h3>
-							<p>Ornare nulla proin odio consequat sapien vestibulum ipsum
-								primis sed amet consequat lorem dolore.</p>
-						</section>
-					</div>
-					<div class="4u 12u(mobile)">
-						<section class="box style1">
-							<span class="icon featured fa-camera-retro"></span>
-							<h3>Lorem dolor tempus</h3>
-							<p>Ornare nulla proin odio consequat sapien vestibulum ipsum
-								primis sed amet consequat lorem dolore.</p>
-						</section>
-					</div>
-					<div class="4u 12u(mobile)">
-						<section class="box style1">
-							<span class="icon featured fa-thumbs-o-up"></span>
-							<h3>Feugiat posuere</h3>
-							<p>Ornare nulla proin odio consequat sapien vestibulum ipsum
-								primis sed amet consequat lorem dolore.</p>
-						</section>
-					</div>
-				</div>
-			</div>
+			
 			<footer>
 				<p>Lorem ipsum dolor sit sapien vestibulum ipsum primis?</p>
-				<a href="#portfolio" class="button big scrolly">See some of my
+				<a href="#pubs" class="button big scrolly">See some of my
 					recent work</a>
 			</footer>
 		</article>
@@ -536,8 +670,7 @@
 			</div>
 			<footer>
 				<p>Lorem ipsum dolor sit sapien vestibulum ipsum primis?</p>
-				<a href="#contact" class="button big scrolly">Get in touch with
-					me</a>
+				<a href="#where" class="button big scrolly">Where am I?</a>
 			</footer>
 		</article>
 	</div>
@@ -549,6 +682,30 @@
 			<div id="map-canvas"></div>
 		</article>
 	</div>
+	
+			<!-- Contact -->
+			<div class="wrapper style4">
+		<article id="contact" class="container 75%">
+			<header>
+				<h2>Shoot me an email.</h2>
+			</header>
+			<form id="contactform" method="POST">
+				<input type="text" name="name" placeholder="Your name"> 
+				<input type="email" name="_replyto" placeholder="Your email"> 
+				<input type="hidden" name="_subject" value="Website contact" />
+				<textarea name="message" placeholder="Your message"></textarea>
+				<input type="text" name="_gotcha" style="display: none" /> <input
+					type="submit" value="Send">
+			</form>
+			<script>
+				var contactform = document.getElementById('contactform');
+				contactform.setAttribute('action', 'http://formspree.io/'
+						+ 'goldschmidt.de' + '@' + 'gmail' + '.' + 'com');
+			</script>
+		</article>
+	</div>
+			
+
 
 	<!-- Scripts -->
 	<script src="assets/js/jquery.min.js"></script>
