@@ -1,296 +1,296 @@
-
-
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+<!--
+	Miniport by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>Current location: New Delhi, India (23/06/15::09:37pm)</title>
-    <style>
-      html, body, #map-canvas {
-        height: 100%;
-        margin: 0px;
-        padding: 0px
-      }
-      #panel {
-        position: absolute;
-        top: 5px;
-        left: 50%;
-        margin-left: -180px;
-        z-index: 5;
-        background-color: #fff;
-        padding: 5px;
-        border: 1px solid #999;
-      }
-    </style>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
-    <script>
-var geocoder;
-var map;
-var directionsDisplay;
-var infowindow = null;
-var directionsService = new google.maps.DirectionsService();
-function initialize() {
-  // Change a few 'var variableName' to 'window.' This lets us set global variables from within our function
-  var colors = ["#8b0013", "#138b13", "#131355"]
-  directionsDisplay = new google.maps.DirectionsRenderer({ polylineOptions: { strokeColor: "#8b0013" } });
-  geocoder = new google.maps.Geocoder();
-  var latlng = new google.maps.LatLng(19.075984, 72.877656);
-  var mapOptions = {
-    zoom: 3,
-    center: latlng,
-    mapTypeId: google.maps.MapTypeId.TERRAIN
-  }
-  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-  /* now inside your initialise function */
-  infowindow = new google.maps.InfoWindow({
-    content: "holding..."
-  });
-  setMarkers(map, stops);
-  setMarkers(map, planstops);
+<head>
+<title>DENNIS GOLDSCHMIDT</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+<link rel="stylesheet" href="assets/css/main.css" />
+<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 
-
-  // Set the current route - default: walking
-  calcRoute();
-  //calcPlanAfrRoute();
-
-  // Render our directions on the map
-   directionsDisplay.setMap(map);
-   directionsDisplay.setOptions( { suppressMarkers: true } );
+<style>
+#map-canvas {
+	width: 100%;
+	height: 450px;
 }
+</style>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script>
+	function initialize() {
+		var mapCanvas = document.getElementById('map-canvas');
+		var mapOptions = {
+			center : new google.maps.LatLng(53.246421, 10.411518),
+			zoom : 8,
+			draggable : false,
+			scrollwheel : false,
+			mapTypeId : google.maps.MapTypeId.ROADMAP
+		}
 
-// Calculate our route between the markers & set/change the mode of travel
-/*function calcRoute() {
-    var request = {
-        origin: "Cape Town, South Africa",
-        destination: "Dar Es Salaam, Tanzania",
-        waypoints: [
-        {location:"Windhoek, Namibia",
-         stopover:false},
-	{location:"Swakopmund, Namibia",
-         stopover:false},
-	{location:"Windhoek, Namibia",
-         stopover:false},
-	{location:"Maun, Botsuana",
-         stopover:false},
-	{location:"Kasane, Botsuana",
-         stopover:false},
-	{location:"Livingstone, Zambia",
-         stopover:false},
-	{location:"Lusaka, Zambia",
-         stopover:false},
-	{location:"Kapiri Mposhi, Zambia",
-         stopover:false}
-	],
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    directionsService.route(request, function(response, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-            directionsDisplay.setDirections(response);
-        }
-    });
-}*/
+		var map = new google.maps.Map(mapCanvas, mapOptions)
 
-function calcRoute() {
-    var request = {
-        origin: "Mumbai, India",
-        destination: "New Delhi, India",
-        waypoints: [
-        {location:"Udaipur, India",
-         stopover:false},
-	{location:"Jodhpur, India",
-         stopover:false},
-	{location:"Jaipur, India",
-         stopover:false}
-	],
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    directionsService.route(request, function(response, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-            directionsDisplay.setDirections(response);
-        }
-    });
-}
+		google.maps.event.addListener(map, 'click', function() {
+			window.location.href = 'map.html';
+		});
+	}
+	google.maps.event.addDomListener(window, 'load', initialize);
+</script>
 
-function calcPlanAfrRoute() {
-    var request = {
-        origin: "Maun, Botswana",
-        destination: "Dar Es Salaam, Tanzania",
-        waypoints: [
-        {location:"Victoria Falls, Zambia",
-         stopover:false},
-	{location:"Lusaka, Zambia",
-         stopover:false},
-	{location:"Dar Es Saleem, Tanzania",
-         stopover:false},
-        {location:"Zanzibar, Tanzania",
-         stopover:false}
-	],
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    directionsService.route(request, function(response, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-            directionsDisplay.setDirections(response);
-        }
-    });
-}
+</head>
+<body>
 
-function calcPlanIndRoute() {
-    var request = {
-        origin: "Mombay, India",
-        destination: "Kolkata, India",
-        waypoints: [
-        {location:"Udaipur, India",
-         stopover:false},
-	{location:"Jaipur, India",
-         stopover:false},
-        {location:"Agra, India",
-         stopover:false},
-	{location:"New Delhi, India",
-         stopover:false},
-        {location:"Shimla, India",
-         stopover:false},
-        {location:"Varanasi, India",
-         stopover:false},
-        {location:"Patna, India",
-         stopover:false},
-	],
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-    directionsService.route(request, function(response, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-            directionsDisplay.setDirections(response);
-        }
-    });
-}
+	<!-- Nav -->
+	<nav id="nav">
+		<ul class="container">
+			<li><a href="#top">HOME</a></li>
+			<li><a href="#me">ABOUT ME</a></li>
+			<li><a href="#work">PROJECTS</a></li>
+			<li><a href="#pubs">PUBLICATIONS</a></li>
+			<li><a href="https://github.com/degoldcode">CODE</a></li>
+			<li><a href="#where">WHERE AM I?</a></li>
+		</ul>
+	</nav>
 
-/**
- * Data for the markers consisting of a name, a LatLng and a zIndex for
- * the order in which these markers should display on top of each
- * other.
- */
-var stops = [
-  ['Cape Town', -33.9248685, 18.4240553, 1, '17.-21.04.', 'red'],
-  ['Keetmanshoop', -26.578611, 18.133333, 2, '22.04.', 'red'],
-  ['Windhoek', -22.57, 17.083611, 3, '22.-23.04. & 25.-26.04.', 'red'],
-  ['Swakopmund', -22.683333, 14.533333, 4, '23.04.-25.04.', 'red'],
-  ['Maun', -19.983333, 23.416667, 5, '26.04.-04.05.', 'yellow'],
-  ['Okavango delta', -19.3045433, 22.6437025, 6, '03.05.', 'yellow'],
-  ['Moremi Game Reserve', -19.2395708, 23.3544449, 7, '03.05.', 'yellow'],
-  ['Gweta', -20.2111684,  25.2541233, 8, '04.05.-06.05.', 'yellow'],
-  ['Kasane', -17.816667, 25.15, 9, '~ 07.05.', 'yellow'],
-  ['Livingstone', -17.8519791, 25.8285153, 10, '~ 09.05.', 'yellow'],
-  ['Victoria Falls', -17.924444, 25.856667, 11, '~ 13.05.', 'yellow'],
-  ['Lusaka', -15.416667, 28.283333, 12, '~ 16.05.', 'yellow'],
-  ['Kapiri Mposhi', -13.9778684,  28.6848112, 13, '~ 19.05.', 'yellow'],
-  ['Dar Es Salaam', -6.8, 39.283333, 14, '~ 21.05.', 'yellow'],
-  ['Zanzibar', -6.165917, 39.202641, 15, '~ 23.05.', 'yellow'],
-  ['Dubai', 25.204849, 55.270783, 16, '02.-09.06.', 'yellow'],
-  ['Mumbai', 19.075984, 72.877656, 17, '09.06.-12.06.', 'yellow'],
-  ['Udaipur', 24.580000, 73.680000, 18, '13.-16.06.', 'yellow'],
-  ['Jodhpur', 26.238947, 73.024309, 19, '16.-18.06.', 'yellow'],
-  ['Jaipur', 26.912434, 75.787271, 20, '19.-22.06.', 'yellow'],
-  ['New Delhi', 28.613939, 77.209021, 21, '22.-24.06.', 'yellow']
-];
+	<!-- Home -->
+	<div class="wrapper style1 first">
+		<article class="container" id="top">
+			<div class="row">
+				<div class="8u 12u(mobile)">
+					<header>
+						<h1 style="font-size: 36pt; margin-left: 0.5em">
+							Hi. My name is <strong>Dennis Goldschmidt,</strong>
+						</h1>
+					</header>
+					<p style="margin-left: 1.05em">
+						And I am a PhD student at the <em>Champalimaud Neuroscience
+							Programme</em> in Lisbon, Portugal. My main research interests are in
+						<em>Theoretical and Computational Neuroscience, Nonlinear
+							Dynamics, Machine Learning, and Neurorobotics</em>.
+					</p>
+					<!-- recently completed my M.Sc. in Neural Systems & Computation at the Institute of Neuroinformatics (University of Zurich/ ETH Zurich). -->
+				</div>
+				<div class="4u 12u(mobile)">
+					<span class="image fit"><img src="images/photo.jpeg" alt="" /></span>
+				</div>
+			</div>
+			<br>
+			<br>
+			<br>
+			<center>
+				<a href="#work" class="button big scrolly">Learn about what I do</a>
+			</center>
+		</article>
+	</div>
 
-var contstops = ['<h3>17.-21.04.</h3>', '<h3>22.04.</h3>', '<h3>22.-23.04. & 25.-26.04.</h3>', '<h3>23.-25.04.</h3>', '<h3>26.-04.05.</h3>', '<h3>01.05.</h3>', '<h3>03.05.</h3>', '<h3>04.-06.05.</h3>', '<h3>06.-09.07.</h3>', '~ 09.05.', '~ 13.05.', '~ 16.05.', '~ 19.05.', '~ 21.05.', '~ 23.05.', '02.-09.06.', '09.06.-12.06.', '13.-16.06.', '16.-18.06.', '19.-22.06.', '22.-24.06.']
+	<!-- CV -->
+	<div class="wrapper style5">
+		<article class="container" id="me">
+			<h1>CV</h1>
+			<h2>Education</h2>
 
-var planstops = [
-  ['Livingstone', -17.8519791, 25.8285153, 10, '~ 09.05.'],
-  ['Victoria Falls', -17.924444, 25.856667, 11, '~ 13.05.'],
-  ['Lusaka', -15.416667, 28.283333, 12, '~ 16.05.'],
-  ['Kapiri Mposhi', -13.9778684,  28.6848112, 13, '~ 19.05.'],
-  ['Dar Es Salaam', -6.8, 39.283333, 14, '~ 21.05.'],
-  ['Zanzibar', -6.165917, 39.202641, 15, '~ 23.05.']
-];
+			<ul class="timeline">
+				<!-- 						<li>
+							<p class="timeline-date">01/2016 -</p>
+							<div class="timeline-content">
+								<h3>PhD International Neuroscience Doctoral Programme
+									(INDP)</h3>
+								<p>Champalimaud Neuroscience Programme, Lisbon</p>
+							</div>
+						</li> -->
+				<li>
+					<p class="timeline-date">2012 - 2014</p>
+					<div class="timeline-content">
+						<h3>MSc Neural Systems & Computation</h3>
+						<p>
+							Institute of Neuroinformatics, ETH Zurich/University of Zurich,
+							Switzerland <br>Thesis title: <em>“Modular Neural
+								Mechanisms for Adaptive Spatial Behavior in Autonomous Robots”</em>
+						</p>
+					</div>
+				</li>
+				<li>
+					<p class="timeline-date">2008 - 2012</p>
+					<div class="timeline-content">
+						<h3>BSc Physics</h3>
+						<p>
+							Faculty of Physics, Georg August University Göttingen, Germany <br>Thesis
+							title: <em>“Adaptive Climbing Behavior of Walking Machines“</em>
+						</p>
+					</div>
+				</li>
+			</ul>
 
+			<h2>Experience</h2>
 
-function setMarkers(map, locations) {
-  // Add markers to the map
+			<ul class="timeline">
+				<li>
+					<p class="timeline-date">2012 - 2015</p>
+					<div class="timeline-content">
+						<h3>Research assistant at the Emmy Noether Research Group</h3>
+						<p>Bernstein Center for Computational Neuroscience, Department
+							of Computational Neuroscience, Third Institute of Physics –
+							Biophysics, Georg-August University Göttingen, Germany</p>
+					</div>
+				</li>
+				<li>
+					<p class="timeline-date">2012</p>
+					<div class="timeline-content">
+						<h3>Research intern at the Robotics & Control Laboratory</h3>
+						<p>College of Engineering, Kookmin University Seoul, Republic
+							of Korea</p>
+					</div>
+				</li>
+			</ul>
 
-  // Marker sizes are expressed as a Size of X,Y
-  // where the origin of the image (0,0) is located
-  // in the top left of the image.
+		</article>
+	</div>
 
-  // Origins, anchor positions and coordinates of the marker
-  // increase in the X direction to the right and in
-  // the Y direction down.
-  var imagesarray = ['<h4>17.04.: Arriving in Cape Town</h4> <img src="pics/17.04-ArrivalCapeTown/17-04-6.JPG" width="608" height="465"> <img src="pics/17.04-ArrivalCapeTown/17-04-7.JPG" width="608" height="465"> <img src="pics/17.04-ArrivalCapeTown/17-04-9.JPG" width="608" height="465"> <h4>18.04.: Exploring Cape Town and the Peninsula</h4> <p>Visiting the <b>Neighbourgoods Market</b> at the <b>Old Biscuit Mill</b> (<a href="https://www.theoldbiscuitmill.co.za/">visit link</a>) </p> <img src="pics/18.04-CityAndPeninsula/18-04-1-1.JPG" width="608" height="465"> <img src="pics/18.04-CityAndPeninsula/18-04-1-2.JPG" width="608" height="465"> <img src="pics/18.04-CityAndPeninsula/18-04-1-5.JPG" width="608" height="465"> <img src="pics/18.04-CityAndPeninsula/18-04-1-7.JPG" width="608" height="465"> Special drink: Strawberry Pulp, Ginger Beer & Double Vodka <br></br> <img src="pics/18.04-CityAndPeninsula/18-04-1-8.JPG" width="608" height="465"> Scenic view on the Table Mountain <br></br> <p style="font-size:18">The <b>Bo-Kaap</b>: The former Malay quarter of Cape Town. </p> <img src="pics/18.04-CityAndPeninsula/18-04-2-6.JPG" width="465" height="608"> <img src="pics/18.04-CityAndPeninsula/18-04-3-6.JPG" width="608" height="465"> <p style="font-size:18">The peninsula of Cape Town </p> <img src="pics/18.04-CityAndPeninsula/18-04-3-13.JPG" width="608" height="465"> <img src="pics/18.04-CityAndPeninsula/18-04-4-1.JPG" width="608" height="465"> <img src="pics/18.04-CityAndPeninsula/18-04-4-4.JPG" width="608" height="465"> <b>Lion\'s Head</b> from the back<br></br> <img src="pics/18.04-CityAndPeninsula/18-04-4-9.JPG" width="608" height="465"> <img src="pics/18.04-CityAndPeninsula/18-04-4-12.JPG" width="608" height="465"> Hout Bay from Chapman\'s Peak<br></br> <img src="pics/18.04-CityAndPeninsula/18-04-4-13.JPG" width="608" height="465"> Dinner at Olympia Café in Kalk Bay<br></br> <h4>20.04.: Last day in Cape Town</h4> <img src="pics/20.04-LastDayInCapeTown/20-04-1-0.JPG" width="608" height="465"> Backyard area of our hostel<br></br> <img src="pics/20.04-LastDayInCapeTown/20-04-1-3.JPG" width="608" height="465"> Buying snacks (Namibian Beef & Ostrich Biltong, Samoosas) & drinks (Ginger beer) for the hike and the bus trip<br></br> <p style="font-size:18"> Hiking on top of the Table Mountain </p> <img src="pics/20.04-LastDayInCapeTown/20-04-1-10.JPG" width="608" height="465"> <img src="pics/20.04-LastDayInCapeTown/20-04-2-1.JPG" width="608" height="465"> <img src="pics/20.04-LastDayInCapeTown/20-04-2-6.JPG" width="608" height="465"> <img src="pics/20.04-LastDayInCapeTown/20-04-3-0.JPG" width="608" height="465"> <img src="pics/20.04-LastDayInCapeTown/20-04-3-3.JPG" width="608" height="465"> <img src="pics/20.04-LastDayInCapeTown/20-04-3-8.JPG" width="608" height="465"> <img src="pics/20.04-LastDayInCapeTown/20-04-4-6.JPG" width="608" height="465"> <img src="pics/20.04-LastDayInCapeTown/20-04-5-5.JPG" width="608" height="465"> <p> Lunch time at Moyo\'s & face painting </p> <img src="pics/20.04-LastDayInCapeTown/20-04-5-9.JPG" width="608" height="465"> <img src="pics/20.04-LastDayInCapeTown/20-04-5-11.JPG" width="608" height="465"> <img src="pics/20.04-LastDayInCapeTown/20-04-5-12.JPG" width="608" height="465"> <h4>21.04.: Going to Namibia</h4> <img src="pics/21-22.04-BusToWindhoek/21-04-1-0.JPG" width="608" height="465"> Beginning of the 22-hours bus trip <br></br> <img src="pics/21-22.04-BusToWindhoek/21-04-1-6.JPG" width="608" height="465"> South-african desert',
-		     '',
-		     '<h4>22.04.: First impressions of Windhoek</h4> <img src="pics/21-22.04-BusToWindhoek/21-04-2-9.JPG" width="608" height="465"> <img src="pics/21-22.04-BusToWindhoek/21-04-2-12.JPG" width="608" height="465"> <img src="pics/21-22.04-BusToWindhoek/21-04-2-14.JPG" width="608" height="465"> <img src="pics/22.04-ExploringWindhoek/22-04-1-5.JPG" width="608" height="465"> <img src="pics/22.04-ExploringWindhoek/22-04-1-7.JPG" width="608" height="465"> <img src="pics/22.04-ExploringWindhoek/22-04-1-8.JPG" width="608" height="465"> <img src="pics/22.04-ExploringWindhoek/22-04-1-9.JPG" width="608" height="465"> <img src="pics/22.04-ExploringWindhoek/22-04-2-3.JPG" width="608" height="465"> <img src="pics/22.04-ExploringWindhoek/22-04-2-6.JPG" width="608" height="465"> <img src="pics/22.04-ExploringWindhoek/22-04-2-8.JPG" width="608" height="465">',
-		     '<h4>23.04.: Swakopmund</h4> <p style="font-size:18">Swakopmund township</p> <img src="pics/23.04-Swakopmund/23-04-1-6.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-1-7.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-1-8.JPG" width="608" height="465"> <p style="font-size:18">Swakopmund Strand</p> <img src="pics/23.04-Swakopmund/23-04-1-10.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-2-3.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-2-4.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-2-5.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-2-7.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-2-8.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-2-11.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-3-1.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-1-8.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-3-2.JPG" width="608" height="465"><br> Map of Swakopmund in the Transnamibian museum <br></br> <img src="pics/23.04-Swakopmund/23-04-3-4.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-3-6.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-4-0.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-4-6.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-4-9.JPG" width="608" height="465"> <img src="pics/23.04-Swakopmund/23-04-4-13.JPG" width="608" height="465">',
-		     '',
-		     '<h4>01.05.: Mokoro trip in the Okavango delta</h4> <img src="pics/Mokoro/01-05-1-0.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-1-1.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-1-2.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-1-5.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-1-6.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-1-9.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-1-11.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-2-9.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-3-1.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-3-5.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-3-13.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-4-13.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-4-15.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-5-1.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-5-2.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-5-3.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-5-4.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-5-5.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-5-12.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-5-13.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-6-2.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-6-9.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-6-11.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-6-15.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-7-1.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-7-4.JPG" width="608" height="465"> <img src="pics/Mokoro/01-05-7-5.JPG" width="608" height="465">',
-		     '<h4>03.05.: Oneday 4x4 safari in the Moremi national park</h4> <img src="pics/Moremi/03-05-1-0.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-1-2.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-1-4.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-1-5.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-1-6.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-1-7.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-1-8.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-1-9.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-1-11.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-1-12.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-1-13.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-1-14.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-0.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-1.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-2.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-3.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-4.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-6.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-7.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-8.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-9.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-11.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-12.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-13.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-14.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-2-15.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-3-0.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-3-2.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-3-6.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-3-7.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-3-8.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-3-9.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-3-10.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-3-11.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-3-12.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-3-14.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-3-15.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-4-4.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-4-5.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-4-7.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-4-8.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-4-10.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-4-14.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-5-7.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-5-8.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-5-9.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-5-13.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-6-0.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-6-7.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-6-8.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-6-10.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-6-11.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-6-13.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-6-14.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-6-15.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-7-0.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-7-1.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-7-2.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-7-3.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-7-4.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-7-5.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-7-6.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-7-7.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-7-8.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-7-10.JPG" width="608" height="465"> <img src="pics/Moremi/03-05-7-11.JPG" width="608" height="465">  <img src="pics/Moremi/03-05-7-14.JPG" width="608" height="465">',
-		     '',
-		     '<h4>07. & 08.05.: River cruise and overnight 4x4 safari in the Chobe national park</h4> ',
-                     '',
-		     '']
-
-  var image = {
-    url: 'images/beachflag.png',
-    // This marker is 20 pixels wide by 32 pixels tall.
-    size: new google.maps.Size(20, 32),
-    // The origin for this image is 0,0.
-    origin: new google.maps.Point(0,0),
-    // The anchor for this image is the base of the flagpole at 0,32.
-    anchor: new google.maps.Point(0, 32)
-  };
-  // Shapes define the clickable region of the icon.
-  // The type defines an HTML &lt;area&gt; element 'poly' which
-  // traces out a polygon as a series of X,Y points. The final
-  // coordinate closes the poly by connecting to the first
-  // coordinate.
-  for (var i = 0; i < locations.length; i++) {
-    var stop = locations[i];
-    var shape = {
-      coords: [1, 1, 1, 20, 18, 20, 18 , 1],
-      type: 'poly',
-      fillColor: stop[5]
-    };
-    var myLatLng = new google.maps.LatLng(stop[1], stop[2])
-    var marker = new google.maps.Marker({
-        position: myLatLng,
-        map: map,
-        //icon: image,
-        //shape: shape,
-        title: stop[0],
-        zIndex: stop[3]
-    });
-   google.maps.event.addListener(marker, 'click', function () {
-     // where I have added .html to the marker object.
-     infowindow.setContent(contstops[this.getZIndex()-1] + imagesarray[this.getZIndex()-1]);
-     infowindow.open(map, this);
-   });
-  }
-}
+	<!-- Work -->
+	<div class="wrapper style2">
+		<article id="work">
+			<header>
+				<h2>Here's all the stuff I do.</h2>
+				<p>Odio turpis amet sed consequat eget posuere consequat.</p>
+			</header>
+			<div class="container">
+				<div class="row">
+					<div class="4u 12u(mobile)">
+						<section class="box style1">
+							<span class="icon featured fa-comments-o"></span>
+							<h3>Consequat lorem</h3>
+							<p>Ornare nulla proin odio consequat sapien vestibulum ipsum
+								primis sed amet consequat lorem dolore.</p>
+						</section>
+					</div>
+					<div class="4u 12u(mobile)">
+						<section class="box style1">
+							<span class="icon featured fa-camera-retro"></span>
+							<h3>Lorem dolor tempus</h3>
+							<p>Ornare nulla proin odio consequat sapien vestibulum ipsum
+								primis sed amet consequat lorem dolore.</p>
+						</section>
+					</div>
+					<div class="4u 12u(mobile)">
+						<section class="box style1">
+							<span class="icon featured fa-thumbs-o-up"></span>
+							<h3>Feugiat posuere</h3>
+							<p>Ornare nulla proin odio consequat sapien vestibulum ipsum
+								primis sed amet consequat lorem dolore.</p>
+						</section>
+					</div>
+				</div>
+			</div>
+			<footer>
+				<p>Lorem ipsum dolor sit sapien vestibulum ipsum primis?</p>
+				<a href="#portfolio" class="button big scrolly">See some of my
+					recent work</a>
+			</footer>
+		</article>
+	</div>
 
 
-function codeAddress() {
-  var address = document.getElementById('address').value;
-  geocoder.geocode( { 'address': address}, function(results, status) {
-    if (status == google.maps.GeocoderStatus.OK) {
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location,
-          title: results[0].geometry.location.toString()
-      });
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
-}
+	<!-- Portfolio -->
+	<div class="wrapper style3">
+		<article id="pubs">
+			<header>
+				<h2>Here’s some stuff I made recently.</h2>
+				<p>Proin odio consequat sapien vestibulum consequat lorem dolore
+					feugiat lorem ipsum dolore.</p>
+			</header>
+			<div class="container">
+				<div class="row">
+					<div class="4u 12u(mobile)">
+						<article class="box style2">
+							<a href="#" class="image featured"><img
+								src="images/pic01.jpg" alt="" /></a>
+							<h3>
+								<a href="#">Magna feugiat</a>
+							</h3>
+							<p>Ornare nulla proin odio consequat.</p>
+						</article>
+					</div>
+					<div class="4u 12u(mobile)">
+						<article class="box style2">
+							<a href="#" class="image featured"><img
+								src="images/pic02.jpg" alt="" /></a>
+							<h3>
+								<a href="#">Veroeros primis</a>
+							</h3>
+							<p>Ornare nulla proin odio consequat.</p>
+						</article>
+					</div>
+					<div class="4u 12u(mobile)">
+						<article class="box style2">
+							<a href="#" class="image featured"><img
+								src="images/pic03.jpg" alt="" /></a>
+							<h3>
+								<a href="#">Lorem ipsum</a>
+							</h3>
+							<p>Ornare nulla proin odio consequat.</p>
+						</article>
+					</div>
+				</div>
+				<div class="row">
+					<div class="4u 12u(mobile)">
+						<article class="box style2">
+							<a href="#" class="image featured"><img
+								src="images/pic04.jpg" alt="" /></a>
+							<h3>
+								<a href="#">Tempus dolore</a>
+							</h3>
+							<p>Ornare nulla proin odio consequat.</p>
+						</article>
+					</div>
+					<div class="4u 12u(mobile)">
+						<article class="box style2">
+							<a href="#" class="image featured"><img
+								src="images/pic05.jpg" alt="" /></a>
+							<h3>
+								<a href="#">Feugiat aliquam</a>
+							</h3>
+							<p>Ornare nulla proin odio consequat.</p>
+						</article>
+					</div>
+					<div class="4u 12u(mobile)">
+						<article class="box style2">
+							<a href="#" class="image featured"><img
+								src="images/pic06.jpg" alt="" /></a>
+							<h3>
+								<a href="#">Sed amet ornare</a>
+							</h3>
+							<p>Ornare nulla proin odio consequat.</p>
+						</article>
+					</div>
+				</div>
+			</div>
+			<footer>
+				<p>Lorem ipsum dolor sit sapien vestibulum ipsum primis?</p>
+				<a href="#contact" class="button big scrolly">Get in touch with
+					me</a>
+			</footer>
+		</article>
+	</div>
 
-google.maps.event.addDomListener(window, 'load', initialize);
+	<!-- Where am I? -->
+	<div class="wrapper style2">
+		<article id="where">
+			<h2>Where am I?</h2>
+			<div id="map-canvas"></div>
+		</article>
+	</div>
 
-    </script>
-  </head>
-  <body>
-<!--    <div id="panel">
-      <input id="address" type="textbox" value="Sydney, NSW">
-      <input type="button" value="Geocode" onclick="codeAddress()">
-    </div> -->
-    <div id="map-canvas"></div>
-  </body>
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/skel-viewport.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+	<script src="assets/js/main.js"></script>
+</body>
 </html>
