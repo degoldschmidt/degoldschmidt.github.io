@@ -1429,16 +1429,16 @@ ol.default li {
 	color: #fff;
 }
 
-.wrapper.style4 form input[type=text], .wrapper.style4 form input[type=password],
+.wrapper.style4 form input[type=text], .wrapper.style4 form input[type=email], .wrapper.style4 form input[type=password],
 	.wrapper.style4 form select, .wrapper.style4 form textarea {
 	border: none;
-	background: #282828;
+	background: #f9f9f9;
 }
 
 .wrapper.style4 form input[type=text]:focus, .wrapper.style4 form input[type=password]:focus,
 	.wrapper.style4 form select:focus, .wrapper.style4 form textarea:focus
 	{
-	background: #252525;
+	background: #fafafa;
 }
 	
 /* Nav */
@@ -1575,6 +1575,10 @@ ol.default li {
 	}
 	.box.style1 {
 		padding: 3em 2em 3.5em 2em;
+		border-radius: 50%;
+		width:200px;
+    	height:200px;
+    	margin: auto;
 	}
 	.box.style1 h3 {
 		margin-bottom: 0.5em;
@@ -1878,4 +1882,68 @@ ol.default li {
 .wrapper.style5 h2 {
 	text-align: left;
 	margin-left: 100px;
+}
+
+@mixin circle($size) {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - #{$size/2});
+  top: calc(50% - #{$size/2});
+  width: $size;
+  height: $size;
+}
+
+$size: 150px;
+.progress-pie-chart {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background-color: #E5E5E5;
+  position: relative;
+  &.gt-50 {
+    background-color: #81CE97;
+  }
+}
+.ppc-progress {
+  @include circle($size);
+  clip: rect(0, $size, $size, #{$size/2});
+  .ppc-progress-fill {
+    @include circle($size);
+    clip: rect(0, #{$size/2}, $size, 0);
+    background: #81CE97;
+    transform: rotate(60deg);
+  }
+  .gt-50 & {
+    clip: rect(0, #{$size/2}, $size, 0);
+    .ppc-progress-fill {
+      clip: rect(0, $size, $size, #{$size/2});
+      background: #E5E5E5;
+    }
+  }
+}
+.ppc-percents {
+  @include circle(#{$size/1.15});
+  background: #fff;
+  text-align: center;
+  display: table;
+  span {
+    display: block;
+    font-size: 2.1em;
+    font-weight: bold;
+    color: #81CE97;
+  };
+/*   h3 {
+  	color: #12AC50;
+  } */
+}
+.pcc-percents-wrapper {
+  display: table-cell;
+  font-size: 0.8em;
+  vertical-align: center;
+}
+
+
+.progress-pie-chart {
+  margin: 50px auto 0;
 }
