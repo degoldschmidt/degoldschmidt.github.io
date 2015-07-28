@@ -40,7 +40,7 @@ function initialize() {
 					directionsDisplay = new google.maps.DirectionsRenderer(
 								{
 									polylineOptions : {
-										strokeColor : "#8b0013"
+										strokeColor : "#118b11"
 									}
 								});
 						geocoder = new google.maps.Geocoder();
@@ -67,6 +67,24 @@ function initialize() {
 									                 }
 							             ]
 							         },
+							         {
+							             "featureType": "administrative.country",
+							             "elementType": "labels",
+							             "stylers": [
+									                 {
+									                     "visibility": "simplified"
+									                 },
+									                 {
+									                     "color": "#000000"
+									                 },
+									                 {
+									                     "lightness": 25
+									                 },
+									                 {
+									                     "minZoom": 3
+									                 }
+							             ]
+							         },							         							         
 							         {
 							             "featureType": "administrative.neighborhood",
 							             "elementType": "labels.text",
@@ -168,7 +186,7 @@ function initialize() {
 							                     "color": "#9c9c9c"
 							                 },
 							                 {
-							                     "weight": 0.48
+							                     "weight": 0.2
 							                 }
 							             ]
 							         },
@@ -177,10 +195,10 @@ function initialize() {
 							             "elementType": "geometry",
 							             "stylers": [
 							                 {
-							                     "color": "#e2e2e2"
+							                     "color": "#66ae88"
 							                 },
 							                 {
-							                     "weight": 2.5
+							                     "weight": 0.5
 							                 }
 							             ]
 							         },
