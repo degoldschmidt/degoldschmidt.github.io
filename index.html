@@ -29,7 +29,273 @@
 			zoom : 8,
 			draggable : false,
 			scrollwheel : false,
-			mapTypeId : google.maps.MapTypeId.ROADMAP
+			mapTypeId : google.maps.MapTypeId.ROADMAP,
+			styles: [
+			         {
+			             "featureType": "administrative",
+			             "elementType": "labels",
+			             "stylers": [
+					                 {
+					                     "visibility": "simplified"
+					                 },
+					                 {
+					                     "color": "#000000"
+					                 },
+					                 {
+					                     "lightness": 25
+					                 }
+			             ]
+			         },
+			         {
+			             "featureType": "administrative.neighborhood",
+			             "elementType": "labels.text",
+			             "stylers": [
+			                 {
+			                     "visibility": "simplified"
+			                 },
+			                 {
+			                     "color": "#000000"
+			                 },
+			                 {
+			                     "lightness": 25
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "landscape.man_made",
+			             "elementType": "all",
+			             "stylers": [
+			                 {
+			                     "visibility": "on"
+			                 },
+			                 {
+			                     "color": "#000000"
+			                 },
+			                 {
+			                     "lightness": 0
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "landscape.natural.landcover",
+			             "elementType": "all",
+			             "stylers": [
+			                 {
+			                     "visibility": "on"
+			                 },
+			                 {
+			                     "color": "#ffffff"
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "landscape.natural.landcover",
+			             "elementType": "all",
+			             "stylers": [
+			                 {
+			                     "color": "#ffffff"
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "poi",
+			             "elementType": "all",
+			             "stylers": [
+			                 {
+			                     "visibility": "off"
+			                 },
+			                 {
+			                     "color": "#e2ebdb"
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "poi.park",
+			             "elementType": "geometry.fill",
+			             "stylers": [
+			                 {
+			                     "visibility": "on"
+			                 },
+			                 {
+			                     "color": "#6b9479"
+			                 },
+			                 {
+			                     "saturation": -1
+			                 },
+			                 {
+			                     "lightness": 40
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "road.highway",
+			             "elementType": "labels",
+			             "stylers": [
+			                 {
+			                     "visibility": "off"
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "road.highway",
+			             "elementType": "labels.text",
+			             "stylers": [
+			                 {
+			                     "visibility": "simplified"
+			                 },
+			                 {
+			                     "color": "#9c9c9c"
+			                 },
+			                 {
+			                     "weight": 0.2
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "road.highway",
+			             "elementType": "geometry",
+			             "stylers": [
+			                 {
+			                     "color": "#66ae88"
+			                 },
+			                 {
+			                     "weight": 0.5
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "road.arterial",
+			             "elementType": "geometry",
+			             "stylers": [
+			                 {
+			                     "color": "#e2e2e2"
+			                 },
+			                 {
+			                     "weight": 1.5
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "road.local",
+			             "elementType": "geometry",
+			             "stylers": [
+			                 {
+			                     "color": "#e2e2e2"
+			                 },
+			                 {
+			                     "weight": 0.5
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "road.arterial",
+			             "elementType": "labels.text",
+			             "stylers": [
+			                 {
+			                     "color": "#9c9c9c"
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "road.arterial",
+			             "elementType": "labels.text.stroke",
+			             "stylers": [
+			                 {
+			                     "visibility": "off"
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "road",
+			             "elementType": "labels.icon",
+			             "stylers": [
+			                 {
+			                     "visibility": "off"
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "water",
+			             "elementType": "geometry",
+			             "stylers": [
+			                 {
+			                     "visibility": "on"
+			                 },
+			                 {
+			                     "color": "#000000"
+			                 },
+			                 {
+			                     "saturation": 0
+			                 },
+			                 {
+			                     "lightness": 40
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "water",
+			             "elementType": "labels",
+			             "stylers": [
+			                 {
+			                     "visibility": "simplified"
+			                 },
+			                 {
+			                     "color": "#000000"
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "transit",
+			             "elementType": "all",
+			             "stylers": [
+			                 {
+			                     "visibility": "off"
+			                 },
+			                 {
+			                     "color": "#ffffff"
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "poi.medical",
+			             "elementType": "geometry.fill",
+			             "stylers": [
+			                 {
+			                     "color": "#000000"
+			                 },
+			                 {
+			                     "lightness": 77
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "poi.school",
+			             "elementType": "geometry.fill",
+			             "stylers": [
+			                 {
+			                     "visibility": "on"
+			                 },
+			                 {
+			                     "color": "#000000"
+			                 },
+			                 {
+			                     "lightness": 92
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "road.local",
+			             "elementType": "labels.text",
+			             "stylers": [
+			                 {
+			                     "visibility": "simplified"
+			                 },
+			                 {
+			                     "color": "#9c9c9c"
+			                 }
+			             ]
+			         }
+			     ]	
 		}
 
 		var map = new google.maps.Map(mapCanvas, mapOptions)
