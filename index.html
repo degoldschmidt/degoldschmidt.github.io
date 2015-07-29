@@ -27,7 +27,7 @@
 		var myLatLng = new google.maps.LatLng(53.246421, 10.411518); // Lüneburg
 		var mapOptions = {
 			center : myLatLng,
-			zoom : 8,
+			zoom : 4,
 			draggable : false,
 			scrollwheel : false,
 			mapTypeId : google.maps.MapTypeId.ROADMAP,
@@ -37,7 +37,7 @@
 			             "elementType": "labels",
 			             "stylers": [
 					                 {
-					                     "visibility": "simplified"
+					                     "visibility": "off"
 					                 },
 					                 {
 					                     "color": "#224477"
@@ -48,14 +48,14 @@
 			             ]
 			         },
 			         {
-			             "featureType": "administrative.neighborhood",
+			             "featureType": "administrative.countries",
 			             "elementType": "labels.text",
 			             "stylers": [
 			                 {
 			                     "visibility": "simplified"
 			                 },
 			                 {
-			                     "color": "#000000"
+			                     "color": "#111111"
 			                 },
 			                 {
 			                     "lightness": 25
@@ -73,12 +73,15 @@
 			                     "color": "#000000"
 			                 },
 			                 {
+			                     "minZoom": "6"
+			                 },
+			                 {
 			                     "lightness": 0
 			                 }
 			             ]
 			         },
 			         {
-			             "featureType": "landscape.natural.landcover",
+			             "featureType": "landscape",
 			             "elementType": "all",
 			             "stylers": [
 			                 {
@@ -118,7 +121,7 @@
 			                     "visibility": "on"
 			                 },
 			                 {
-			                     "color": "#6b9479"
+			                     "color": "#ffffff"
 			                 },
 			                 {
 			                     "saturation": -1
@@ -223,7 +226,7 @@
 			                     "visibility": "on"
 			                 },
 			                 {
-			                     "color": "#16FA71"
+			                     "color": "#bff9d6"
 			                 },
 			                 {
 			                     "saturation": 0
@@ -302,9 +305,9 @@
 		var map = new google.maps.Map(mapCanvas, mapOptions)
 		
 		var image = new google.maps.MarkerImage(
-				'images/dot.png', new google.maps.Size(10, 10),
+				'images/flag.png', new google.maps.Size(86, 39),
 				new google.maps.Point(0, 0),
-				new google.maps.Point(5, 5));
+				new google.maps.Point(0, 0));
 		
 		var marker = new google.maps.Marker({
 			  icon: image,
@@ -448,14 +451,13 @@
 			<h2>Education</h2>
 
 			<ul class="timeline">
-				<!-- 						<li>
-							<p class="timeline-date">01/2016 -</p>
-							<div class="timeline-content">
-								<h3>PhD International Neuroscience Doctoral Programme
-									(INDP)</h3>
-								<p>Champalimaud Neuroscience Programme, Lisbon</p>
-							</div>
-						</li> -->
+				<li>
+					<p class="timeline-date">2016 -     </p>
+					<div class="timeline-content">
+						<h3>PhD International Neuroscience Doctoral Programme</h3>
+						<p>Champalimaud Neuroscience Programme Lisbon, Portugal</p>
+					</div>
+				</li>
 				<li>
 					<p class="timeline-date">2012 - 2014</p>
 					<div class="timeline-content">
