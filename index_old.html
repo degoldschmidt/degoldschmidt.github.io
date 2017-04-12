@@ -1,0 +1,762 @@
+<!DOCTYPE HTML>
+<!--
+	Miniport by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+<title>DENNIS GOLDSCHMIDT</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+<link rel="stylesheet" href="assets/css/main.css" />
+<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+
+<style>
+#map-canvas {
+	width: 100%;
+	height: 450px;
+}
+</style>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script>
+	function initialize() {
+		var mapCanvas = document.getElementById('map-canvas');
+		var myLatLng = new google.maps.LatLng(53.246421, 10.411518); // Lüneburg
+		var mapOptions = {
+			center : myLatLng,
+			zoom : 4,
+			draggable : false,
+			scrollwheel : false,
+			mapTypeId : google.maps.MapTypeId.ROADMAP,
+			styles: [
+			         {
+			             "featureType": "administrative",
+			             "elementType": "labels",
+			             "stylers": [
+					                 {
+					                     "visibility": "off"
+					                 },
+					                 {
+					                     "color": "#224477"
+					                 },
+					                 {
+					                     "lightness": 0
+					                 }
+			             ]
+			         },
+			         {
+			             "featureType": "administrative.countries",
+			             "elementType": "labels.text",
+			             "stylers": [
+			                 {
+			                     "visibility": "simplified"
+			                 },
+			                 {
+			                     "color": "#111111"
+			                 },
+			                 {
+			                     "lightness": 25
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "landscape.man_made",
+			             "elementType": "all",
+			             "stylers": [
+			                 {
+			                     "visibility": "on"
+			                 },
+			                 {
+			                     "color": "#000000"
+			                 },
+			                 {
+			                     "minZoom": "6"
+			                 },
+			                 {
+			                     "lightness": 0
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "landscape",
+			             "elementType": "all",
+			             "stylers": [
+			                 {
+			                     "visibility": "on"
+			                 },
+			                 {
+			                     "color": "#ffffff"
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "landscape.natural.landcover",
+			             "elementType": "all",
+			             "stylers": [
+			                 {
+			                     "color": "#ffffff"
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "poi",
+			             "elementType": "all",
+			             "stylers": [
+			                 {
+			                     "visibility": "off"
+			                 },
+			                 {
+			                     "color": "#e2ebdb"
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "poi.park",
+			             "elementType": "geometry.fill",
+			             "stylers": [
+			                 {
+			                     "visibility": "on"
+			                 },
+			                 {
+			                     "color": "#ffffff"
+			                 },
+			                 {
+			                     "saturation": -1
+			                 },
+			                 {
+			                     "lightness": 40
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "road.highway",
+			             "elementType": "labels",
+			             "stylers": [
+			                 {
+			                     "visibility": "off"
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "road.highway",
+			             "elementType": "labels.text",
+			             "stylers": [
+			                 {
+			                     "visibility": "simplified"
+			                 },
+			                 {
+			                     "color": "#9c9c9c"
+			                 },
+			                 {
+			                     "weight": 0.2
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "road.highway",
+			             "elementType": "geometry",
+			             "stylers": [
+			                 {
+			                     "color": "#66ae88"
+			                 },
+			                 {
+			                     "weight": 0.5
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "road.arterial",
+			             "elementType": "geometry",
+			             "stylers": [
+			                 {
+			                     "color": "#e2e2e2"
+			                 },
+			                 {
+			                     "weight": 1.5
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "road.local",
+			             "elementType": "geometry",
+			             "stylers": [
+			                 {
+			                     "color": "#e2e2e2"
+			                 },
+			                 {
+			                     "weight": 0.5
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "road.arterial",
+			             "elementType": "labels.text",
+			             "stylers": [
+			                 {
+			                     "color": "#9c9c9c"
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "road.arterial",
+			             "elementType": "labels.text.stroke",
+			             "stylers": [
+			                 {
+			                     "visibility": "off"
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "road",
+			             "elementType": "labels.icon",
+			             "stylers": [
+			                 {
+			                     "visibility": "off"
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "water",
+			             "elementType": "geometry",
+			             "stylers": [
+			                 {
+			                     "visibility": "on"
+			                 },
+			                 {
+			                     "color": "#bff9d6"
+			                 },
+			                 {
+			                     "saturation": 0
+			                 },
+			                 {
+			                     "lightness": 0
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "water",
+			             "elementType": "labels",
+			             "stylers": [
+			                 {
+			                     "visibility": "simplified"
+			                 },
+			                 {
+			                     "color": "#000000"
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "transit",
+			             "elementType": "all",
+			             "stylers": [
+			                 {
+			                     "visibility": "off"
+			                 },
+			                 {
+			                     "color": "#ffffff"
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "poi.medical",
+			             "elementType": "geometry.fill",
+			             "stylers": [
+			                 {
+			                     "color": "#000000"
+			                 },
+			                 {
+			                     "lightness": 77
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "poi.school",
+			             "elementType": "geometry.fill",
+			             "stylers": [
+			                 {
+			                     "visibility": "on"
+			                 },
+			                 {
+			                     "color": "#000000"
+			                 },
+			                 {
+			                     "lightness": 92
+			                 }
+			             ]
+			         },
+			         {
+			             "featureType": "road.local",
+			             "elementType": "labels.text",
+			             "stylers": [
+			                 {
+			                     "visibility": "simplified"
+			                 },
+			                 {
+			                     "color": "#9c9c9c"
+			                 }
+			             ]
+			         }
+			     ]	
+		}
+
+		var map = new google.maps.Map(mapCanvas, mapOptions)
+		
+		var image = new google.maps.MarkerImage(
+				'images/flag.png', new google.maps.Size(86, 39),
+				new google.maps.Point(0, 0),
+				new google.maps.Point(0, 0));
+		
+		var marker = new google.maps.Marker({
+			  icon: image,
+		      position: myLatLng,
+		      map: map
+		  });
+
+		google.maps.event.addListener(map, 'click', function() {
+			window.location.href = 'map.html';
+		});
+	}
+	google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+
+<style>
+      .progress-pie-chart {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: #E5E5E5;
+  position: relative;
+}
+.progress-pie-chart.gt-50 {
+  background-color: #81CE97;
+}
+
+.ppc-progress {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 100px);
+  top: calc(50% - 100px);
+  width: 200px;
+  height: 200px;
+  clip: rect(0, 200px, 200px, 100px);
+}
+.ppc-progress .ppc-progress-fill {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 100px);
+  top: calc(50% - 100px);
+  width: 200px;
+  height: 200px;
+  clip: rect(0, 100px, 200px, 0);
+  background: #81CE97;
+  transform: rotate(60deg);
+}
+.gt-50 .ppc-progress {
+  clip: rect(0, 100px, 200px, 0);
+}
+.gt-50 .ppc-progress .ppc-progress-fill {
+  clip: rect(0, 200px, 200px, 100px);
+  background: #E5E5E5;
+}
+
+.ppc-percents {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 173.91304px/2);
+  top: calc(50% - 173.91304px/2);
+  width: 173.91304px;
+  height: 173.91304px;
+  background: #fff;
+  text-align: center;
+  display: table;
+}
+.ppc-percents span {
+  display: block;
+  font-size: 2.6em;
+  font-weight: bold;
+  color: #81CE97;
+}
+
+.pcc-percents-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.progress-pie-chart {
+  margin: 50px auto 0;
+}
+
+    </style>
+
+<script src="js/prefixfree.min.js"></script>
+
+</head>
+<body>
+
+	<!-- Nav -->
+	<nav id="nav">
+		<ul class="container">
+			<li><a href="#top">HOME</a></li>
+			<li><a href="#me">ABOUT ME</a></li>
+			<li><a href="#work">PROJECTS</a></li>
+			<li><a href="#pubs">PUBLICATIONS</a></li>
+			<li><a href="https://github.com/degoldcode">CODE</a></li>
+			<li><a href="#where">WHERE AM I?</a></li>
+			<li><a href="#contact">CONTACT</a></li>
+		</ul>
+	</nav>
+
+	<!-- Home -->
+	<div class="wrapper style1 first">
+		<article class="container" id="top">
+			<div class="row">
+				<div class="8u 12u(mobile)">
+					<header>
+						<h1 style="font-size: 36pt; margin-left: 0.5em">
+							Hi. My name is <strong>Dennis Goldschmidt,</strong>
+						</h1>
+					</header>
+					<p style="margin-left: 1.05em">
+						And I am a PhD student at the <em>Champalimaud Neuroscience
+							Programme</em> in Lisbon, Portugal. My main research interests are in
+						<em>Theoretical and Computational Neuroscience, Nonlinear
+							Dynamics, Machine Learning, and Neurorobotics</em>.
+					</p>
+					<!-- recently completed my M.Sc. in Neural Systems & Computation at the Institute of Neuroinformatics (University of Zurich/ ETH Zurich). -->
+				</div>
+				<div class="4u 12u(mobile)">
+					<span class="image fit"><img src="images/photo.jpeg" alt="" /></span>
+				</div>
+			</div>
+			<br>
+			<br>
+			<br>
+			<center>
+				<a href="#me" class="button big scrolly">Who am I?</a>
+			</center>
+		</article>
+	</div>
+
+	<!-- CV -->
+	<div class="wrapper style5">
+		<article class="container" id="me">
+			<h1>CV</h1>
+			<h2>Education</h2>
+
+			<ul class="timeline">
+				<li>
+					<p class="timeline-date">2016 -     </p>
+					<div class="timeline-content">
+						<h3>PhD International Neuroscience Doctoral Programme</h3>
+						<p>Champalimaud Neuroscience Programme Lisbon, Portugal</p>
+					</div>
+				</li>
+				<li>
+					<p class="timeline-date">2012 - 2014</p>
+					<div class="timeline-content">
+						<h3>MSc Neural Systems & Computation</h3>
+						<p>
+							Institute of Neuroinformatics, ETH Zurich/University of Zurich,
+							Switzerland <br>Thesis title: <em>“Modular Neural
+								Mechanisms for Adaptive Spatial Behavior in Autonomous Robots”</em>
+						</p>
+					</div>
+				</li>
+				<li>
+					<p class="timeline-date">2008 - 2012</p>
+					<div class="timeline-content">
+						<h3>BSc Physics</h3>
+						<p>
+							Faculty of Physics, Georg August University Göttingen, Germany <br>Thesis
+							title: <em>“Adaptive Climbing Behavior of Walking Machines“</em>
+						</p>
+					</div>
+				</li>
+			</ul>
+
+			<h2>Experience</h2>
+
+			<ul class="timeline">
+				<li>
+					<p class="timeline-date">2012 - 2015</p>
+					<div class="timeline-content">
+						<h3>Research assistant at the Emmy Noether Research Group</h3>
+						<p>Bernstein Center for Computational Neuroscience, Department
+							of Computational Neuroscience, Third Institute of Physics –
+							Biophysics, Georg-August University Göttingen, Germany</p>
+					</div>
+				</li>
+				<li>
+					<p class="timeline-date">2012</p>
+					<div class="timeline-content">
+						<h3>Research intern at the Robotics & Control Laboratory</h3>
+						<p>College of Engineering, Kookmin University Seoul, Republic
+							of Korea</p>
+					</div>
+				</li>
+			</ul>
+
+			<!-- <div class="container" style="text-align:center">
+			
+				<div class="row">
+					<div class="3u 12u(mobile)">
+						
+<div class="progress-pie-chart" data-percent="60">
+  <div class="ppc-progress">
+    <div class="ppc-progress-fill"></div>
+  </div>
+  <div class="ppc-percents">
+    <div class="pcc-percents-wrapper">
+    <span>English</span>
+      <span>50%</span>
+    </div>
+  </div>
+</div>
+
+					</div>
+					<div class="3u 12u(mobile)">
+<div class="progress-pie-chart" data-percent="60">
+  <div class="ppc-progress">
+    <div class="ppc-progress-fill"></div>
+  </div>
+  <div class="ppc-percents">
+    <div class="pcc-percents-wrapper">
+    <span>English</span>
+      <span>50%</span>
+    </div>
+  </div>
+</div>
+					</div>
+					<div class="3u 12u(mobile)">
+						
+<div class="progress-pie-chart" data-percent="60">
+  <div class="ppc-progress">
+    <div class="ppc-progress-fill"></div>
+  </div>
+  <div class="ppc-percents">
+    <div class="pcc-percents-wrapper">
+    <span>English</span>
+      <span>50%</span>
+    </div>
+  </div>
+</div>
+
+					</div>
+					
+										<div class="3u 12u(mobile)">
+						
+<div class="progress-pie-chart" data-percent="60">
+  <div class="ppc-progress">
+    <div class="ppc-progress-fill"></div>
+  </div>
+  <div class="ppc-percents">
+    <div class="pcc-percents-wrapper">
+    <span>English</span>
+      <span>50%</span>
+    </div>
+  </div>
+</div>
+
+					</div>
+				
+				</div>
+				
+			</div> -->
+
+			<br>
+			<br>
+			<center>
+				<a href="#work" class="button big scrolly">What am I doing?</a>
+			</center>
+
+		</article>
+	</div>
+
+	<!-- Work -->
+	<div class="wrapper style2">
+		<article id="work">
+			<header>
+				<h1>Here's all the stuff I do.</h1>
+				<p>Odio turpis amet sed consequat eget posuere consequat.</p>
+			</header>
+
+
+			<div class="container">
+				<!--<br><br><h2>Theoretical and Computational Neuroscience:</h2><br>//-->
+				<div class="row">
+					<div class="6u 12u(mobile)">
+						<article class="box style2">
+							<a href="#" class="image featured"><img
+								src="images/canonical.jpg" alt="" /></a>
+							<h3>
+								<a href="#">Canonical computations in the brain</a>
+							</h3>
+							<p>Ornare nulla proin odio consequat.</p>
+						</article>
+					</div>
+					<div class="6u 12u(mobile)">
+						<article class="box style2">
+							<a href="#" class="image featured"><img
+								src="images/vector.jpg" alt="" /></a>
+							<h3>
+								<a href="#">Vector navigation in embodied agents</a>
+							</h3>
+							<p>Ornare nulla proin odio consequat.</p>
+						</article>
+					</div>
+				</div>
+
+				<!--<br><br><h2>Neurorobotics:</h2><br>//-->
+				<div class="row">
+					<div class="4u 12u(mobile)">
+						<article class="box style2">
+							<a href="#" class="image featured"><img
+								src="images/loco.png" alt="" /></a>
+							<h3>
+								<a href="#">Adaptive & complex locomotion in irregular terrain</a>
+							</h3>
+							<p>Ornare nulla proin odio consequat.</p>
+						</article>
+					</div>
+					<div class="4u 12u(mobile)">
+						<article class="box style2">
+							<a href="#" class="image featured"><img
+								src="images/rec.png" alt="" /></a>
+							<h3>
+								<a href="#">Dynamics in recurrent neural networks</a>
+							</h3>
+							<p>Ornare nulla proin odio consequat.</p>
+						</article>
+					</div>
+					<div class="4u 12u(mobile)">
+						<article class="box style2">
+							<a href="#" class="image featured"><img
+								src="images/nads.png" alt="" /></a>
+							<h3>
+								<a href="#">Nonautonomous dynamical systems</a>
+							</h3>
+							<p>Ornare nulla proin odio consequat.</p>
+						</article>
+					</div>
+				</div>
+
+				<!--<br><br><h2>Machine Learning:</h2><br>//-->
+				<div class="row" align="center">
+					<div class="3u 12u(mobile)">
+						<article class="box style2">
+							<a href="#" class="image featured"><img
+								src="images/pic04.jpg" alt="" /></a>
+							<h3>
+								<a href="#">Models of learning & plasticity</a>
+							</h3>
+							<p>Ornare nulla proin odio consequat.</p>
+						</article>
+					</div>
+					<div class="3u 12u(mobile)">
+						<article class="box style2">
+							<a href="#" class="image featured"><img
+								src="images/pic05.jpg" alt="" /></a>
+							<h3>
+								<a href="#">Social behavior & communication</a>
+							</h3>
+							<p>Ornare nulla proin odio consequat.</p>
+						</article>
+					</div>
+					<div class="3u 12u(mobile)">
+						<article class="box style2">
+							<a href="#" class="image featured"><img
+								src="images/pic05.jpg" alt="" /></a>
+							<h3>
+								<a href="#">Deep learning mini projects</a>
+							</h3>
+							<p>Ornare nulla proin odio consequat.</p>
+						</article>
+					</div>
+					<div class="3u 12u(mobile)">
+						<article class="box style2">
+							<a href="#" class="image featured"><img
+								src="images/pic05.jpg" alt="" /></a>
+							<h3>
+								<a href="#">Lower-limb exoskeleton robot</a>
+							</h3>
+							<p>This work was done with Prof. Baek-Kyu Cho and Won-Suk Ji at the Robotics & Control Lab at the Kookmin University in Seoul, Korea.</p>
+						</article>
+					</div>
+				</div>			
+			</div>
+
+
+			<footer>
+				<p>Lorem ipsum dolor sit sapien vestibulum ipsum primis?</p>
+				<a href="#pubs" class="button big scrolly">See some of my
+					recent work</a>
+			</footer>
+		</article>
+	</div>
+
+
+	<!-- Portfolio -->
+	<div class="wrapper style3">
+		<article id="pubs">
+			<header>
+				<h2>Here’s some stuff I made recently.</h2>
+				<p>Proin odio consequat sapien vestibulum consequat lorem dolore
+					feugiat lorem ipsum dolore.</p>
+			</header>
+			
+			<footer>
+				<p>Lorem ipsum dolor sit sapien vestibulum ipsum primis?</p>
+				<a href="#where" class="button big scrolly">Where am I?</a>
+			</footer>
+		</article>
+	</div>
+
+	<!-- Where am I? -->
+	<div class="wrapper style2">
+		<article id="where">
+			<h2>Where am I now?</h2>
+			<div id="map-canvas"></div>
+		</article>
+	</div>
+	
+			<!-- Contact -->
+			<div class="wrapper style4">
+		<article id="contact" class="container 75%">
+			<header>
+				<h2>Shoot me an email.</h2>
+			</header>
+			<form id="contactform" method="POST">
+				<input type="text" name="name" placeholder="Your name"> 
+				<input type="email" name="_replyto" placeholder="Your email"> 
+				<input type="hidden" name="_subject" value="Website contact" />
+				<textarea name="message" placeholder="Your message"></textarea>
+				<input type="text" name="_gotcha" style="display: none" /> <input
+					type="submit" value="Send">
+			</form>
+			<script>
+				var contactform = document.getElementById('contactform');
+				contactform.setAttribute('action', 'http://formspree.io/'
+						+ 'goldschmidt.de' + '@' + 'gmail' + '.' + 'com');
+			</script>
+		</article>
+	</div>
+			
+
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/skel-viewport.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+	<script src="assets/js/main.js"></script>
+</body>
+</html>
