@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>de=goldschmidt/about</title>
+    <title>projects</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -17,6 +17,13 @@
     <!-- Custom CSS -->
     <link href="css/simple-sidebar.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+
+    <link href="css/normalize.css" rel="stylesheet">
+    <link href="css/layout.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>a
+    <![endif]-->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,7 +45,7 @@
               <img src="images/me.jpg" class="img-circle" alt="me" width="190" height="190"> </div>
                 <li class="sidebar-brand" style="bg: #f3f315;">
                     <a href="index.html">
-                        de=goldschmidt
+                        de-goldschmidt
                     </a>
                 </li>
                 <li>
@@ -68,29 +75,76 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1><a href="#menu-toggle" id="menu-toggle" style="background-color: #E9B000;">&#10500;</a><a href="index.html">//de=goldschmidt</a> <a href="projects.html">/projects</a></h1>
+                        <h1><a href="#menu-toggle" id="menu-toggle" style="background-color: #E9B000;">&#10500;</a><a href="index.html">//de-goldschmidt</a> <a href="projects.html">/projects</a></h1>
                     </div>
                 </div>
             </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3>Hi, I am Dennis Goldschmidt,</h3>
-                        <br>
-                        <h5 >I am currectly a PhD student working in the <a href="https://www.ribeirolab.org">Behavior &amp; Metabolism Lab</a> at the Champalimaud Neuroscience Programme in Lisbon, Portugal. </h5>
-                        <br>
-                        <h5> There I work on</h5>
-                        <h5>
-                        <ul>
-                         <li> building experimental systems for closed-loop video tracking, </li>
-                         <li> genetically manipulating the neural circuitry of fly brains, </li>
-                         <li> and developing computing pipelines for automatic data analysis &amp; visualizations.</li>
-                       </ul>
-                       </h5>
-                        <!-- My main research interests are in Theoretical and Computational Neuroscience, Nonlinear Dynamics, Machine Learning, and Neurorobotics. -->
+
+          <div class="container">
+            <ul id="filters" class="clearfix">
+              <li><span class="filter active" data-filter=".phd, .hard, .soft, .open, .past">All</span></li>
+              <li><span class="filter" data-filter=".phd">PhD</span></li>
+              <li><span class="filter" data-filter=".neuro">Neuroscience</span></li>
+              <li><span class="filter" data-filter=".hard">Hardware</span></li>
+              <li><span class="filter" data-filter=".soft">Software</span></li>
+              <li><span class="filter" data-filter=".open">Open Science</span></li>
+              <li><span class="filter" data-filter=".past">Past projects</span></li>
+            </ul>
+
+            <div id="portfoliolist">
+
+              <div class="portfolio phd neuro" data-cat="phd, neuro">
+                <div class="portfolio-wrapper">
+                  <img src="images/portfolios/phd/dn.jpg" alt="" />
+                  <div class="label">
+                    <div class="label-text">
+                      <a class="text-title">PhD: Genetic Manipulations of<br>Descending Neurons in the Fly Brain</a>
                     </div>
+                    <div class="label-bg"></div>
+                  </div>
                 </div>
+              </div>
+
+              <div class="portfolio phd hard" data-cat="phd, hard">
+                <div class="portfolio-wrapper">
+                  <img src="images/portfolios/phd/tracking.jpg" alt="" />
+                  <div class="label">
+                    <div class="label-text">
+                      <a class="text-title">PhD: Closed-Loop Video Tracking<br>of Walking Fruit Flies</a>
+                    </div>
+                    <div class="label-bg"></div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="portfolio past" data-cat="past">
+                <div class="portfolio-wrapper">
+                  <img src="images/portfolios/past/vector.jpg" alt="" />
+                  <div class="label">
+                    <div class="label-text">
+                      <a class="text-title">Adaptive Vector Navigation in Embodied Agents</a>
+                    </div>
+                    <div class="label-bg"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="portfolio past" data-cat="past">
+                <div class="portfolio-wrapper">
+                  <img src="images/portfolios/past/climb.jpg" alt="" />
+                  <div class="label">
+                    <div class="label-text">
+                      <a class="text-title">Adaptive Obstacle Negotiation Behavior<br>in Embodied Agents</a>
+                    </div>
+                    <div class="label-bg"></div>
+                  </div>
+                </div>
+              </div>
+
             </div>
+          </div>
+
         </div>
         <!-- /#page-content-wrapper -->
 
@@ -108,6 +162,39 @@
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
+
+    <script type="text/javascript">
+    $(function () {
+
+      var filterList = {
+
+        init: function () {
+
+          // MixItUp plugin
+          // http://mixitup.io
+          $('#portfoliolist').mixItUp({
+            selectors: {
+              target: '.portfolio',
+              filter: '.filter'
+            },
+            load: {
+              filter: '.phd, .hard, .soft, .open, .past'
+            }
+          });
+
+        }
+
+      };
+
+      // Run the show!
+      filterList.init();
+
+
     });
     </script>
 
