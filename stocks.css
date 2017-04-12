@@ -1,0 +1,40 @@
+body {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   font-weight: 300;
+}
+
+h1 {
+	font-family: "Helvetica Neue";
+	font-size: 36px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 100;
+	line-height: 39.6px;
+}
+
+table {
+    font-family: Helvetica Neue, sans-serif;
+    border-collapse: collapse;
+    sortable: true;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #666666;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+     background-color: #3498db;
+     color: white;
+}
+
+td{
+    color: #555555;
+}
+
+tr:nth-child(even) {
+    background-color: #eeeeee;
+}
+
