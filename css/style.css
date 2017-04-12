@@ -20,7 +20,7 @@ html, body {
 	height: 100%;
   margin-left:20px;
   margin-right:20px;
-  background: #F5F5DC !important;
+  background: #F5F5F5 !important;
   font-family: 'Lato', sans-serif;
   color: #E24E42;
 	background-image: url('../images/bg.png');
@@ -84,7 +84,7 @@ html, body {
 }
 
 h1 {
-  color : #F5F5DC;
+  color : #F5F5F5;
 	font-size: 24px;
 	line-height : 35px;
 	background-color: #E24E42;
@@ -96,12 +96,12 @@ h1 {
 }
 
 h1 a {
-    color : #F5F5DC;
+    color : #F5F5F5;
     text-decoration: none;
     line-height: inherit;
 }
 a:hover,a:focus{
-    color : #F5F5DC;
+    color : #F5F5F5;
     text-decoration: none !important;
     line-height: inherit;
 }
@@ -115,7 +115,7 @@ h3 {
 }
 
 h5 {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     font-size: 24px;
     font-family: 'Lato', sans-serif;
     color: #E24E42;
@@ -123,7 +123,7 @@ h5 {
 
 h5 a:hover{
     background-color: #E24E42;
-    color : #F5F5DC;
+    color : #F5F5F5;
     text-decoration: none !important;
     line-height: inherit;
 }
