@@ -1,0 +1,341 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
+@import url('https://fonts.googleapis.com/css?family=Lato:300');
+/* Foundation v2.2.1 http://foundation.zurb.com */
+/* Artfully masterminded by ZURB  */
+
+/* --------------------------------------------------
+   Table of Contents
+-----------------------------------------------------
+:: Shared Styles
+:: Page Name 1
+:: Page Name 2
+*/
+
+
+/* -----------------------------------------
+   Shared Styles
+----------------------------------------- */
+
+html, body {
+	height: 100%;
+  margin-left:20px;
+  margin-right:20px;
+  background: #F5F5DC !important;
+  font-family: 'Lato', sans-serif;
+  color: #E24E42;
+	background-image: url('../images/bg.png');
+}
+
+.title {
+	margin-top: 80px;
+}
+
+
+.title > a {
+	color : white;
+	font-size: 30px;
+	line-height : 35px;
+	background-color: fuchsia;
+	padding: 5px;
+	font-family: 'PT Mono', monospace;
+	padding-right:0px;
+	padding-left:0px;
+	margin-right:0px;
+	margin-left:0px;
+}
+
+.title > a:hover {
+	background-color: blue;
+}
+
+.navigation {
+	z-index : 20;
+}
+.welcome {
+	margin-top : 60px;
+	/*width:750px;*/
+	/*height : 350px;*/
+/*	z-index : -99;*/
+}
+.welcome div {
+	/*width:750px;*/
+	/*height : 350px;*/
+	display:block;
+/*	z-index : -99;*/
+}
+
+.glyph {
+	opacity : .3;
+	filter:alpha(opacity=30); /* For IE8 and earlier */
+}
+
+.glyph:hover {
+/*	background-color : fuchsia;*/
+	opacity : .6;
+}
+/*
+.content {
+	margin-top: 140px;
+}*/
+
+#featured .content {
+	background-image : url("../images/space.jpg");
+	color : white;
+}
+
+h1 {
+  color : #F5F5DC;
+	font-size: 24px;
+	line-height : 35px;
+	background-color: #E24E42;
+	padding: 5px;
+	font-family: 'Fira Sans', sans-serif;
+	padding-top: : 70px;
+  margin-bottom: 70px;
+  display:inline-block;
+}
+
+h1 a {
+    color : #F5F5DC;
+    text-decoration: none;
+    line-height: inherit;
+}
+a:hover,a:focus{
+    color : #F5F5DC;
+    text-decoration: none !important;
+    line-height: inherit;
+}
+
+h3 {
+    font-family: 'Lato', sans-serif;
+    color: #E24E42;
+    font-size: 32px;
+    padding-top: : 30px;
+    margin-bottom: 10px;
+}
+
+h5 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-family: 'Lato', sans-serif;
+    color: #E24E42;
+}
+
+h5 a:hover{
+    background-color: #E24E42;
+    color : #F5F5DC;
+    text-decoration: none !important;
+    line-height: inherit;
+}
+
+h5 li{
+	list-style-type:circle;
+  margin-bottom: 10px;
+}
+
+.blog-time {
+    margin-bottom: 35px;
+}
+
+.navigation {
+	margin-top: 70px;
+	margin-bottom: 40px;
+}
+
+.nav {
+	margin-bottom: 35px;
+}
+
+.nav > a {
+	color : white;
+	font-size: 20px;
+	background-color: fuchsia;
+	padding: 5px;
+	font-family: 'PT Mono', monospace;
+}
+
+.nav > a:hover {
+	background-color: blue;
+}
+
+.nav-phone > a {
+  color : white;
+  background-color: fuchsia;
+  font-family: 'PT Mono', monospace;
+}
+
+.nav-phone > a:hover {
+  background-color: blue;
+}
+
+.welcome {
+	margin-top : 30px;
+	font-family : subtle-light, sans-serif;
+	font-size : 32px;
+	line-height : 36px;
+}
+
+.slide {
+	font-family : subtle-light, sans-serif;
+	font-size : 32px;
+	line-height : 36px;
+/*	background-color : blue;*/
+/*	color : white;*/
+}
+
+
+.welcome > h3 {
+	font-size : 45px;
+	line-height : 47px;
+	font-family : subtle-light, sans-serif;
+}
+
+.slide > h3 {
+	font-size : 45px;
+	line-height : 47px;
+	font-family : subtle-light, sans-serif;
+/*	background-color : blue;*/
+/*	color : white;*/
+}
+/*
+.container.show-on-desktops {
+	margin-left: 7%;
+	margin-right: 7%;
+	height : 100%;
+	z-index: 99;
+	background-color: white;
+	border-left-color: black;
+	border-left-style: dashed;
+	border-left-width: 1px;
+	border-right-color: black;
+	border-right-style: dashed;
+	border-right-width: 1px;
+}
+
+.bg {
+	z-index: -1;
+	width : 100%;
+	height : 100%;
+	background-image: url('../../bg.png');
+}
+
+
+
+*//* -----------------------------------------
+   Portfolio
+----------------------------------------- */
+
+.portfolio-container {
+	margin-top : 60px;
+	font-family : subtle-light, sans-serif;
+}
+
+.description, .description p {
+	font-family : "Lucida Grande", "Lucida Sans", "Verdana", sans-serif;
+    font-size: 14px;
+}
+
+.create-post {
+    font-family : "Lucida Grande", "Lucida Sans", "Verdana", sans-serif;
+    font-size: 13px;
+}
+
+.portfolio-pic {
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    border-radius: 15px;
+}
+.bio-pic {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.professional .description {
+	border-left : black solid 1px;
+}
+
+.single-post {
+    margin-bottom: 100px;
+}
+
+.create-title {
+    width: 100%;
+    height: 30px;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+/* -----------------------------------------
+   Page Name 2
+----------------------------------------- */
+
+canvas {
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); /* mobile webkit */
+}
+
+.margin-top {
+    margin-top: 50px;
+}
+
+
+.sketch {
+    width: 298px;
+    height: 298px;
+}
+
+.error-span {
+    color: red;
+    font-size: 20px;
+    font-family: monospace;
+    margin-top: 10px;
+}
+
+.instruction-span {
+    font-size: 20px;
+    font-family: monospace;
+    margin-top: 10px;
+}
+
+
+.description h1,
+.description h2,
+.description h3,
+.description h4,
+.description h5,
+.description h6 {
+  margin-bottom: 15px;
+  margin-top: 20px;
+  font-family : subtle-light, sans-serif;
+}
+
+.page-number {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.breathe-bottom {
+  margin-bottom: 30px;
+}
+
+.highlight {
+  background: white;
+}
+
+pre.code {
+  background: white;
+  padding: 5px 10px;
+  font-family: monospace;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.gist{font-size:13px;line-height:18px;margin-bottom:20px;width:100%; padding-top: 15px;}
+.gist pre{font-family:Menlo,Monaco,'Bitstream Vera Sans Mono','Courier New',monospace !important}
+.gist-meta{font-family:Helvetica,Arial,sans-serif;font-size:13px !important}
+.gist-meta a{color:#26a !important;text-decoration:none}
+.gist-meta a:hover{color:#0e4071 !important}
+.gist table{width: 100%; margin-bottom: 0;}
