@@ -100,7 +100,7 @@ h1 a {
     text-decoration: none;
     line-height: inherit;
 }
-a:hover,a:focus{
+h1 a:hover,a:focus{
     color : #F5F5F5;
     text-decoration: none !important;
     line-height: inherit;
@@ -132,6 +132,15 @@ h5 li{
 	list-style-type:circle;
   margin-bottom: 10px;
 }
+
+ol li{
+  font-size: 18px;
+  list-style: none;
+  position: relative;
+}
+ol {margin-left:30px; margin-right:70px;padding-left:0; display: table;}
+ol>li {margin-left:0; padding-left:10px; counter-increment:item -1; list-style:none;display: table-row;}
+ol>li:before {content:"[" counter(item) "]"; padding-right:0.5em; padding-bottom:10px; display: table-cell; /* aha! */text-align: right;}
 
 .blog-time {
     margin-bottom: 35px;
