@@ -25,6 +25,318 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <style>
+    #map-canvas {
+    	width: 100%;
+    	height: 450px;
+    }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script>
+    	function initialize() {
+    		var mapCanvas = document.getElementById('map-canvas');
+        var myLatLng = new google.maps.LatLng(38.702745, -9.220119); // Champalimaud
+    		//var myLatLng = new google.maps.LatLng(53.246421, 10.411518); // Lüneburg
+    		var mapOptions = {
+    			center : myLatLng,
+    			zoom : 7,
+    			draggable : true,
+    			scrollwheel : true,
+    			mapTypeId : google.maps.MapTypeId.ROADMAP,
+    			styles: [
+    			         {
+    			             "featureType": "administrative",
+    			             "elementType": "labels",
+    			             "stylers": [
+    					                 {
+    					                     "visibility": "off"
+    					                 },
+    					                 {
+    					                     "color": "#224477"
+    					                 },
+    					                 {
+    					                     "lightness": 0
+    					                 }
+    			             ]
+    			         },
+    			         {
+    			             "featureType": "administrative.countries",
+    			             "elementType": "labels.text",
+    			             "stylers": [
+    			                 {
+    			                     "visibility": "simplified"
+    			                 },
+    			                 {
+    			                     "color": "#111111"
+    			                 },
+    			                 {
+    			                     "lightness": 25
+    			                 }
+    			             ]
+    			         },
+    			         {
+    			             "featureType": "landscape.man_made",
+    			             "elementType": "all",
+    			             "stylers": [
+    			                 {
+    			                     "visibility": "on"
+    			                 },
+    			                 {
+    			                     "color": "#000000"
+    			                 },
+    			                 {
+    			                     "minZoom": "6"
+    			                 },
+    			                 {
+    			                     "lightness": 0
+    			                 }
+    			             ]
+    			         },
+    			         {
+    			             "featureType": "landscape",
+    			             "elementType": "all",
+    			             "stylers": [
+    			                 {
+    			                     "visibility": "on"
+    			                 },
+    			                 {
+    			                     "color": "#ffffff"
+    			                 }
+    			             ]
+    			         },
+    			         {
+    			             "featureType": "landscape.natural.landcover",
+    			             "elementType": "all",
+    			             "stylers": [
+    			                 {
+    			                     "color": "#ffffff"
+    			                 }
+    			             ]
+    			         },
+    			         {
+    			             "featureType": "poi",
+    			             "elementType": "all",
+    			             "stylers": [
+    			                 {
+    			                     "visibility": "off"
+    			                 },
+    			                 {
+    			                     "color": "#e24e42"
+    			                 }
+    			             ]
+    			         },
+    			         {
+    			             "featureType": "poi.park",
+    			             "elementType": "geometry.fill",
+    			             "stylers": [
+    			                 {
+    			                     "visibility": "on"
+    			                 },
+    			                 {
+    			                     "color": "#ffffff"
+    			                 },
+    			                 {
+    			                     "saturation": -1
+    			                 },
+    			                 {
+    			                     "lightness": 40
+    			                 }
+    			             ]
+    			         },
+    			         {
+    			             "featureType": "road.highway",
+    			             "elementType": "labels",
+    			             "stylers": [
+    			                 {
+    			                     "visibility": "off"
+    			                 }
+    			             ]
+    			         },
+    			         {
+    			             "featureType": "road.highway",
+    			             "elementType": "labels.text",
+    			             "stylers": [
+    			                 {
+    			                     "visibility": "simplified"
+    			                 },
+    			                 {
+    			                     "color": "#9c9c9c"
+    			                 },
+    			                 {
+    			                     "weight": 0.2
+    			                 }
+    			             ]
+    			         },
+    			         {
+    			             "featureType": "road.highway",
+    			             "elementType": "geometry",
+    			             "stylers": [
+    			                 {
+    			                     "visibility": "off"
+    			                 },
+                           {
+                               "color": "#e24e42"
+                           },
+    			                 {
+    			                     "weight": 0.5
+    			                 }
+    			             ]
+    			         },
+    			         {
+    			             "featureType": "road.arterial",
+    			             "elementType": "geometry",
+    			             "stylers": [
+    			                 {
+    			                     "color": "#e2e2e2"
+    			                 },
+    			                 {
+    			                     "weight": 0.2
+    			                 }
+    			             ]
+    			         },
+    			         {
+    			             "featureType": "road.local",
+    			             "elementType": "geometry",
+    			             "stylers": [
+    			                 {
+    			                     "color": "#e2e2e2"
+    			                 },
+    			                 {
+    			                     "weight": 0.0
+    			                 }
+    			             ]
+    			         },
+    			         {
+    			             "featureType": "road.arterial",
+    			             "elementType": "labels.text",
+    			             "stylers": [
+    			                 {
+    			                     "color": "#9c9c9c"
+    			                 }
+    			             ]
+    			         },
+    			         {
+    			             "featureType": "road.arterial",
+    			             "elementType": "labels.text.stroke",
+    			             "stylers": [
+    			                 {
+    			                     "visibility": "off"
+    			                 }
+    			             ]
+    			         },
+    			         {
+    			             "featureType": "road",
+    			             "elementType": "labels.icon",
+    			             "stylers": [
+    			                 {
+    			                     "visibility": "off"
+    			                 }
+    			             ]
+    			         },
+    			         {
+    			             "featureType": "water",
+    			             "elementType": "geometry",
+    			             "stylers": [
+    			                 {
+    			                     "visibility": "on"
+    			                 },
+    			                 {
+    			                     "color": "#FFCC66"
+    			                 },
+    			                 {
+    			                     "saturation": 0
+    			                 },
+    			                 {
+    			                     "lightness": 0
+    			                 }
+    			             ]
+    			         },
+    			         {
+    			             "featureType": "water",
+    			             "elementType": "labels",
+    			             "stylers": [
+    			                 {
+    			                     "visibility": "simplified"
+    			                 },
+    			                 {
+    			                     "color": "#000000"
+    			                 }
+    			             ]
+    			         },
+    			         {
+    			             "featureType": "transit",
+    			             "elementType": "all",
+    			             "stylers": [
+    			                 {
+    			                     "visibility": "off"
+    			                 },
+    			                 {
+    			                     "color": "#ffffff"
+    			                 }
+    			             ]
+    			         },
+    			         {
+    			             "featureType": "poi.medical",
+    			             "elementType": "geometry.fill",
+    			             "stylers": [
+    			                 {
+    			                     "color": "#000000"
+    			                 },
+    			                 {
+    			                     "lightness": 77
+    			                 }
+    			             ]
+    			         },
+    			         {
+    			             "featureType": "poi.school",
+    			             "elementType": "geometry.fill",
+    			             "stylers": [
+    			                 {
+    			                     "visibility": "on"
+    			                 },
+    			                 {
+    			                     "color": "#000000"
+    			                 },
+    			                 {
+    			                     "lightness": 92
+    			                 }
+    			             ]
+    			         },
+    			         {
+    			             "featureType": "road.local",
+    			             "elementType": "labels.text",
+    			             "stylers": [
+    			                 {
+    			                     "visibility": "simplified"
+    			                 },
+    			                 {
+    			                     "color": "#9c9c9c"
+    			                 }
+    			             ]
+    			         }
+    			     ]
+    		}
+
+    		var map = new google.maps.Map(mapCanvas, mapOptions)
+
+    		var image = new google.maps.MarkerImage(
+    				'images/goomap.png', new google.maps.Size(50, 50),
+    				new google.maps.Point(0, 0),
+    				new google.maps.Point(0, 0));
+
+    		var marker = new google.maps.Marker({
+    		      position: myLatLng,
+    		      map: map
+    		  });
+
+        // Double-click link
+    		//google.maps.event.addListener(map, 'click', function() {
+    		//	window.location.href = 'map.html';
+    		//});
+    	}
+    	google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
 </head>
 
 <body>
@@ -69,7 +381,13 @@
                 </div>
             </div>
             <div class="container-fluid">
-
+              <!-- Where am I? -->
+              <div class="wrapper style2">
+                <article id="where">
+                  <h3>Where am I now?</h3>
+                  <div id="map-canvas"></div>
+                </article>
+              </div>
             </div>
         </div>
         <!-- /#page-content-wrapper -->
