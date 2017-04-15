@@ -142,6 +142,17 @@ ol {margin-left:30px; margin-right:70px;padding-left:0; display: table;}
 ol>li {margin-left:0; padding-left:10px; counter-increment:item -1; list-style:none;display: table-row;}
 ol>li:before {content:"[" counter(item) "]"; padding-right:0.5em; padding-bottom:10px; display: table-cell; /* aha! */text-align: right;}
 
+span.label {
+  color: #E24E42;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+span.badge {
+  background-color: #FFCC66;
+  color: #E24E42;
+  font-family: 'Fira Sans', sans-serif;
+}
+
 .blog-time {
     margin-bottom: 35px;
 }
