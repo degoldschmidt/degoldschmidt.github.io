@@ -70,20 +70,48 @@
                     </div>
                 </div>
             </div>
+
             <div class="container">
               <ul id="filters" class="clearfix">
-                <li><span class="filter active" data-filter=".phd, .hard, .soft, .open, .past">all</span></li>
-                <li><span class="filter" data-filter=".phd">python</span></li>
-                <li><span class="filter" data-filter=".neuro">c++</span></li>
-                <li><span class="filter" data-filter=".hard">js</span></li>
-                <li><span class="filter" data-filter=".soft">matlab</span></li>
-                <li><span class="filter" data-filter=".open">bash</span></li>
-                <li><span class="filter" data-filter=".past">others</span></li>
+                <li><span class="filter active" data-filter=".python, .cpp, .js, .matlab, .bash, .others">all</span></li>
+                <li><span class="filter" data-filter=".python">python</span></li>
+                <li><span class="filter" data-filter=".cpp">cpp</span></li>
+                <li><span class="filter" data-filter=".js">javascript</span></li>
+                <li><span class="filter" data-filter=".matlab">matlab</span></li>
+                <li><span class="filter" data-filter=".bash">bash</span></li>
+                <li><span class="filter" data-filter=".others">others</span></li>
               </ul>
+
+              <div id="portfoliolist">
+
+              <div class="portfolio-code cpp" data-cat="cpp">
+                <div class="portfolio-wrapper">
+                  <img src="code/navisim.jpg" alt="" />
+                  <div class="label">
+                    <div class="label-text">
+                      <a class="text-title">NaviSim</a>
+                    </div>
+                    <div class="label-bg"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="portfolio-code cpp" data-cat="cpp">
+                <div class="portfolio-wrapper">
+                  <img src="code/navisim.jpg" alt="" />
+                  <div class="label">
+                    <div class="label-text">
+                      <a class="text-title">LIFNet</a>
+                    </div>
+                    <div class="label-bg"></div>
+                  </div>
+                </div>
+              </div>
+
             </div>
+          </div>
         </div>
         <!-- /#page-content-wrapper -->
-
     </div>
     <!-- /#wrapper -->
 
@@ -98,6 +126,39 @@
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
+
+    <script type="text/javascript">
+    $(function () {
+
+      var filterList = {
+
+        init: function () {
+
+          // MixItUp plugin
+          // http://mixitup.io
+          $('#portfoliolist').mixItUp({
+            selectors: {
+              target: '.portfolio-code',
+              filter: '.filter'
+            },
+            load: {
+              filter: '.python, .cpp, .js, .matlab, .bash, .others'
+            }
+          });
+
+        }
+
+      };
+
+      // Run the show!
+      filterList.init();
+
+
     });
     </script>
 
