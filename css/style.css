@@ -22,7 +22,7 @@ html, body {
   margin-right:20px;
   background: #F5F5F5 !important;
   font-family: 'Lato', sans-serif;
-  color: #E24E42;
+  color: #6e377a;
 	background-image: url('../images/bg.png');
 }
 
@@ -87,7 +87,7 @@ h1 {
   color : #F5F5F5;
 	font-size: 24px;
 	line-height : 35px;
-	background-color: #E24E42;
+	background-color: #6e377a;
 	padding: 5px;
 	font-family: 'Fira Sans', sans-serif;
 	padding-top: : 70px;
@@ -108,7 +108,7 @@ h1 a:hover,a:focus{
 
 h3 {
     font-family: 'Lato', sans-serif;
-    color: #E24E42;
+    color: #6e377a;
     font-size: 32px;
     padding-top: : 30px;
     margin-bottom: 10px;
@@ -118,7 +118,7 @@ h5 {
     margin-bottom: 20px;
     font-size: 24px;
     font-family: 'Lato', sans-serif;
-    color: #E24E42;
+    color: #6e377a;
 }
 
 h5 a:hover{
