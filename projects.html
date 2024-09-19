@@ -1,273 +1,375 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+            name="viewport"
+            content="width=device-width, shrink-to-fit=no, initial-scale=1"
+        />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
 
-<head>
+        <title>projects</title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+        <!-- Bootstrap Core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
 
-    <title>projects</title>
+        <!-- Custom CSS -->
+        <link href="css/simple-sidebar.css" rel="stylesheet" />
+        <link href="css/style.css" rel="stylesheet" />
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/layout.css" rel="stylesheet" />
 
-    <!-- Custom CSS -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+            a
+        <![endif]-->
 
-    <link href="css/layout.css" rel="stylesheet">
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
 
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>a
-    <![endif]-->
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-
-    <div class="toggled" id="wrapper">
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-              <div style="text-align: center; margin-top: 30px; margin-bottom: 6px;">
-                <a href="index.html">
-              <img src="images/me.jpg" class="img-circle" alt="me" width="190" height="190"></a> </div>
-              <br><br>
-                <li>
-                    <a href="about.html">/about</a>
-                </li>
-                <li>
-                    <a href="projects.html">/projects</a>
-                </li>
-                <li>
-                    <a href="pubs.html">/publications</a>
-                </li>
-                <li>
+    <body>
+        <div class="toggled" id="wrapper">
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <div
+                        style="
+                            text-align: center;
+                            margin-top: 30px;
+                            margin-bottom: 6px;
+                        "
+                    >
+                        <a href="index.html">
+                            <img
+                                src="images/me.jpg"
+                                class="img-circle"
+                                alt="me"
+                                width="190"
+                                height="190"
+                        /></a>
+                    </div>
+                    <br /><br />
+                    <li>
+                        <a href="about.html">/about</a>
+                    </li>
+                    <li>
+                        <a href="projects.html">/projects</a>
+                    </li>
+                    <li>
+                        <a href="pubs.html">/publications</a>
+                    </li>
+                    <!-- <li>
                     <a href="weblog.html">/weblog</a>
-                </li>
-                <li>
-                    <a href="code.html">/code</a>
-                </li>
-                <li>
-                    <a href="where.html">/where_am_i</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
+                </li> -->
+                    <li>
+                        <a href="https://github.com/degoldschmidt">/code</a>
+                    </li>
+                    <li>
+                        <a href="where.html">/where_am_i</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /#sidebar-wrapper -->
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1><a href="#menu-toggle" id="menu-toggle">&#10500;</a><a href="index.html">//de-goldschmidt</a> <a href="projects.html">/projects</a></h1>
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                <a href="#menu-toggle" id="menu-toggle"
+                                    >&#10500;</a
+                                ><a href="index.html">//de-goldschmidt</a>
+                                <a href="projects.html">/projects</a>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <ul id="filters" class="clearfix">
+                        <li>
+                            <span
+                                class="filter active"
+                                data-filter=".phd, .neuro, .behav, .ml, .hard, .soft, .open, .art, .past"
+                                >all</span
+                            >
+                        </li>
+                        <li>
+                            <span class="filter" data-filter=".phd">phd</span>
+                        </li>
+                        <li>
+                            <span class="filter" data-filter=".neuro"
+                                >neural circuits</span
+                            >
+                        </li>
+                        <li>
+                            <span class="filter" data-filter=".behav"
+                                >behavior</span
+                            >
+                        </li>
+                        <li>
+                            <span class="filter" data-filter=".ml"
+                                >machine learning</span
+                            >
+                        </li>
+                        <li>
+                            <span class="filter" data-filter=".hard"
+                                >hardware</span
+                            >
+                        </li>
+                        <li>
+                            <span class="filter" data-filter=".soft"
+                                >software</span
+                            >
+                        </li>
+                        <li>
+                            <span class="filter" data-filter=".open"
+                                >open science</span
+                            >
+                        </li>
+                        <li>
+                            <span class="filter" data-filter=".art"
+                                >art &amp; visualization</span
+                            >
+                        </li>
+                        <li>
+                            <span class="filter" data-filter=".past"
+                                >completed projects</span
+                            >
+                        </li>
+                    </ul>
+
+                    <div id="portfoliolist">
+                        <div class="portfolio phd neuro" data-cat="phd, neuro">
+                            <div class="portfolio-wrapper">
+                                <img
+                                    src="images/portfolios/phd/dn.jpg"
+                                    alt=""
+                                />
+                                <div class="label">
+                                    <div class="label-text">
+                                        <a class="text-title"
+                                            >Genetic Manipulations of<br />Descending
+                                            Neurons in the Fly Brain</a
+                                        >
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="portfolio phd hard" data-cat="phd, hard">
+                            <div class="portfolio-wrapper">
+                                <img
+                                    src="images/portfolios/phd/tracking2.jpg"
+                                    alt=""
+                                />
+                                <div class="label">
+                                    <div class="label-text">
+                                        <a class="text-title"
+                                            >Closed-Loop Video Tracking<br />of
+                                            Walking Fruit Flies</a
+                                        >
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="portfolio phd behav" data-cat="phd, behav">
+                            <div class="portfolio-wrapper">
+                                <img src="images/tbd.jpg" alt="" />
+                                <div class="label">
+                                    <div
+                                        class="label-text"
+                                        style="margin-top: -6px !important"
+                                    >
+                                        <a
+                                            class="text-title"
+                                            style="font-size: 11pt"
+                                            >Differential effects of
+                                            nutrient-specific<br />deprivations
+                                            on foraging behaviors<br />in
+                                            <i>Drosophila melanogaster</i></a
+                                        >
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="portfolio phd ml" data-cat="phd, ml">
+                            <div class="portfolio-wrapper">
+                                <img src="images/tbd.jpg" alt="" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        <a class="text-title"
+                                            >Latent variable models<br />for
+                                            analyzing fly behavior</a
+                                        >
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="portfolio phd ml" data-cat="phd, ml">
+                            <div class="portfolio-wrapper">
+                                <img src="images/tbd.jpg" alt="" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        <a class="text-title"
+                                            >Time-series analysis<br />of fly
+                                            behavior</a
+                                        >
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="portfolio past" data-cat="past">
+                            <div class="portfolio-wrapper">
+                                <img
+                                    src="images/portfolios/past/vector.jpg"
+                                    alt=""
+                                />
+                                <div class="label">
+                                    <div class="label-text">
+                                        <a class="text-title"
+                                            >Adaptive Vector Navigation in
+                                            Embodied Agents</a
+                                        >
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="portfolio past" data-cat="past">
+                            <div class="portfolio-wrapper">
+                                <img
+                                    src="images/portfolios/past/climb.jpg"
+                                    alt=""
+                                />
+                                <div class="label">
+                                    <div class="label-text">
+                                        <a class="text-title"
+                                            >Adaptive Obstacle Negotiation
+                                            Behavior<br />in Embodied Agents</a
+                                        >
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="portfolio past" data-cat="past">
+                            <div class="portfolio-wrapper">
+                                <img
+                                    src="images/portfolios/past/exo.jpg"
+                                    alt=""
+                                />
+                                <div class="label">
+                                    <div class="label-text">
+                                        <a class="text-title"
+                                            >Development of an exoskeleton
+                                            lower-limb<br />robotic system</a
+                                        >
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="portfolio art software"
+                            data-cat="art, software"
+                        >
+                            <div class="portfolio-wrapper">
+                                <img src="images/tbd.jpg" alt="" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        <a class="text-title"
+                                            >Interactive visualization of fly
+                                            behavioral data</a
+                                        >
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="portfolio art software"
+                            data-cat="art, software"
+                        >
+                            <div class="portfolio-wrapper">
+                                <img src="images/tbd.jpg" alt="" />
+                                <div class="label">
+                                    <div class="label-text">
+                                        <a class="text-title">Generative art</a>
+                                    </div>
+                                    <div class="label-bg"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-          <div class="container">
-            <ul id="filters" class="clearfix">
-              <li><span class="filter active" data-filter=".phd, .neuro, .behav, .ml, .hard, .soft, .open, .art, .past">all</span></li>
-              <li><span class="filter" data-filter=".phd">phd</span></li>
-              <li><span class="filter" data-filter=".neuro">neural circuits</span></li>
-              <li><span class="filter" data-filter=".behav">behavior</span></li>
-              <li><span class="filter" data-filter=".ml">machine learning</span></li>
-              <li><span class="filter" data-filter=".hard">hardware</span></li>
-              <li><span class="filter" data-filter=".soft">software</span></li>
-              <li><span class="filter" data-filter=".open">open science</span></li>
-              <li><span class="filter" data-filter=".art">art &amp; visualization</span></li>
-              <li><span class="filter" data-filter=".past">completed projects</span></li>
-            </ul>
-
-            <div id="portfoliolist">
-
-              <div class="portfolio phd neuro" data-cat="phd, neuro">
-                <div class="portfolio-wrapper">
-                  <img src="images/portfolios/phd/dn.jpg" alt="" />
-                  <div class="label">
-                    <div class="label-text">
-                      <a class="text-title">Genetic Manipulations of<br>Descending Neurons in the Fly Brain</a>
-                    </div>
-                    <div class="label-bg"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="portfolio phd hard" data-cat="phd, hard">
-                <div class="portfolio-wrapper">
-                  <img src="images/portfolios/phd/tracking2.jpg" alt="" />
-                  <div class="label">
-                    <div class="label-text">
-                      <a class="text-title">Closed-Loop Video Tracking<br>of Walking Fruit Flies</a>
-                    </div>
-                    <div class="label-bg"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="portfolio phd behav" data-cat="phd, behav">
-                <div class="portfolio-wrapper">
-                  <img src="images/tbd.jpg" alt="" />
-                  <div class="label">
-                    <div class="label-text" style="margin-top:-6px !important;">
-                      <a class="text-title" style="font-size:11pt;">Differential effects of nutrient-specific<br>deprivations on foraging behaviors<br>in <i>Drosophila melanogaster</i></a>
-                    </div>
-                    <div class="label-bg"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="portfolio phd ml" data-cat="phd, ml">
-                <div class="portfolio-wrapper">
-                  <img src="images/tbd.jpg" alt="" />
-                  <div class="label">
-                    <div class="label-text">
-                      <a class="text-title">Latent variable models<br>for analyzing fly behavior</a>
-                    </div>
-                    <div class="label-bg"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="portfolio phd ml" data-cat="phd, ml">
-                <div class="portfolio-wrapper">
-                  <img src="images/tbd.jpg" alt="" />
-                  <div class="label">
-                    <div class="label-text">
-                      <a class="text-title">Time-series analysis<br>of fly behavior</a>
-                    </div>
-                    <div class="label-bg"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="portfolio past" data-cat="past">
-                <div class="portfolio-wrapper">
-                  <img src="images/portfolios/past/vector.jpg" alt="" />
-                  <div class="label">
-                    <div class="label-text">
-                      <a class="text-title">Adaptive Vector Navigation in Embodied Agents</a>
-                    </div>
-                    <div class="label-bg"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="portfolio past" data-cat="past">
-                <div class="portfolio-wrapper">
-                  <img src="images/portfolios/past/climb.jpg" alt="" />
-                  <div class="label">
-                    <div class="label-text">
-                      <a class="text-title">Adaptive Obstacle Negotiation Behavior<br>in Embodied Agents</a>
-                    </div>
-                    <div class="label-bg"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="portfolio past" data-cat="past">
-                <div class="portfolio-wrapper">
-                  <img src="images/portfolios/past/exo.jpg" alt="" />
-                  <div class="label">
-                    <div class="label-text">
-                      <a class="text-title">Development of an exoskeleton lower-limb<br>robotic system</a>
-                    </div>
-                    <div class="label-bg"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="portfolio art software" data-cat="art, software">
-                <div class="portfolio-wrapper">
-                  <img src="images/tbd.jpg" alt="" />
-                  <div class="label">
-                    <div class="label-text">
-                      <a class="text-title">Interactive visualization of fly behavioral data</a>
-                    </div>
-                    <div class="label-bg"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="portfolio art software" data-cat="art, software">
-                <div class="portfolio-wrapper">
-                  <img src="images/tbd.jpg" alt="" />
-                  <div class="label">
-                    <div class="label-text">
-                      <a class="text-title">Generative art</a>
-                    </div>
-                    <div class="label-bg"></div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
+            <!-- /#page-content-wrapper -->
         </div>
-        <!-- /#page-content-wrapper -->
+        <!-- /#wrapper -->
 
-    </div>
-    <!-- /#wrapper -->
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+        <!-- Menu Toggle Script -->
+        <script>
+            $("#menu-toggle").click(function (e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+            });
+        </script>
 
-    <!-- Menu Toggle Script -->
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
+        <script
+            type="text/javascript"
+            src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+        ></script>
+        <script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                var filterList = {
+                    init: function () {
+                        // MixItUp plugin
+                        // http://mixitup.io
+                        $("#portfoliolist").mixItUp({
+                            selectors: {
+                                target: ".portfolio",
+                                filter: ".filter",
+                            },
+                            load: {
+                                filter: ".phd, .hard, .soft, .open",
+                            },
+                        });
+                    },
+                };
 
-    <script type="text/javascript">
-    $(function () {
-
-      var filterList = {
-
-        init: function () {
-
-          // MixItUp plugin
-          // http://mixitup.io
-          $('#portfoliolist').mixItUp({
-            selectors: {
-              target: '.portfolio',
-              filter: '.filter'
-            },
-            load: {
-              filter: '.phd, .hard, .soft, .open'
-            }
-          });
-
-        }
-
-      };
-
-      // Run the show!
-      filterList.init();
-
-
-    });
-    </script>
-
-</body>
-
+                // Run the show!
+                filterList.init();
+            });
+        </script>
+    </body>
 </html>
