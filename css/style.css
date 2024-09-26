@@ -13,17 +13,16 @@
 
 
 /* -----------------------------------------
-   Shared Styles
+   Shared Styles#6e377a;
 ----------------------------------------- */
 
 html, body {
 	height: 100%;
   margin-left:20px;
   margin-right:20px;
-  background: #FAFAFA !important;
   font-family: 'Lato', sans-serif;
   color: #6e377a;
-	background-image: url('../images/bg.png');
+  background-image: url('../images/bgmesh.png') !important;
 }
 
 .title {
