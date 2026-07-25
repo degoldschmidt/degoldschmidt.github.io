@@ -11,6 +11,11 @@ baseurl: "" # user site — served from the domain root
 # and break every existing inbound link.
 permalink: /blog/:title:output_ext
 
+# Pin the timezone: GitHub Pages builds in UTC and a local build uses the
+# machine's zone, so without this the same post renders a different time in
+# each. Post dates carry explicit offsets and are converted to this zone.
+timezone: Europe/Zurich
+
 markdown: kramdown
 kramdown:
   input: GFM
