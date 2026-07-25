@@ -1,0 +1,26 @@
+---
+layout: default
+---
+
+<article class="post">
+  <h3>{{ page.title }}</h3>
+  <p class="post-meta">
+    <span class="post-date"
+      >Posted {{ page.date | date: "%Y-%m-%d %H:%M:%S" }}</span
+    >
+    {% for t in page.tags %}<span class="tag">{{ t }}</span> {% endfor %}
+  </p>
+
+  {%- if page.image %}
+  <img
+    class="post-hero"
+    src="{{ page.image | relative_url }}"
+    alt=""
+    loading="lazy"
+  />
+  {%- endif %}
+
+  {{ content }}
+</article>
+
+<p><a href="{{ '/weblog.html' | relative_url }}">&larr; back to the weblog</a></p>

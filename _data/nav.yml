@@ -1,0 +1,6 @@
+- { label: "/about", url: /about.html }
+- { label: "/projects", url: /projects.html }
+- { label: "/publications", url: /pubs.html }
+- { label: "/weblog", url: /weblog.html }
+- { label: "/code", url: "https://github.com/degoldschmidt", external: true }
+- { label: "/where_am_i", url: /where.html }

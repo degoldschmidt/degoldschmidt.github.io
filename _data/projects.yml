@@ -1,0 +1,57 @@
+# Filters render in this order. `all` is the default (the old MixItUp config
+# loaded ".fmi, .phd" while the active highlight sat on "postdoc" — they never
+# matched). The old "software" and "open science" filters are gone: `soft`
+# matched zero cards (the art projects were tagged `software`, not `soft`) and
+# nothing was ever tagged `open`.
+filters:
+  - { id: all, label: "all" }
+  - { id: fmi, label: "postdoc" }
+  - { id: phd, label: "phd" }
+  - { id: neuro, label: "neural circuits" }
+  - { id: behav, label: "behavior" }
+  - { id: ml, label: "machine learning" }
+  - { id: hard, label: "hardware" }
+  - { id: soft, label: "software" }
+  - { id: art, label: "art & visualization" }
+  - { id: past, label: "completed projects" }
+
+# Only cards with real images. The five held back below all pointed at
+# images/tbd.jpg, a grey "TBD" placeholder — five identical grey tiles read as
+# abandoned. Uncomment as images become available; no HTML or JS changes needed.
+items:
+  - title: "Neuronal Mechanisms of Context-Dependent Memory Retrieval"
+    image: /images/portfolios/postdoc/memory.jpg
+    tags: [fmi, neuro]
+
+  - title: "Genetic Manipulations of Descending Neurons in the Fly Brain"
+    image: /images/portfolios/phd/dn.jpg
+    tags: [phd, neuro]
+
+  - title: "Closed-Loop Video Tracking of Walking Fruit Flies"
+    image: /images/portfolios/phd/tracking2.jpg
+    tags: [phd, hard]
+
+  - title: "Adaptive Vector Navigation in Embodied Agents"
+    image: /images/portfolios/past/vector.jpg
+    tags: [past]
+
+  - title: "Adaptive Obstacle Negotiation Behavior in Embodied Agents"
+    image: /images/portfolios/past/climb.jpg
+    tags: [past]
+
+  - title: "Development of an exoskeleton lower-limb robotic system"
+    image: /images/portfolios/past/exo.jpg
+    tags: [past]
+
+  # Held back pending images:
+  # - title: "Differential effects of nutrient-specific deprivations on foraging
+  #           behaviors in Drosophila melanogaster"
+  #   tags: [phd, behav]
+  # - title: "Latent variable models for analyzing fly behavior"
+  #   tags: [phd, ml]
+  # - title: "Time-series analysis of fly behavior"
+  #   tags: [phd, ml]
+  # - title: "Interactive visualization of fly behavioral data"
+  #   tags: [art, soft]
+  # - title: "Generative art"
+  #   tags: [art, soft]

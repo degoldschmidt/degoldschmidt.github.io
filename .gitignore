@@ -1,5 +1,9 @@
+.DS_Store
 
-.DS_Store
-images/.DS_Store
-images/portfolios/.DS_Store
-.DS_Store
+# Jekyll
+_site/
+.jekyll-cache/
+.jekyll-metadata
+vendor/
+Gemfile.lock
+.bundle/

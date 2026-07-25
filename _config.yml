@@ -1,0 +1,42 @@
+title: de-goldschmidt
+author: Dennis Goldschmidt
+description: >-
+  Dennis Goldschmidt — postdoctoral researcher in systems neuroscience at the
+  Friedrich Miescher Institute for Biomedical Research, Basel, Switzerland.
+url: "https://degoldschmidt.github.io"
+baseurl: "" # user site — served from the domain root
+
+# Posts only; pages are unaffected by this key. Preserves /blog/<slug>.html.
+# Do NOT set a "pretty" permalink style — it would rewrite pages to /about/
+# and break every existing inbound link.
+permalink: /blog/:title:output_ext
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# jekyll-seo-tag / -sitemap / -feed are supported on GitHub Pages but are NOT
+# automatic — they only load if listed here.
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
+defaults:
+  - scope: { path: "", type: pages }
+    values: { layout: default }
+  - scope: { path: "", type: posts }
+    values: { layout: post }
+
+# WARNING: defining `exclude` REPLACES Jekyll's built-in list, so the
+# Gemfile/vendor entries below must be restated or they get published.
+# README.md is excluded because the always-on jekyll-readme-index plugin
+# (which cannot be disabled on Pages) would otherwise treat it as an index.
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+  - .jekyll-cache/
+  - README.md
+  - LICENSE

@@ -1,27 +1,72 @@
-# [Start Bootstrap](http://startbootstrap.com/) - [Simple Sidebar](http://startbootstrap.com/template-overviews/simple-sidebar/)
+# degoldschmidt.github.io
 
-[Simple Sidebar](http://startbootstrap.com/template-overviews/simple-sidebar/) is an off canvas sidebar navigation template for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/).
+Personal site of Dennis Goldschmidt — postdoctoral researcher in systems
+neuroscience at the Friedrich Miescher Institute for Biomedical Research,
+Basel.
 
-## Getting Started
+Live at <https://degoldschmidt.github.io>.
 
-To begin using this template, choose one of the following options to get started:
-* [Download the latest release on Start Bootstrap](http://startbootstrap.com/template-overviews/simple-sidebar/)
-* Clone the repo: `git clone https://github.com/BlackrockDigital/startbootstrap-simple-sidebar.git`
-* Fork the repo
+## How it works
 
-## Bugs and Issues
+Static site built with **Jekyll**, which GitHub Pages runs natively on every
+push to `master` — there is no CI workflow and no build step to run yourself.
 
-Have a bug or an issue with this template? [Open a new issue](https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/issues) here on GitHub or leave a comment on the [template overview page at Start Bootstrap](http://startbootstrap.com/template-overviews/simple-sidebar/).
+It ships **no third-party JavaScript**: no jQuery, no Bootstrap, no analytics.
+The two scripts on the site are the ~25-line nav toggle in
+`_layouts/default.html` and the ~25-line project filter in `projects.html`.
+Styling is a single hand-written stylesheet, `css/main.css`.
 
-## Creator
+```
+_config.yml                  site config; `permalink` applies to posts only
+_layouts/default.html        page chrome + nav toggle script
+_layouts/post.html           blog post wrapper
+_includes/head.html          <head>: fonts, stylesheet, SEO tags
+_includes/sidebar.html       sidebar, rendered from _data/nav.yml
+_data/nav.yml                the navigation — edit here, once
+_data/pubs.yml               publications (journals + conference)
+_data/projects.yml           portfolio cards and filter categories
+_posts/                      blog posts
+css/main.css                 the only stylesheet
+index.html about.html projects.html pubs.html where.html weblog.html
+```
 
-Start Bootstrap was created by and is maintained by **[David Miller](http://davidmiller.io/)**, Owner of [Blackrock Digital](http://blackrockdigital.io/).
+## Editing
 
-* https://twitter.com/davidmillerskt
-* https://github.com/davidtmiller
+- **Navigation** — `_data/nav.yml`.
+- **Publications** — `_data/pubs.yml`. Newest first; the `[n]` numbering counts
+  down and derives its start from the list length, so just add an entry at the
+  top. Give `doi` as a bare identifier (`10.1038/…`), not a URL.
+- **Projects** — `_data/projects.yml`. Five cards are commented out at the
+  bottom pending images; uncomment once an image exists. An empty `items:` list
+  makes the page render "coming soon…" and hides the filter bar.
+- **Blog** — add `_posts/YYYY-MM-DD-slug.md`. It publishes at
+  `/blog/slug.html` and appears on `/weblog.html` automatically.
 
-Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
+## Local preview
 
-## Copyright and License
+GitHub Pages ignores the `Gemfile`; it exists only to reproduce the pinned
+gem set (Jekyll 3.10) locally.
 
-Copyright 2013-2016 Blackrock Digital LLC. Code released under the [MIT](https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/gh-pages/LICENSE) license.
+Ruby 3.3 is required — **not** 4.x, whose stdlib changes break Jekyll 3.10 —
+and Bundler 2.x, since Bundler 4 raises
+`uninitialized class variable @@accept_charset in CGI` on Ruby 3.3.
+
+```sh
+brew install ruby@3.3
+export PATH="/opt/homebrew/opt/ruby@3.3/bin:$PATH"
+gem install bundler -v '~> 2.7'
+bundle _2.7.2_ config set --local path vendor/bundle
+bundle _2.7.2_ install
+bundle _2.7.2_ exec jekyll serve --livereload   # http://127.0.0.1:4000
+```
+
+## URLs
+
+Page permalinks are Jekyll's default (`about.html` → `/about.html`), which
+preserves every URL this site has had. **Do not set `permalink: pretty`** in
+`_config.yml` — it would rewrite pages to `/about/` and break inbound links.
+
+## Credits
+
+Map on `/where.html` is © [OpenStreetMap](https://www.openstreetmap.org/copyright)
+contributors (ODbL). Fonts are Fira Sans and Lato via Google Fonts.

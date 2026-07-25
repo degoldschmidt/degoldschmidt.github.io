@@ -1,0 +1,111 @@
+# Newest first. The rendered [n] counts DOWN, so entry 1 renders as the highest
+# number — the counter start is derived from the array size in pubs.html, not
+# hard-coded, so adding an entry can't desynchronise the numbering.
+#
+# `authors` carries raw HTML on purpose (bold on Dennis's own name). Liquid does
+# not auto-escape, so it passes through.
+# `doi` is a bare identifier — pubs.html builds the https://doi.org/ URL from it.
+
+journals:
+  - authors: "<b>Goldschmidt D</b>*, Guo Y, Chitnis SS, Christoforou C, Turner-Evans D, Ribeiro C, Hermundstad A, Jayaraman V, Haberkern H*"
+    year: 2024
+    title: "Exploration and exploitation are flexibly balanced during local search in flies"
+    venue: "bioRxiv 2024.06.26.600764"
+    doi: "10.1101/2024.06.26.600764"
+    note: "*: equal contribution."
+
+  - authors: "<b>Goldschmidt D</b>*, Tastekin I*, Münch D, Park JY, Haberkern H, Serra L, Baltazar C, Jayaraman V, Rubin GM, Ribeiro C"
+    year: 2022
+    title: "A neuronal substrate for translating nutrient state and resource density estimations into foraging decisions"
+    venue: "bioRxiv 2023.07.19.549514"
+    doi: "10.1101/2023.07.19.549514"
+    note: "*: equal contribution."
+
+  - authors: "Münch D, <b>Goldschmidt D</b>, Ribeiro C"
+    year: 2022
+    title: "The neuronal logic of how internal states control food choice"
+    venue: "Nature 607 (7920), 747-755"
+    doi: "10.1038/s41586-022-04909-5"
+
+  - authors: "Moreira JM*, Itskov PM*, <b>Goldschmidt D</b>*, Baltazar C, Steck K, Tastekin I, Walker SJ, Ribeiro C"
+    year: 2019
+    title: "optoPAD, a closed-loop optogenetics system to study the circuit basis of feeding behaviors"
+    venue: "Elife 8, e43924"
+    doi: "10.7554/eLife.43924"
+    note: "*: equal contribution."
+
+  - authors: "Walker SJ*, <b>Goldschmidt D</b>*, Ribeiro C"
+    year: 2017
+    title: "Craving for the future: The brain as a nutritional prediction system"
+    venue: "Curr Opin Insect Sci. (23), xx–yy"
+    doi: "10.1016/j.cois.2017.07.013"
+    note: "*: equal contribution."
+
+  # DOI was "10.3389/fn-bot.2017.00020" — stray hyphen, 404'd since 2017.
+  - authors: "<b>Goldschmidt D</b>, Manoonpong P, Dasgupta S"
+    year: 2017
+    title: "A Neurocomputational Model of Goal-Directed Navigation in Insect-Inspired Artificial Agents"
+    venue: "Front. Neurorobot. 11:20"
+    doi: "10.3389/fnbot.2017.00020"
+
+  # DOI had a trailing period inside the href — also 404'd.
+  - authors: "Dasgupta S, <b>Goldschmidt D</b>, Wörgötter F, Manoonpong P"
+    year: 2015
+    title: "Distributed Recurrent Neural Forward Models with Synaptic Adaptation and CPG-based control for Complex Behaviors of Walking Robots"
+    venue: "Front. Neurorobot. 9:10"
+    doi: "10.3389/fnbot.2015.00010"
+
+  - authors: "<b>Goldschmidt D</b>, Wörgötter F, Manoonpong P"
+    year: 2014
+    title: "Biologically-inspired adaptive obstacle negotiation behavior of hexapod robots"
+    venue: "Front. Neurorobot. 8:3"
+    doi: "10.3389/fnbot.2014.00003"
+
+conference:
+  - authors: "<b>Goldschmidt D</b>, Manoonpong P, Dasgupta S"
+    year: 2016
+    title: "Reward-modulated learning of population-encoded vectors for insect-like navigation in embodied agents"
+    venue: "25th Annual Computational Neuroscience Meeting: CNS-2016, Jeju Island, Korea"
+
+  - authors: "<b>Goldschmidt D</b>, Dasgupta S, Wörgötter F, Manoonpong P"
+    year: 2015
+    title: "A neural path integration mechanism for adaptive vector navigation in autonomous agents"
+    venue: "Neural Networks (IJCNN), 2015 International Joint Conference on, pp. 1-8, 12-17 July 2015"
+    doi: "10.1109/IJCNN.2015.7280400"
+
+  - authors: "<b>Goldschmidt D</b>, Dasgupta S, Wörgötter F, Manoonpong P"
+    year: 2014
+    title: "A Neural Path Integration Mechanism for Adaptive Vector Navigation in Autonomous Robots"
+    venue: "Bernstein Conference 2014, Göttingen, Germany, 02-05 September 2014"
+
+  - authors: "Manoonpong P*, Dasgupta S*, <b>Goldschmidt D</b>, Wörgötter F"
+    year: 2014
+    title: "Reservoir-based Online Adaptive Forward Models with Neural Control for Complex Locomotion in a Hexapod Robot"
+    venue: "IJCNN International Joint Conference on Neural Networks 2014"
+    note: "*: equal contribution."
+
+  - authors: "<b>Goldschmidt D</b>, Wörgötter F, Manoonpong P"
+    year: 2013
+    title: "Adaptive Neural Obstacle Negotiation Control for Hexapod Robots"
+    venue: "Bernstein Conference 2013, Tübingen, Germany, 24-27 September 2013"
+
+  - authors: "Manoonpong P, <b>Goldschmidt D</b>, Wörgötter F, Kovalev A, Heepe L, Gorb S"
+    year: 2013
+    title: "Using a Biological Material to Improve Locomotion of Hexapod Robots"
+    venue: "Living Machines: The International Conference on Biomimetics and Biohybrid Systems, London, UK, 29 July - 2 Aug 2013"
+
+  - authors: "Zenker S, Erdal Aksoy E, <b>Goldschmidt D</b>, Wörgötter F, Manoonpong P"
+    year: 2013
+    title: "Visual Terrain Classification for Selecting Energy Efficient Gaits of a Hexapod Robot"
+    venue: "The 2013 IEEE/ASME International Conference on Advanced Intelligent Mechatronics, Wollongong, Australia, 9-12 July 2013"
+
+  - authors: "<b>Goldschmidt D</b>, Hesse F, Wörgötter F, Manoonpong P"
+    year: 2012
+    title: "Reactive Neural Climbing Control for Hexapod Robots"
+    venue: "Frontiers in Computational Neuroscience, Conference Abstract: Bernstein Conference 2012"
+
+  - authors: "<b>Goldschmidt D</b>, Hesse F, Wörgötter F, Manoonpong P"
+    year: 2012
+    title: "Biologically Inspired Reactive Climbing Behavior of Hexapod Robots"
+    venue: "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) 2012, Portugal, pp. 4632-4637"
+    award: "Best Paper Award Finalist and Best Student Paper Award Finalist."

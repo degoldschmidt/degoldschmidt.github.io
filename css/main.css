@@ -1,0 +1,386 @@
+/* de-goldschmidt — one stylesheet, no frameworks.
+   Replaces bootstrap.min.css + simple-sidebar.css + style.css + layout.css
+   + normalize.css (~300 KB) with ~4 KB. */
+
+/* ---------- tokens ---------- */
+:root {
+  --purple: #6e377a;
+  --purple-hi: #fea1d9;
+  --paper: #f5f5f5;
+  --accent: #e24e42;
+  --amber: #ffcc66;
+  --link: #337ab7; /* Bootstrap's link blue — kept so links don't flip to #0000EE */
+  --rule: rgb(110 55 122 / 0.2);
+  --sidebar-w: 200px;
+  --gutter: clamp(1.25rem, 4vw, 3.4rem);
+  --font-body: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Fira Sans", var(--font-body);
+  --ease: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* ---------- reset (replaces normalize + Bootstrap's base layer) ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font: 300 1rem/1.45 var(--font-body);
+  color: var(--purple);
+  background: #fff url("../images/bgmesh.png") repeat;
+}
+h1,
+h2,
+h3 {
+  margin: 1.25rem 0 0.625rem;
+}
+h4,
+h5,
+h6 {
+  margin: 0.625rem 0;
+}
+p {
+  margin: 0 0 0.625rem;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  border: 0;
+}
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 1.5rem 0;
+}
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+/* Replaces the old `h1 a:hover, a:focus{color:#F5F5F5}` — the unscoped second
+   selector turned every focused link near-white on a near-white background. */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- off-canvas sidebar (replaces simple-sidebar.css) ----------
+   Mobile-first: closed, and opens as an overlay rather than squeezing the
+   content column (the old 250px padding against a 200px sidebar left ~85px
+   of content on a 375px screen). Desktop: open unless explicitly closed. */
+.layout {
+  padding-left: 0;
+  transition: padding-left 0.35s var(--ease);
+}
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  width: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: var(--purple);
+  transition: width 0.35s var(--ease);
+}
+.sidebar__inner {
+  width: var(--sidebar-w); /* fixed, so text doesn't reflow mid-animation */
+}
+.layout.nav-open .sidebar {
+  width: var(--sidebar-w);
+}
+
+@media (min-width: 48em) {
+  .layout {
+    padding-left: var(--sidebar-w);
+  }
+  .sidebar {
+    width: var(--sidebar-w);
+  }
+  .layout.nav-closed {
+    padding-left: 0;
+  }
+  .layout.nav-closed .sidebar {
+    width: 0;
+  }
+  .layout.nav-open {
+    padding-left: var(--sidebar-w);
+  }
+}
+
+@media (max-width: 47.99em) {
+  .layout.nav-open::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgb(0 0 0 / 0.35);
+    z-index: 999;
+  }
+  .sidebar__avatar img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.sidebar__avatar {
+  display: block;
+  text-align: center;
+  margin: 30px 0 46px;
+}
+.sidebar__avatar img {
+  border-radius: 50%; /* was Bootstrap's .img-circle */
+  width: 190px;
+  height: 190px;
+  object-fit: cover;
+}
+.sidebar__nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sidebar__nav a {
+  display: block;
+  padding-left: 20px;
+  color: #fff;
+  text-decoration: none;
+  font: 1.75rem/40px var(--font-body);
+}
+.sidebar__nav a:hover,
+.sidebar__nav a:focus-visible {
+  color: var(--purple-hi);
+  background: rgb(255 255 255 / 0.2);
+  text-decoration: none;
+}
+.sidebar__nav [aria-current="page"] {
+  background: rgb(255 255 255 / 0.12);
+}
+
+/* ---------- content (replaces container-fluid > row > col-md-12) ---------- */
+.content {
+  padding: var(--gutter);
+  max-width: 80rem;
+}
+.masthead {
+  display: inline-block;
+  margin: 0 0 4.375rem;
+  padding: 5px;
+  background: var(--purple);
+  color: var(--paper);
+  font: 1.5rem/35px var(--font-display);
+}
+.masthead a {
+  color: var(--paper);
+  text-decoration: none;
+}
+.masthead a:hover {
+  color: var(--purple-hi);
+  text-decoration: none;
+}
+.nav-toggle {
+  font: inherit;
+  color: var(--paper);
+  background: none;
+  border: 0;
+  padding: 0 0.35em 0 0;
+  cursor: pointer;
+  line-height: inherit;
+}
+
+h3 {
+  margin: 0 0 0.625rem;
+  font: 2rem/1.2 var(--font-body);
+  color: var(--purple);
+}
+h5 {
+  margin: 0 0 1.25rem;
+  font: 1.5rem/1.4 var(--font-body);
+  color: var(--purple);
+}
+h5 ul {
+  margin: 0;
+  padding-left: 1.4em;
+}
+h5 li {
+  list-style: circle;
+  margin-bottom: 0.625rem;
+}
+h5 a:hover {
+  background: var(--purple);
+  color: var(--paper);
+  text-decoration: none;
+}
+.lead {
+  margin-bottom: 2.5rem;
+}
+
+/* ---------- publications: descending [n] ----------
+   counter-reset start value comes from Liquid (size + 1), so adding an entry
+   can't silently desynchronise the numbering the way the hard-coded 9/10 did. */
+.pub-list {
+  list-style: none;
+  margin: 0 4.375rem 2rem 0;
+  padding: 0;
+}
+.pub-list > li {
+  counter-increment: item -1;
+  font-size: 1.125rem;
+  margin-bottom: 1.15em;
+  display: grid;
+  grid-template-columns: 3.4ch 1fr;
+  gap: 0.55em;
+}
+.pub-list > li::before {
+  content: "[" counter(item) "]";
+  text-align: right;
+}
+.award {
+  color: var(--link);
+}
+
+/* ---------- projects ---------- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+}
+.filters button {
+  padding: 5px 20px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: var(--purple);
+  font: 1rem var(--font-display);
+}
+.filters button:hover,
+.filters button.is-active {
+  background: var(--purple);
+  color: #fff;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 1rem;
+}
+.card {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  background: #666;
+}
+.card.is-hidden {
+  display: none; /* a class, not [hidden] — the UA rule loses to `display:grid` */
+}
+.card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.card figcaption {
+  padding: 0.6rem 0.7rem;
+  background: var(--accent);
+  color: var(--paper);
+  font: 1rem/1.3 var(--font-display);
+}
+/* Slide-up only where hover exists. Under MixItUp the caption appeared on
+   :hover alone, so project titles were unreadable on touch devices. */
+@media (hover: hover) {
+  .card figcaption {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    transform: translateY(100%);
+    transition: transform 0.45s var(--ease);
+  }
+  .card:hover figcaption,
+  .card:focus-within figcaption {
+    transform: translateY(0);
+  }
+}
+
+/* ---------- weblog ---------- */
+.post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 44rem;
+}
+.post-list > li {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+.post,
+.post-meta {
+  max-width: 44rem;
+}
+.post-hero {
+  margin: 1rem 0;
+}
+.tag {
+  color: var(--accent);
+  font: 600 0.8rem var(--font-display);
+}
+.post-date {
+  display: inline-block;
+  padding: 3px 7px;
+  border-radius: 10px;
+  background: var(--amber);
+  color: var(--accent);
+  font: 600 0.75rem var(--font-display);
+}
+
+/* ---------- where ---------- */
+.map {
+  margin: 0;
+  max-width: 60rem;
+}
+/* The <a> is the positioning context, not .map — otherwise the pin centres on
+   the figure including its caption, and sits low. */
+.map__frame {
+  position: relative;
+  display: block;
+}
+.map__frame img {
+  display: block;
+  width: 100%;
+}
+/* `.map__frame img` (0,1,1) would otherwise stretch the pin to 100% width.
+   Two classes + element (0,2,1) wins without !important. */
+.map__frame img.map__pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 50px;
+  height: 50px;
+  margin: -50px 0 0 -25px; /* anchors the tip to the image centre */
+  pointer-events: none;
+}
+.map figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+/* ---------- motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

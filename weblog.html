@@ -1,117 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+---
+title: weblog
+crumb: /weblog
+---
 
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>weblog</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-
-    <div class="toggled" id="wrapper">
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-              <div style="text-align: center; margin-top: 30px;">
-              <img src="images/me.jpg" class="img-circle" alt="me" width="190" height="190"> </div>
-                <br><br>
-                <li>
-                    <a href="about.html">/about</a>
-                </li>
-                <li>
-                    <a href="projects.html">/projects</a>
-                </li>
-                <li>
-                    <a href="pubs.html">/publications</a>
-                </li>
-                <li>
-                    <a href="weblog.html">/weblog</a>
-                </li>
-                <li>
-                    <a href="code.html">/code</a>
-                </li>
-                <li>
-                    <a href="where.html">/where_am_i</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1><a href="#menu-toggle" id="menu-toggle">&#10500;</a><a href="index.html">//de-goldschmidt</a> <a href="weblog.html">/weblog</a></h1>
-                    </div>
-                </div>
-            </div>
-            <div class="container-fluid">
-
-              <div class="span8">
-                <h2>Unix recipes 001: Setting Up a Cron Job for Task Scheduling </h2>
-                <p>Like in nature, programming tasks are often performed in a periodic pattern. Here, I explain how to use cron jobs to
-                  schedule reoccuring tasks on a Unix-based system. </p>
-                <a href="blog/unix001-cronjob.html">Read more...</a><br>
-                  <div>
-                    <span class="badge badge-success">Posted 2017-05-13 20:47:04</span><div class="pull-right"><span class="label">unix</span> <span class="label">bash</span> <span class="label">computing</span></div>
-                </div>
-                <hr>
-                <h2>Paper stacking week 18</h2>
-                <p>
-                  <ul>
-                    <li></li>
-                  </ul>
-                </p>
-                <div>
-                    <span class="badge badge-success">Posted 2017-08-02 20:47:04</span><div class="pull-right"><span class="label">alice</span> <span class="label">story</span> <span class="label">blog</span> <span class="label">personal</span></div>
-                </div>
-                <hr>
-              </div>
-
-            </div>
-        </div>
-        <!-- /#page-content-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Menu Toggle Script -->
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
-
-</body>
-
-</html>
+{%- if site.posts.size > 0 %}
+<ul class="post-list">
+  {%- for post in site.posts %}
+  <li>
+    <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+    <p>{{ post.excerpt | strip_html | strip }}</p>
+    <p>
+      <span class="post-date"
+        >Posted {{ post.date | date: "%Y-%m-%d %H:%M:%S" }}</span
+      >
+      {% for t in post.tags %}<span class="tag">{{ t }}</span> {% endfor %}
+    </p>
+  </li>
+  {%- endfor %}
+</ul>
+{%- else %}
+<h5>Nothing here yet.</h5>
+{%- endif %}

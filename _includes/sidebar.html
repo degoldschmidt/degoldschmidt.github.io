@@ -1,0 +1,13 @@
+<nav id="sidebar" class="sidebar" aria-label="Main">
+  <div class="sidebar__inner">
+    <a class="sidebar__avatar" href="{{ '/' | relative_url }}">
+      <img src="{{ '/images/me.jpg' | relative_url }}" alt="Dennis Goldschmidt" width="190" height="190" />
+    </a>
+    <ul class="sidebar__nav">
+      {%- for item in site.data.nav %}
+      {%- if item.external %}{% assign href = item.url %}{% else %}{% assign href = item.url | relative_url %}{% endif %}
+      <li><a href="{{ href }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+      {%- endfor %}
+    </ul>
+  </div>
+</nav>

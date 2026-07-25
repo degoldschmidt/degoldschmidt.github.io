@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% include head.html %}
+  </head>
+  <body>
+    <div class="layout" id="layout">
+      {% include sidebar.html %}
+
+      <main class="content" id="main">
+        <h1 class="masthead">
+          <button
+            type="button"
+            id="menu-toggle"
+            class="nav-toggle"
+            aria-controls="sidebar"
+            aria-expanded="true"
+            aria-label="Toggle navigation"
+          >
+            &#10500;</button
+          ><a href="{{ '/' | relative_url }}">//de-goldschmidt</a
+          >{%- if page.crumb %} <a href="{{ page.url | relative_url }}">{{ page.crumb }}</a>{%- endif %}
+        </h1>
+
+        {{ content }}
+      </main>
+    </div>
+
+    <script>
+      (function () {
+        var layout = document.getElementById("layout");
+        var btn = document.getElementById("menu-toggle");
+        if (!layout || !btn) return;
+        var wide = window.matchMedia("(min-width: 48em)");
+
+        // The open/closed default lives in CSS media queries, so the page is
+        // sensible with JS disabled: open on desktop, closed on mobile.
+        function isOpen() {
+          if (layout.classList.contains("nav-open")) return true;
+          if (layout.classList.contains("nav-closed")) return false;
+          return wide.matches;
+        }
+
+        function set(open) {
+          layout.classList.toggle("nav-open", open);
+          layout.classList.toggle("nav-closed", !open);
+          btn.setAttribute("aria-expanded", open ? "true" : "false");
+        }
+
+        btn.addEventListener("click", function () {
+          set(!isOpen());
+        });
+
+        // On mobile the sidebar overlays the toggle, so give it a way out.
+        // The backdrop is a ::after pseudo-element, so its clicks land on .layout.
+        document.addEventListener("click", function (e) {
+          if (
+            !wide.matches &&
+            isOpen() &&
+            !e.target.closest("#sidebar") &&
+            e.target !== btn
+          )
+            set(false);
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && isOpen() && !wide.matches) set(false);
+        });
+
+        btn.setAttribute("aria-expanded", isOpen() ? "true" : "false");
+      })();
+    </script>
+  </body>
+</html>
