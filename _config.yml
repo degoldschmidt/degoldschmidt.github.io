@@ -54,4 +54,6 @@ exclude:
   - vendor/
   - .jekyll-cache/
   - README.md
+  - ROADMAP.md
   - LICENSE
+  - serve.sh
