@@ -1,9 +1,19 @@
+{%- comment -%}
+  Notes live in Liquid comments, not HTML comments: Liquid does not respect
+  HTML comments, so a tag written inside one still EXECUTES (that is how the
+  duplicate <title> got here in the first place). Liquid comments also cost
+  nothing in the shipped bytes of every page.
+
+  Do NOT add a <title> here. {% seo %} at the bottom emits it, along with
+  description, canonical, Open Graph and the Twitter card.
+{%- endcomment -%}
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>{{ page.title | default: site.title }}</title>
 
-<!-- Fonts: one request, discovered during HTML parse. Replaces six render-blocking
-     @imports that could not even be *discovered* until the parent CSS had parsed. -->
+{%- comment -%}
+  Fonts: one request, discovered during HTML parse. Replaces six render-blocking
+  @imports that could not even be discovered until the parent CSS had parsed.
+{%- endcomment -%}
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
@@ -12,6 +22,28 @@
 />
 
 <link rel="stylesheet" href="{{ '/css/main.css' | relative_url }}" />
-<link rel="icon" href="{{ '/images/me.jpg' | relative_url }}" />
+
+{%- comment -%}
+  Favicon set, replacing a 460x460 portrait JPEG that was illegible at 16px and
+  gave iOS "Add to Home Screen" nothing to work with.
+{%- endcomment -%}
+<link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="32x32" />
+<link rel="icon" href="{{ '/assets/icon.svg' | relative_url }}" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="{{ '/assets/apple-touch-icon.png' | relative_url }}" />
+<link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}" />
+<meta name="theme-color" content="#6e377a" />
+
+{%- comment -%}
+  jekyll-feed generates /feed.xml but does not advertise it; without this the
+  feed is unreachable from the site.
+{%- endcomment -%}
+{% feed_meta %}
+
+{%- comment -%}
+  Search opt-out, off by default. Set `noindex: true` in a page's front matter.
+{%- endcomment -%}
+{%- if page.noindex %}
+<meta name="robots" content="noindex, nofollow" />
+{%- endif %}
 
 {% seo %}

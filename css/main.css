@@ -1,3 +1,14 @@
+---
+# Front matter is deliberate: it makes Jekyll run Liquid over this file so the
+# nav breakpoint can come from _config.yml (`bp_nav`) instead of being
+# hard-coded here and again in the toggle script. Media queries cannot use CSS
+# custom properties, so this is the only way to keep one source of truth.
+#
+# layout: null is REQUIRED. _config.yml defaults apply `layout: default` to
+# every page, and front matter makes this file a page — without this the
+# stylesheet gets wrapped in the HTML layout and served as a web page.
+layout: null
+---
 /* de-goldschmidt — one stylesheet, no frameworks.
    Replaces bootstrap.min.css + simple-sidebar.css + style.css + layout.css
    + normalize.css (~300 KB) with ~4 KB. */
@@ -99,7 +110,7 @@ body::before {
 /* Narrow viewports are much taller than wide, so vh-based radii would smear the
    blobs into vertical bands. Fall back to vmax so they stay round-ish, and pull
    the core off to the left where it sits behind the margin, not the text. */
-@media (max-width: 47.99em) {
+@media (max-width: {{ site.bp_nav_below }}) {
   body::before {
     background:
       radial-gradient(
@@ -178,7 +189,7 @@ a:hover {
   width: var(--sidebar-w);
 }
 
-@media (min-width: 48em) {
+@media (min-width: {{ site.bp_nav }}) {
   .layout {
     padding-left: var(--sidebar-w);
   }
@@ -196,7 +207,7 @@ a:hover {
   }
 }
 
-@media (max-width: 47.99em) {
+@media (max-width: {{ site.bp_nav_below }}) {
   .layout.nav-open::after {
     content: "";
     position: fixed;

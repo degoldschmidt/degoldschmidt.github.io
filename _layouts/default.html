@@ -19,7 +19,7 @@
           >
             &#10500;</button
           ><a href="{{ '/' | relative_url }}">//de-goldschmidt</a
-          >{%- if page.crumb %} <a href="{{ page.url | relative_url }}">{{ page.crumb }}</a>{%- endif %}
+          >{%- if page.crumb %} <span class="masthead__crumb">{{ page.crumb }}</span>{%- endif %}
         </h1>
 
         {{ content }}
@@ -31,7 +31,7 @@
         var layout = document.getElementById("layout");
         var btn = document.getElementById("menu-toggle");
         if (!layout || !btn) return;
-        var wide = window.matchMedia("(min-width: 48em)");
+        var wide = window.matchMedia("(min-width: {{ site.bp_nav }})");
 
         // The open/closed default lives in CSS media queries, so the page is
         // sensible with JS disabled: open on desktop, closed on mobile.

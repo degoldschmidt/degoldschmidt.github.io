@@ -15,7 +15,8 @@ journals:
     note: "*: equal contribution."
 
   - authors: "<b>Goldschmidt D</b>*, Tastekin I*, Münch D, Park JY, Haberkern H, Serra L, Baltazar C, Jayaraman V, Rubin GM, Ribeiro C"
-    year: 2022
+    # Was 2022, which contradicted the DOI. Crossref: posted 2023-07-19 on bioRxiv.
+    year: 2023
     title: "A neuronal substrate for translating nutrient state and resource density estimations into foraging decisions"
     venue: "bioRxiv 2023.07.19.549514"
     doi: "10.1101/2023.07.19.549514"
@@ -37,7 +38,7 @@ journals:
   - authors: "Walker SJ*, <b>Goldschmidt D</b>*, Ribeiro C"
     year: 2017
     title: "Craving for the future: The brain as a nutritional prediction system"
-    venue: "Curr Opin Insect Sci. (23), xx–yy"
+    venue: "Curr Opin Insect Sci. 23, 96–103"
     doi: "10.1016/j.cois.2017.07.013"
     note: "*: equal contribution."
 

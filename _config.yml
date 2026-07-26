@@ -1,4 +1,7 @@
-title: de-goldschmidt
+# The rendered SEO title is "<page> | <title>". This used to be the handle
+# "de-goldschmidt", so someone googling his actual name was fighting the site.
+title: Dennis Goldschmidt
+tagline: Systems neuroscience · FMI Basel
 author: Dennis Goldschmidt
 description: >-
   Dennis Goldschmidt — postdoctoral researcher in systems neuroscience at the
@@ -27,6 +30,13 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-feed
+  - jekyll-redirect-from
+
+# Single source of truth for the nav breakpoint. Referenced from css/main.css
+# (which has front matter so Liquid runs over it) and from the toggle script in
+# _layouts/default.html — it was hard-coded in four places.
+bp_nav: 48em
+bp_nav_below: 47.99em
 
 defaults:
   - scope: { path: "", type: pages }
