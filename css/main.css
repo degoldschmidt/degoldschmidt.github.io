@@ -9,8 +9,20 @@
   --paper: #f5f5f5;
   --accent: #e24e42;
   --amber: #ffcc66;
-  --link: #337ab7; /* Bootstrap's link blue — kept so links don't flip to #0000EE */
+  /* Bootstrap's link blue, darkened one step to its own hover shade. The
+     original #337ab7 measured 4.37 against the page base and 3.65 against the
+     background mesh — under AA's 4.5 either way. This reads as the same blue
+     and measures 5.98 / 5.00. */
+  --link: #2a6496;
   --rule: rgb(110 55 122 / 0.2);
+
+  /* Background mesh, sampled from the old images/bgmesh.png it replaces.
+     Channels are bare numbers so alpha can vary per layer: rgb(var(--x) / .5) */
+  --bg-base: #fafafa;
+  --bg-pink: 255 169 223; /* #ffa9df — the blob's saturated core */
+  --bg-rose: 253 189 230; /* #fdbde6 */
+  --bg-blush: 251 230 244; /* #fbe6f4 */
+
   --sidebar-w: 200px;
   --gutter: clamp(1.25rem, 4vw, 3.4rem);
   --font-body: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -27,6 +39,7 @@
 html {
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
+  background-color: var(--bg-base);
 }
 body {
   margin: 0;
@@ -34,7 +47,72 @@ body {
   overflow-x: hidden;
   font: 300 1rem/1.45 var(--font-body);
   color: var(--purple);
-  background: #fff url("../images/bgmesh.png") repeat;
+  background: transparent;
+}
+
+/* ---------- background mesh ----------
+   Replaces a 1000x3000 PNG (655 KB) that was set to `repeat`: any viewport
+   wider than 1000px tiled it, and its left and right edges don't match, so a
+   hard vertical seam ran down the page.
+
+   Built from radial gradients instead, so it is resolution-independent — it
+   resamples at any DPI and never tiles. Blob radii are given in vw/vh, so the
+   mesh is generated from the actual viewport: it stretches with a wide monitor
+   and compresses on a phone rather than being cropped from a fixed bitmap.
+
+   A fixed pseudo-element rather than `background-attachment: fixed`, which iOS
+   Safari mishandles. Colour stops fade to the same hue at zero alpha, never
+   `transparent` — that keyword interpolates through transparent *black* and
+   would grey the edges of every blob. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    /* Saturated core sits low-left, below the reading column. The upper-middle
+       band — roughly x 15-75%, y 10-60%, where the text lives — is deliberately
+       left near-white so body copy keeps its contrast. */
+    radial-gradient(
+      58vw 46vh at 10% 82%,
+      rgb(var(--bg-pink) / 0.55),
+      rgb(var(--bg-pink) / 0) 70%
+    ),
+    radial-gradient(
+      54vw 44vh at 92% 90%,
+      rgb(var(--bg-rose) / 0.45),
+      rgb(var(--bg-rose) / 0) 72%
+    ),
+    radial-gradient(
+      56vw 48vh at 88% 8%,
+      rgb(var(--bg-blush) / 0.8),
+      rgb(var(--bg-blush) / 0) 74%
+    ),
+    radial-gradient(
+      40vw 34vh at 2% 6%,
+      rgb(var(--bg-blush) / 0.7),
+      rgb(var(--bg-blush) / 0) 76%
+    );
+}
+
+/* Narrow viewports are much taller than wide, so vh-based radii would smear the
+   blobs into vertical bands. Fall back to vmax so they stay round-ish, and pull
+   the core off to the left where it sits behind the margin, not the text. */
+@media (max-width: 47.99em) {
+  body::before {
+    background:
+      radial-gradient(
+        70vmax 48vmax at 16% 30%,
+        rgb(var(--bg-pink) / 0.5),
+        rgb(var(--bg-pink) / 0) 68%
+      ),
+      radial-gradient(
+        62vmax 44vmax at 96% 72%,
+        rgb(var(--bg-blush) / 0.7),
+        rgb(var(--bg-blush) / 0) 72%
+      );
+  }
 }
 h1,
 h2,
