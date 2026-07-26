@@ -72,7 +72,10 @@ body {
   margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
-  font: 300 1rem/1.45 var(--font-body);
+  /* 400, not Lato's 300. At 16px, purple on near-white, the light weight reads
+     thin — and thinner still on the phone screens the QR code sends here. 400
+     is already in the Google Fonts request, so this downloads nothing extra. */
+  font: 400 1rem/1.45 var(--font-body);
   color: var(--purple);
   background: transparent;
 }
