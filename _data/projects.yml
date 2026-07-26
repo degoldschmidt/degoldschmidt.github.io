@@ -33,8 +33,12 @@ items:
       Paradigm diagram: a contingency table pairing two odours with a green
       danger panorama and a blue safe panorama, a fly walking on a ball inside a
       closed-loop visual arena, and a 2D grid of alternating odour patches.
-    link: /model.html
-    link_label: "play with the model"
+    # No `link:` on purpose. This card pointed at /model.html, which is not
+    # linked from anywhere on the site until the model has been read for
+    # scientific accuracy. The page still builds and still resolves. Restore
+    # these two lines to put the card back:
+    #   link: /model.html
+    #   link_label: "play with the model"
     text: >-
       A fly learns that an odour predicts punishment &mdash; but only in one
       visual context. I ask where in the circuit that gating happens, using

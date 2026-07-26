@@ -1,7 +1,9 @@
 ---
 title: poster
 permalink: /poster/
-script_mbsim: true
+# No `script_mbsim`. The simulation was removed from this page along with every
+# link to it, so /poster/ loads no JavaScript at all. Restore both this flag and
+# the include below together, or the page ships a dead script.
 ---
 
 {%- assign p = site.data.poster -%}
@@ -11,9 +13,14 @@ script_mbsim: true
 
 {%- comment -%}
   Screen 1 — must land in ~15 s on a phone, without scrolling: who, whether it
-  is published, the question, where the poster is, and the model. The model sits
-  above the prose because it IS the explanation, and at ~12 KB with no assets it
-  is also the fastest thing to arrive on conference wifi.
+  is published, the question, where the poster is, and the paradigm figure.
+
+  The figure carries screen 1 because the simulation used to and no longer does
+  — the model is unlinked and unembedded site-wide until it has been read for
+  scientific accuracy. The figure is the better stand-in of what is left: it is
+  already public, it is the actual paradigm rather than a cartoon of it, and it
+  needs no JavaScript. Its caption stayed with it, so the contingency is now
+  explained on screen 1 instead of screen 2.
 {%- endcomment -%}
 
 <div class="poster-id">
@@ -57,22 +64,18 @@ script_mbsim: true
 </p>
 {%- endif %}
 
-{% include mbsim.html variant="poster" %}
-
-{%- comment -%} Screen 2 — the paradigm, the rig, the predictions. {%- endcomment -%}
-
-<div class="prose">
-  <h2>What we do</h2>
-  <p>{{ p.approach }}</p>
-</div>
-
 <figure class="media">
+  {%- comment -%}
+    Not lazy-loaded: this is now the first image on the page and above the fold
+    on a phone, so deferring it would leave screen 1 as text on a gradient for
+    exactly the visitor who has under a minute.
+  {%- endcomment -%}
   <img
     src="{{ '/images/portfolios/postdoc/memory.jpg' | relative_url }}"
     alt="Paradigm diagram: a contingency table pairing two odours with a green
          danger panorama and a blue safe panorama, a fly walking on a ball inside
          a closed-loop visual arena, and a 2D grid of alternating odour patches."
-    width="768" height="538" loading="lazy"
+    width="768" height="538"
   />
   <figcaption>
     The contingency. Odour 1 is punished in the danger context only; the safe
@@ -80,6 +83,13 @@ script_mbsim: true
     means &mdash; it gates whether the memory is used.
   </figcaption>
 </figure>
+
+{%- comment -%} Screen 2 — the approach, the predictions. {%- endcomment -%}
+
+<div class="prose">
+  <h2>What we do</h2>
+  <p>{{ p.approach }}</p>
+</div>
 
 {%- if p.predictions and p.predictions.size > 0 %}
 <div class="prose">
@@ -98,16 +108,22 @@ script_mbsim: true
   <h2>Follow up</h2>
 </div>
 
+{%- comment -%}
+  The "Play with the model" button that sat beside this one is gone. The model
+  is not linked from anywhere on the site until it has been read for scientific
+  accuracy, and this page — the one the printed QR code leads to — is the last
+  place it should be advertised from in the meantime.
+
+  The whole block is now conditional: with that button removed, an unset email
+  would leave an empty flex container holding nothing but its own margin.
+{%- endcomment -%}
+{%- if has_mail %}
 <div class="poster-cta">
-  {%- if has_mail %}
   <a class="poster-cta__primary" href="mailto:{{ c.email_user }}&#64;{{ c.email_domain }}?subject=Your%20poster{% if p.number != '' %}%20{{ p.number }}{% endif %}"
     >Email me about this work</a
   >
-  {%- endif %}
-  <a class="poster-cta__secondary" href="{{ '/model.html' | relative_url }}"
-    >Play with the model &rarr;</a
-  >
 </div>
+{%- endif %}
 
 <div class="prose">
   <p>
