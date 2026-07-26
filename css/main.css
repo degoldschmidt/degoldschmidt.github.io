@@ -34,6 +34,20 @@ layout: null
   --bg-rose: 253 189 230; /* #fdbde6 */
   --bg-blush: 251 230 244; /* #fbe6f4 */
 
+  /* Fluid display type. Only the display sizes are tokenised so far — body and
+     small text still use literals, which the full token migration will fold in.
+     Values at 375px / 1440px:
+       h1    28.0 -> 36.0px   (was a flat 32px)
+       h2    21.6 -> 25.6px   (was a flat 24.8px)
+       h3    19.2 -> 22.4px   (was 32px, larger than h2 — see below)
+       lead  18.0 -> 20.8px   (was a flat 20px)
+       hero  25.6 -> 38.4px   (poster question) */
+  --text-h1: clamp(1.75rem, 1.35rem + 1.71vw, 2.25rem);
+  --text-h2: clamp(1.35rem, 1.2rem + 0.64vw, 1.6rem);
+  --text-h3: clamp(1.2rem, 1.09rem + 0.46vw, 1.4rem);
+  --text-lead: clamp(1.125rem, 1.05rem + 0.32vw, 1.3rem);
+  --text-hero: clamp(1.6rem, 1.19rem + 1.76vw, 2.4rem);
+
   --sidebar-w: 200px;
   --gutter: clamp(1.25rem, 4vw, 3.4rem);
   --font-body: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -285,15 +299,30 @@ a:hover {
   line-height: inherit;
 }
 
-h1,
-h3 {
+/* Display type scales with the viewport rather than sitting at one fixed size.
+   A flat 2rem h1 is oversized on a 375px phone — which is exactly where traffic
+   from the poster QR code lands — and undersized on a wide monitor. Each step
+   is clamp(min, preferred, max), so it never gets smaller than the phone value
+   or larger than the desktop one.
+
+   The `preferred` term deliberately mixes rem and vw: the rem part means the
+   type still responds to a user's browser font-size setting, which a pure-vw
+   value would ignore. */
+h1 {
   margin: 0 0 0.625rem;
-  font: 2rem/1.2 var(--font-body);
+  font: var(--text-h1) / 1.15 var(--font-body);
   color: var(--purple);
 }
 h2 {
   margin: 2rem 0 0.625rem;
-  font: 1.55rem/1.25 var(--font-body);
+  font: var(--text-h2) / 1.25 var(--font-body);
+  color: var(--purple);
+}
+/* h3 renders nowhere today, but it was styled at 2rem — LARGER than h2 — so if
+   it were ever used the outline would read backwards. Sized below h2. */
+h3 {
+  margin: 1.5rem 0 0.5rem;
+  font: var(--text-h3) / 1.3 var(--font-body);
   color: var(--purple);
 }
 /* Body copy is <p> now. `.lead` is the one-paragraph intro under a title. */
@@ -302,29 +331,8 @@ h2 {
   max-width: 44rem;
 }
 .lead {
-  font-size: 1.25rem;
-  line-height: 1.4;
-  margin-bottom: 1.5rem;
-}
-h5 {
-  margin: 0 0 1.25rem;
-  font: 1.5rem/1.4 var(--font-body);
-  color: var(--purple);
-}
-h5 ul {
-  margin: 0;
-  padding-left: 1.4em;
-}
-h5 li {
-  list-style: circle;
-  margin-bottom: 0.625rem;
-}
-h5 a:hover {
-  background: var(--purple);
-  color: var(--paper);
-  text-decoration: none;
-}
-.lead {
+  font-size: var(--text-lead);
+  line-height: 1.45;
   margin-bottom: 2.5rem;
 }
 
@@ -693,7 +701,7 @@ h5 a:hover {
   line-height: 1.45;
 }
 .poster-q {
-  font-size: clamp(1.6rem, 1.1rem + 2.2vw, 2.4rem);
+  font-size: var(--text-hero);
   line-height: 1.15;
   margin-bottom: 0.5rem;
 }
@@ -756,7 +764,7 @@ h5 a:hover {
 }
 .pbanner__q {
   margin: 0 0 0.6rem;
-  font: 1.25rem/1.25 var(--font-display);
+  font: var(--text-lead) / 1.3 var(--font-display);
 }
 .pbanner__cta {
   margin: 0;
