@@ -19,9 +19,16 @@ session: "Tue 28 Jul, 16:00-18:00" # e.g. "Tue 8 Sep, 14:00-16:00"
 date: "2026-07-28" # ISO, e.g. 2026-09-08 — used for the status line
 
 # --- what this work is -------------------------------------------------------
-# One sentence, phrased as a question. This is the largest text on the page and
-# the only thing many visitors will read.
-question: "How does what a fly sees decide whether a smell means danger?"
+# The headline: the largest text on /poster/ (where it is the page's h1) and on
+# the homepage banner, and the only thing many visitors will read. The field is
+# still called `question` for historical reasons; it holds whatever line should
+# lead, and right now that is the poster's own title, so the page and the board
+# someone is standing in front of say the same thing.
+#
+# Rendered raw, not escaped, so inline HTML works — which is how the genus gets
+# its italics. Keep any markup here to <i>/<em>/<sub>/<sup>: this becomes an
+# <h1>, so a block-level tag would produce invalid nesting.
+question: "A closed-loop virtual reality approach to study context-dependent memory in <i>Drosophila</i>"
 
 # One short paragraph. What you did, not what you found.
 approach: >-
