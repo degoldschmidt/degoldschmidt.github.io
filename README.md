@@ -61,13 +61,15 @@ and Bundler 2.x, since Bundler 4 raises
 `uninitialized class variable @@accept_charset in CGI` on Ruby 3.3.
 
 ```sh
-brew install ruby@3.3
-export PATH="/opt/homebrew/opt/ruby@3.3/bin:$PATH"
-gem install bundler -v '~> 2.7'
-bundle _2.7.2_ config set --local path vendor/bundle
-bundle _2.7.2_ install
-bundle _2.7.2_ exec jekyll serve --livereload   # http://127.0.0.1:4000
+brew install ruby@3.3                                    # once
+PATH="/opt/homebrew/opt/ruby@3.3/bin:$PATH" \
+  gem install bundler -v '~> 2.7'                        # once
+./serve.sh --install                                     # once
+./serve.sh                                               # http://127.0.0.1:4000
 ```
+
+`serve.sh` pins both versions and runs `jekyll serve --livereload`, so edits
+rebuild and refresh automatically.
 
 ## URLs
 
