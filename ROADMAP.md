@@ -17,13 +17,11 @@ under "Blocking a push" is two review decisions only Dennis can make.
 
 Small, and everything else waits on them.
 
-- [x] **`_data/contact.yml` — email.** Done: `golddenn@fmi.ch`. The red notice
-      on `/about` is gone and `/poster/` has its "Email me about this work"
-      button. **Confirm the address is right before pushing** — it is the one
-      string on the site with no fallback if it is wrong, and I have no way to
-      verify it. Nothing in the repo or in git history corroborates it; the only
-      institutional address either ever contained is
-      `goldschmidtd@ini.phys.ethz.ch`, from ETH.
+- [x] **`_data/contact.yml` — email.** Done and **confirmed by Dennis on
+      2026-07-26**: `golddenn@fmi.ch`. The red notice on `/about` is gone and
+      `/poster/` has its "Email me about this work" button. It reads like a
+      local username rather than FMI's usual `firstname.lastname@`, which is
+      why it was queried — it is correct, so leave it alone.
 - [x] **ORCID and Bluesky** — both set. Mastodon and the CV PDF are still
       blank, which renders as omitted rather than broken. Add whenever.
 - [ ] **Read `/model.html` for scientific accuracy.** The plasticity rule and
