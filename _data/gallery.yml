@@ -1,0 +1,57 @@
+# The homepage gallery. Three items are planned: the closed-loop rig, fly
+# tracking / local search, and two-photon imaging.
+#
+# Each item is a video OR a still, never both:
+#   video:  + poster: + width: + height:     a muted loop, tap to play
+#   image:  + width: + height:               a still
+#
+# `alt` describes what is VISIBLE and must not repeat `title` — the title is
+# already on screen, so an alt that echoes it tells a screen-reader user
+# nothing. Same rule as _data/projects.yml.
+#
+# `surface: imaging` swaps the card to a near-black mount. Use it for calcium
+# and confocal, where grayscale and green fluorescence read correctly against
+# dark and wrongly against white. Omit it for everything else.
+#
+# width/height are the INTRINSIC pixel dimensions. They are required: without
+# them the card has no aspect ratio until the poster downloads, and the page
+# reflows under the reader's thumb.
+
+- title: "Closed-loop visual VR"
+  video: /assets/media/fly-on-ball.mp4
+  poster: /assets/media/fly-on-ball.jpg
+  width: 480
+  height: 480
+  # DRAFT — Dennis to correct. Written from the footage, not from knowledge of
+  # what the fly was doing.
+  alt: >-
+    A tethered fly stands on a patterned foam ball above a metal post, lit by
+    vertical coloured bars that shift through the surrounding display as the
+    fly turns.
+  text: >-
+    A fly walks on an air-supported ball while the panorama around it turns
+    with every step it takes, so it steers through a visual world that never
+    moves it.
+
+# Waiting on footage. Uncomment and fill in when the clips are encoded.
+#
+# - title: "Tracking and local search"
+#   video: /assets/media/tracking.mp4
+#   poster: /assets/media/tracking.jpg
+#   width: 960
+#   height: 540
+#   alt: >-
+#     …
+#   text: >-
+#     …
+#
+# - title: "Two-photon imaging"
+#   video: /assets/media/two-photon.mp4
+#   poster: /assets/media/two-photon.jpg
+#   width: 512
+#   height: 512
+#   surface: imaging
+#   alt: >-
+#     …
+#   text: >-
+#     … Compressed for the web.

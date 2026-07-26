@@ -1,0 +1,70 @@
+{%- comment -%}
+  The homepage gallery, rendered from _data/gallery.yml.
+
+    {% include gallery.html %}                 all items
+    {% include gallery.html limit=2 %}         first two
+
+  Not the .card component from /research. That one is a linked figure with a
+  title and a "more" affordance; this one is a media mount whose job is to hold
+  a video at a known aspect ratio and caption it. Sharing a class between them
+  would mean every future change to one had to be checked against the other.
+
+  NO AUTOPLAY, deliberately. The printed QR code points at the site ROOT, so
+  the homepage is the page that lands in a poster hall on conference wifi —
+  three autoplaying loops is megabytes spent before the visitor has decided
+  they care, and it is the one place on the site where that cost is least
+  affordable. `preload="none"` means the poster still is all that downloads
+  until someone taps.
+
+  It also keeps the site honest about `prefers-reduced-motion`. CSS cannot
+  pause a video, so an autoplaying loop could only respect that setting with
+  JavaScript — and the navigation JS was just deleted. Tap-to-play needs no
+  script and is correct for that reader by construction.
+{%- endcomment -%}
+{%- assign items = site.data.gallery -%}
+{%- if include.limit %}{% assign items = items | slice: 0, include.limit %}{% endif -%}
+
+{%- if items and items.size > 0 %}
+<ul class="gallery">
+  {%- for item in items %}
+  <li class="gcard{% if item.surface == 'imaging' %} gcard--imaging{% endif %}">
+    <figure>
+      {%- if item.video %}
+      {%- comment -%}
+        width/height on the element itself, not only in CSS: they give the box
+        an aspect ratio before anything downloads, so the caption below does
+        not jump once the poster arrives.
+      {%- endcomment -%}
+      <video
+        class="gcard__media"
+        src="{{ item.video | relative_url }}"
+        poster="{{ item.poster | relative_url }}"
+        width="{{ item.width }}"
+        height="{{ item.height }}"
+        preload="none"
+        controls
+        muted
+        loop
+        playsinline
+        {% if item.alt %}aria-label="{{ item.alt | strip_newlines | strip }}"{% endif %}
+      ></video>
+      {%- else %}
+      <img
+        class="gcard__media"
+        src="{{ item.image | relative_url }}"
+        width="{{ item.width }}"
+        height="{{ item.height }}"
+        alt="{{ item.alt | strip_newlines | strip }}"
+        loading="lazy"
+      />
+      {%- endif %}
+
+      <figcaption>
+        <span class="gcard__title">{{ item.title }}</span>
+        <span class="gcard__text">{{ item.text }}</span>
+      </figcaption>
+    </figure>
+  </li>
+  {%- endfor %}
+</ul>
+{%- endif %}
