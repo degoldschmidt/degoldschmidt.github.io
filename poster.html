@@ -1,0 +1,132 @@
+---
+title: poster
+crumb: /poster
+permalink: /poster/
+script_mbsim: true
+---
+
+{%- assign p = site.data.poster -%}
+{%- assign c = site.data.contact -%}
+{%- assign has_mail = false -%}
+{%- if c.email_user != "" and c.email_domain != "" %}{% assign has_mail = true %}{% endif -%}
+
+{%- comment -%}
+  Screen 1 — must land in ~15 s on a phone, without scrolling: who, whether it
+  is published, the question, where the poster is, and the model. The model sits
+  above the prose because it IS the explanation, and at ~12 KB with no assets it
+  is also the fastest thing to arrive on conference wifi.
+{%- endcomment -%}
+
+<div class="poster-id">
+  <img src="{{ '/images/me.jpg' | relative_url }}" alt="" width="56" height="56" />
+  <div>
+    <strong>Dennis Goldschmidt</strong><br />
+    <span class="poster-id__aff">
+      {%- if c.affiliation_url != "" -%}
+      <a href="{{ c.affiliation_url }}">{{ c.affiliation }}</a>
+      {%- else -%}{{ c.affiliation }}{%- endif -%}
+    </span>
+  </div>
+</div>
+
+{%- comment -%}
+  The status line is the second element on the page because a visitor arriving
+  months later asks "is this published?" before anything else.
+{%- endcomment -%}
+<p class="poster-status">
+  {%- if p.status == "published" and p.doi != "" -%}
+  Published: <a href="https://doi.org/{{ p.doi }}">doi.org/{{ p.doi }}</a>.
+  {%- elsif p.status == "preprint" and p.doi != "" -%}
+  Preprint: <a href="https://doi.org/{{ p.doi }}">doi.org/{{ p.doi }}</a>.
+  {%- else -%}
+  Unpublished work in progress{% if p.venue != "" %}, presented at {{ p.venue }}
+  {%- if p.date != "" %} on {{ p.date | date: "%-d %B %Y" }}{% endif %}{% endif %}.
+  The results are on the physical poster &mdash; get in touch and I will walk you
+  through them.
+  {%- endif %}
+</p>
+
+<div class="prose">
+  <h1 class="poster-q">{{ p.question }}</h1>
+</div>
+
+{%- if p.venue != "" %}
+<p class="poster-where">
+  {%- if p.number != "" %}<strong>{{ p.number }}</strong> &middot; {% endif -%}
+  {{ p.venue }}{% if p.city != "" %}, {{ p.city }}{% endif %}
+  {%- if p.session != "" %} &middot; {{ p.session }}{% endif %}
+</p>
+{%- endif %}
+
+{% include mbsim.html variant="poster" %}
+
+{%- comment -%} Screen 2 — the paradigm, the rig, the predictions. {%- endcomment -%}
+
+<div class="prose">
+  <h2>What we do</h2>
+  <p>{{ p.approach }}</p>
+</div>
+
+<figure class="media">
+  <img
+    src="{{ '/images/portfolios/postdoc/memory.jpg' | relative_url }}"
+    alt="Paradigm diagram: a contingency table pairing two odours with a green
+         danger panorama and a blue safe panorama, a fly walking on a ball inside
+         a closed-loop visual arena, and a 2D grid of alternating odour patches."
+    width="768" height="538" loading="lazy"
+  />
+  <figcaption>
+    The contingency. Odour 1 is punished in the danger context only; the safe
+    context has no punishment at all. So context does not reverse what the odour
+    means &mdash; it gates whether the memory is used.
+  </figcaption>
+</figure>
+
+{%- if p.predictions and p.predictions.size > 0 %}
+<div class="prose">
+  <h2>What we expect</h2>
+  <ul>
+    {%- for pred in p.predictions %}
+    <li>{{ pred }}</li>
+    {%- endfor %}
+  </ul>
+</div>
+{%- endif %}
+
+{%- comment -%} Screen 3 — follow-up, all within one thumb-reach. {%- endcomment -%}
+
+<div class="prose">
+  <h2>Follow up</h2>
+</div>
+
+<div class="poster-cta">
+  {%- if has_mail %}
+  <a class="poster-cta__primary" href="mailto:{{ c.email_user }}&#64;{{ c.email_domain }}?subject=Your%20poster{% if p.number != '' %}%20{{ p.number }}{% endif %}"
+    >Email me about this work</a
+  >
+  {%- endif %}
+  <a class="poster-cta__secondary" href="{{ '/model.html' | relative_url }}"
+    >Play with the model &rarr;</a
+  >
+</div>
+
+<div class="prose">
+  <p>
+    {%- if p.pdf != "" -%}
+    <a href="{{ p.pdf | relative_url }}">Download the poster (PDF)</a>.
+    {%- elsif p.pdf_doi != "" -%}
+    Poster: <a href="https://doi.org/{{ p.pdf_doi }}">doi.org/{{ p.pdf_doi }}</a>.
+    {%- else -%}
+    A copy of the poster is available on request.
+    {%- endif %}
+    More of my work is on the
+    <a href="{{ '/research.html' | relative_url }}">research</a> and
+    <a href="{{ '/pubs.html' | relative_url }}">publications</a> pages.
+  </p>
+</div>
+
+{% include contact.html compact=true %}
+
+<p class="poster-url">
+  This page: <code>{{ site.url }}{{ page.url }}</code>
+</p>

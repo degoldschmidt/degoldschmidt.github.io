@@ -1,0 +1,54 @@
+# Everything that changes per conference lives here, so poster.html itself never
+# needs editing between meetings and the printed QR code keeps working forever.
+#
+# /poster/ is ALWAYS the current poster. When you present a new one, archive the
+# old page under /poster/<year>-<venue>/ and edit this file.
+
+in_nav: false # set true to show /poster in the sidebar during the meeting
+
+# --- the meeting -------------------------------------------------------------
+venue: "" # e.g. "FENS Forum 2026"
+city: "" # e.g. "Lisbon"
+number: "" # e.g. "P-123"
+session: "" # e.g. "Tue 8 Sep, 14:00-16:00"
+date: "" # ISO, e.g. 2026-09-08 — used for the status line
+
+# --- what this work is -------------------------------------------------------
+# One sentence, phrased as a question. This is the largest text on the page and
+# the only thing many visitors will read.
+question: "How does what a fly sees decide whether a smell means danger?"
+
+# One short paragraph. What you did, not what you found.
+approach: >-
+  Flies learn that an odour predicts punishment in one visual context but not
+  another. Using closed-loop visual VR, two-photon imaging and circuit-level
+  genetics, I ask where in the mushroom body that gating happens.
+
+# Two or three. Stating predictions publicly timestamps the idea while the data
+# stays yours — this is the anti-scooping part of the page, not a risk.
+predictions:
+  - "If context binds at the Kenyon-cell layer, context-specific and odour-specific memories should be separable by silencing distinct KC subsets."
+  - "If instead it gates at the output neurons, the same KC population should drive opposite behaviour depending on the visual scene."
+
+# --- publication status ------------------------------------------------------
+# "unpublished" | "preprint" | "published". Drives the status line and the CTA,
+# so the page never goes stale: when the work comes out, set status and doi and
+# the call to action changes from "email me" to "read the paper".
+status: "unpublished"
+doi: ""
+
+# --- the poster file itself --------------------------------------------------
+# READ THIS BEFORE FILLING IT IN.
+#
+# GitHub Pages has NO access control. Anything referenced here is public,
+# permanently, and archived by third parties — an unlisted URL is not private.
+# If the poster shows unpublished results, effect sizes, or unpublished driver
+# lines, do NOT put the PDF here.
+#
+#   pdf: "/assets/poster-2026-fens.pdf"   -> served publicly from the repo
+#   pdf_doi: "10.5281/zenodo.XXXXXXX"     -> Zenodo, which can be restricted
+#                                            and earns a citable DOI
+#   both empty                            -> page offers "available on request"
+#                                            via email, which is the safe default
+pdf: ""
+pdf_doi: ""
