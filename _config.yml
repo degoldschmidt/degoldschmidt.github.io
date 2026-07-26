@@ -55,6 +55,7 @@ exclude:
   - .jekyll-cache/
   - README.md
   - ROADMAP.md
+  - HANDOFF.md
   # .gitignore does NOT affect Jekyll — it copies anything on disk that is not
   # excluded here. Without this line the poster PDF is written into _site even
   # though git ignores it.

@@ -11,3 +11,4 @@ Gemfile.lock
 # Poster PDFs stay local. GitHub Pages has no access control, so anything
 # tracked here is public and permanently archived. Share via email or Zenodo.
 posters/
+HANDOFF.md
