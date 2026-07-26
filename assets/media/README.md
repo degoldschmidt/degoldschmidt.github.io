@@ -137,14 +137,21 @@ add bytes.
 `<video>` always — GIF is never correct for this (10–50× larger). Skip WebM
 unless the MP4 lands over ~1.5 MB.
 
-The homepage is a QR landing target, so **do not autoplay there**: three
-autoplaying loops is ~9 MB before the visitor has decided they care. Ship the
-poster still and load the video on tap.
+Gallery clips **autoplay**, so the per-clip budget is doing real work: the
+homepage is where the printed QR code lands, and every byte here is fetched
+before the visitor has decided they care. Keep clips near the low end of the
+size range rather than the 3 MB ceiling.
 
 ```html
-<video poster="/assets/media/<name>.jpg" preload="none"
-       controls muted loop playsinline width="960" height="540"></video>
+<video poster="/assets/media/<name>.jpg" width="960" height="540"
+       autoplay muted loop playsinline controls></video>
 ```
 
-Autoplay-on-scroll is fine on `/research` and `/model.html`, which nobody
-reaches by scanning a code.
+`muted` is what makes autoplay legal under every browser's policy;
+`playsinline` stops iOS going fullscreen. `-an` at encode time means there is
+no audio track to unmute in the first place.
+
+Controls are hidden until hover, in CSS — see `.gcard__media` in
+`css/main.css`. That hiding is scoped to devices with a real pointer, so
+phones keep a visible pause control, and it is overridden entirely under
+`prefers-reduced-motion`.

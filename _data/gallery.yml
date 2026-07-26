@@ -2,16 +2,15 @@
 # tracking / local search, and two-photon imaging.
 #
 # Each item is a video OR a still, never both:
-#   video:  + poster: + width: + height:     a muted loop, tap to play
+#   video:  + poster: + width: + height:     a muted loop, autoplaying
 #   image:  + width: + height:               a still
 #
 # `alt` describes what is VISIBLE and must not repeat `title` — the title is
 # already on screen, so an alt that echoes it tells a screen-reader user
 # nothing. Same rule as _data/projects.yml.
 #
-# `surface: imaging` swaps the card to a near-black mount. Use it for calcium
-# and confocal, where grayscale and green fluorescence read correctly against
-# dark and wrongly against white. Omit it for everything else.
+# There is no surface option. Every card sits on the same near-black mount, so
+# calcium and confocal need nothing special.
 #
 # width/height are the INTRINSIC pixel dimensions. They are required: without
 # them the card has no aspect ratio until the poster downloads, and the page
@@ -50,7 +49,6 @@
 #   poster: /assets/media/two-photon.jpg
 #   width: 512
 #   height: 512
-#   surface: imaging
 #   alt: >-
 #     …
 #   text: >-

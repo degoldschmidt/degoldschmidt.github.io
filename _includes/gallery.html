@@ -9,17 +9,16 @@
   a video at a known aspect ratio and caption it. Sharing a class between them
   would mean every future change to one had to be checked against the other.
 
-  NO AUTOPLAY, deliberately. The printed QR code points at the site ROOT, so
-  the homepage is the page that lands in a poster hall on conference wifi —
-  three autoplaying loops is megabytes spent before the visitor has decided
-  they care, and it is the one place on the site where that cost is least
-  affordable. `preload="none"` means the poster still is all that downloads
-  until someone taps.
+  The clips autoplay. `muted` is what makes that legal under every browser's
+  autoplay policy and `playsinline` is what stops iOS taking the video
+  fullscreen; `-an` at encode time means there is no audio track to unmute in
+  the first place. `poster` still matters — it is what fills the card during
+  the fetch, so the layout never shows an empty box.
 
-  It also keeps the site honest about `prefers-reduced-motion`. CSS cannot
-  pause a video, so an autoplaying loop could only respect that setting with
-  JavaScript — and the navigation JS was just deleted. Tap-to-play needs no
-  script and is correct for that reader by construction.
+  Controls stay in the markup and are hidden visually until hover, which is
+  done in CSS. See the note there: the hiding is scoped to devices that
+  actually have a pointer, so a phone — where the QR traffic lands, and where
+  hover does not exist — keeps a visible pause control.
 {%- endcomment -%}
 {%- assign items = site.data.gallery -%}
 {%- if include.limit %}{% assign items = items | slice: 0, include.limit %}{% endif -%}
@@ -27,7 +26,7 @@
 {%- if items and items.size > 0 %}
 <ul class="gallery">
   {%- for item in items %}
-  <li class="gcard{% if item.surface == 'imaging' %} gcard--imaging{% endif %}">
+  <li class="gcard">
     <figure>
       {%- if item.video %}
       {%- comment -%}
@@ -41,11 +40,11 @@
         poster="{{ item.poster | relative_url }}"
         width="{{ item.width }}"
         height="{{ item.height }}"
-        preload="none"
-        controls
+        autoplay
         muted
         loop
         playsinline
+        controls
         {% if item.alt %}aria-label="{{ item.alt | strip_newlines | strip }}"{% endif %}
       ></video>
       {%- else %}
