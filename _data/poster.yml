@@ -7,15 +7,16 @@
 # The printed QR code points at the SITE ROOT, not at /poster/. `active` puts a
 # banner at the top of the homepage so someone who has just scanned it is not
 # dropped onto a generic bio page. Turn both on for the meeting, off afterwards.
-active: false # banner on the homepage
+active: true # banner on the homepage
 in_nav: false # /poster in the top bar
 
 # --- the meeting -------------------------------------------------------------
-venue: "" # e.g. "FENS Forum 2026"
-city: "" # e.g. "Lisbon"
-number: "" # e.g. "P-123"
-session: "" # e.g. "Tue 8 Sep, 14:00-16:00"
-date: "" # ISO, e.g. 2026-09-08 — used for the status line
+venue: "ICN 2026" # e.g. "FENS Forum 2026"
+venue_url: "https://icn2026vancouver.com/" # e.g. "https://forum.fens.org/"
+city: "Vancouver, BC, Canada" # e.g. "Lisbon"
+number: "PS2.84" # e.g. "P-123"
+session: "Tue 28 Jul, 16:00-18:00" # e.g. "Tue 8 Sep, 14:00-16:00"
+date: "2026-07-28" # ISO, e.g. 2026-09-08 — used for the status line
 
 # --- what this work is -------------------------------------------------------
 # One sentence, phrased as a question. This is the largest text on the page and
