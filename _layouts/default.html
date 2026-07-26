@@ -4,87 +4,30 @@
     {% include head.html %}
   </head>
   <body>
-    <div class="layout" id="layout">
-      {% include sidebar.html %}
+    {%- comment -%}
+      The wordmark and breadcrumb that used to sit here are gone. They existed
+      because the sidebar carried no name and, on a phone, was closed — so the
+      page needed its own identity line. The bar carries both now.
 
-      <main class="content" id="main">
-        {%- comment -%}
-          A <p>, not an <h1>: this is site chrome — a wordmark plus a breadcrumb
-          — not the page's heading. While it was the h1, every page had to start
-          its real title at h3 and use h5 for body copy, which is why h2 and h4
-          appear nowhere on the site. Each page now carries its own h1.
-        {%- endcomment -%}
-        <p class="masthead">
-          <button
-            type="button"
-            id="menu-toggle"
-            class="nav-toggle"
-            aria-controls="sidebar"
-            aria-expanded="true"
-            aria-label="Toggle navigation"
-          >
-            &#10500;</button
-          ><a href="{{ '/' | relative_url }}">//de-goldschmidt</a
-          >{%- if page.crumb %} <span class="masthead__crumb">{{ page.crumb }}</span>{%- endif %}
-        </p>
+      The breadcrumb also duplicated information the page already gives twice
+      over: every page carries its own <h1>, and the current nav item is marked
+      with aria-current. `crumb:` front matter has been dropped with it.
+    {%- endcomment -%}
+    {% include topbar.html %}
 
-        {{ content }}
+    <main class="content" id="main">
+      {{ content }}
 
-        {% include footer.html %}
-      </main>
-    </div>
+      {% include footer.html %}
+    </main>
 
     {%- comment -%}
       Only pages that embed the simulation load it. Set `script_mbsim: true` in
-      front matter.
+      front matter. It is the only JavaScript on the site — the navigation
+      needs none.
     {%- endcomment -%}
     {%- if page.script_mbsim %}
     <script src="{{ '/assets/js/mbsim.js' | relative_url }}" defer></script>
     {%- endif %}
-
-    <script>
-      (function () {
-        var layout = document.getElementById("layout");
-        var btn = document.getElementById("menu-toggle");
-        if (!layout || !btn) return;
-        var wide = window.matchMedia("(min-width: {{ site.bp_nav }})");
-
-        // The open/closed default lives in CSS media queries, so the page is
-        // sensible with JS disabled: open on desktop, closed on mobile.
-        function isOpen() {
-          if (layout.classList.contains("nav-open")) return true;
-          if (layout.classList.contains("nav-closed")) return false;
-          return wide.matches;
-        }
-
-        function set(open) {
-          layout.classList.toggle("nav-open", open);
-          layout.classList.toggle("nav-closed", !open);
-          btn.setAttribute("aria-expanded", open ? "true" : "false");
-        }
-
-        btn.addEventListener("click", function () {
-          set(!isOpen());
-        });
-
-        // On mobile the sidebar overlays the toggle, so give it a way out.
-        // The backdrop is a ::after pseudo-element, so its clicks land on .layout.
-        document.addEventListener("click", function (e) {
-          if (
-            !wide.matches &&
-            isOpen() &&
-            !e.target.closest("#sidebar") &&
-            e.target !== btn
-          )
-            set(false);
-        });
-
-        document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape" && isOpen() && !wide.matches) set(false);
-        });
-
-        btn.setAttribute("aria-expanded", isOpen() ? "true" : "false");
-      })();
-    </script>
   </body>
 </html>

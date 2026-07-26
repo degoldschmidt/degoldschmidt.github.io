@@ -1,8 +1,11 @@
 ---
 # Front matter is deliberate: it makes Jekyll run Liquid over this file so the
-# nav breakpoint can come from _config.yml (`bp_nav`) instead of being
-# hard-coded here and again in the toggle script. Media queries cannot use CSS
-# custom properties, so this is the only way to keep one source of truth.
+# narrow-viewport breakpoint can come from _config.yml instead of being
+# hard-coded here. Media queries cannot use CSS custom properties, so this is
+# the only way to keep one source of truth.
+#
+# Only `bp_nav_below` is still read, by the background-mesh query. The bar that
+# replaced the sidebar wraps on content width and needs no breakpoint at all.
 #
 # layout: null is REQUIRED. _config.yml defaults apply `layout: default` to
 # every page, and front matter makes this file a page — without this the
@@ -48,7 +51,6 @@ layout: null
   --text-lead: clamp(1.125rem, 1.05rem + 0.32vw, 1.3rem);
   --text-hero: clamp(1.6rem, 1.19rem + 1.76vw, 2.4rem);
 
-  --sidebar-w: 200px;
   --gutter: clamp(1.25rem, 4vw, 3.4rem);
   --font-body: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-display: "Fira Sans", var(--font-body);
@@ -176,127 +178,99 @@ a:hover {
   outline-offset: 2px;
 }
 
-/* ---------- off-canvas sidebar (replaces simple-sidebar.css) ----------
-   Mobile-first: closed, and opens as an overlay rather than squeezing the
-   content column (the old 250px padding against a 200px sidebar left ~85px
-   of content on a 375px screen). Desktop: open unless explicitly closed. */
-.layout {
-  padding-left: 0;
-  transition: padding-left 0.35s var(--ease);
-}
-.sidebar {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
-  width: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
+/* ---------- top bar (replaces the off-canvas sidebar) ----------
+   The sidebar it replaces was closed by default below the nav breakpoint, so
+   traffic from the printed QR code — a phone, in a poster hall — landed on a
+   page with no visible navigation. A bar is always visible, costs no
+   JavaScript, and returns the sidebar's 200px to the content column.
+
+   It wraps instead of collapsing behind a toggle: below ~400px the nav drops
+   to its own row, and a second row of links is still a row of links. Nothing
+   here is a media query — flex-wrap breaks on the actual width of the actual
+   labels, which a guessed breakpoint cannot do. */
+.topbar {
   background: var(--purple);
-  transition: width 0.35s var(--ease);
+  color: var(--paper);
 }
-.sidebar__inner {
-  width: var(--sidebar-w); /* fixed, so text doesn't reflow mid-animation */
+/* Same max-width and gutter as .content, so the wordmark sits on the same
+   optical left edge as the page's h1 below it. */
+.topbar__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 1.5rem;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding: 0.4rem var(--gutter);
 }
-.layout.nav-open .sidebar {
-  width: var(--sidebar-w);
+/* margin-right: auto pushes the nav to the far end while they share a row, and
+   is simply ignored once the nav wraps below. */
+.topbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-right: auto;
+  padding: 0.35rem 0;
+  color: var(--paper);
+  font: var(--text-h3) / 1.1 var(--font-display);
 }
-
-@media (min-width: {{ site.bp_nav }}) {
-  .layout {
-    padding-left: var(--sidebar-w);
-  }
-  .sidebar {
-    width: var(--sidebar-w);
-  }
-  .layout.nav-closed {
-    padding-left: 0;
-  }
-  .layout.nav-closed .sidebar {
-    width: 0;
-  }
-  .layout.nav-open {
-    padding-left: var(--sidebar-w);
-  }
+.topbar__brand:hover {
+  color: var(--purple-hi);
+  text-decoration: none;
 }
-
-@media (max-width: {{ site.bp_nav_below }}) {
-  .layout.nav-open::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: rgb(0 0 0 / 0.35);
-    z-index: 999;
-  }
-  .sidebar__avatar img {
-    width: 120px;
-    height: 120px;
-  }
-}
-
-.sidebar__avatar {
-  display: block;
-  text-align: center;
-  margin: 30px 0 46px;
-}
-.sidebar__avatar img {
-  border-radius: 50%; /* was Bootstrap's .img-circle */
-  width: 190px;
-  height: 190px;
+.topbar__portrait {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   object-fit: cover;
 }
-.sidebar__nav {
+.topbar__nav ul {
+  display: flex;
+  flex-wrap: wrap;
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.sidebar__nav a {
+/* 0.7rem block padding puts these at ~46px tall — above the 44px touch target,
+   because they are tapped one-handed while standing up. */
+.topbar__nav a {
   display: block;
-  padding-left: 20px;
-  color: #fff;
-  text-decoration: none;
-  font: 1.75rem/40px var(--font-body);
+  padding: 0.7rem 0.55rem;
+  color: var(--paper);
+  font: 0.9375rem / 1.4 var(--font-display);
 }
-.sidebar__nav a:hover,
-.sidebar__nav a:focus-visible {
+.topbar__nav a:hover,
+.topbar__nav a:focus-visible {
   color: var(--purple-hi);
-  background: rgb(255 255 255 / 0.2);
+  background: rgb(255 255 255 / 0.14);
   text-decoration: none;
 }
-.sidebar__nav [aria-current="page"] {
+/* Underline as well as tint: the current page must not be signalled by colour
+   alone. `a[aria-current]` rather than `[aria-current]` so this outranks the
+   `text-decoration: none` in the hover rule above — otherwise hovering the
+   current item erases its own marker. */
+.topbar__nav a[aria-current="page"] {
   background: rgb(255 255 255 / 0.12);
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+/* The global focus ring is --accent, a red that measures about 1.8:1 against
+   this bar's purple — well under the 3:1 a focus indicator needs. Everywhere
+   else on the site it sits on near-white and is fine, so override it here
+   rather than weakening it globally. */
+.topbar :focus-visible {
+  outline-color: var(--paper);
 }
 
 /* ---------- content (replaces container-fluid > row > col-md-12) ---------- */
+/* Centred now. It used to be pushed right by the sidebar's 200px of padding;
+   with that gone, a left-flush column on a wide monitor would sit off-axis
+   from the bar above it. */
 .content {
   padding: var(--gutter);
   max-width: 80rem;
-}
-.masthead {
-  display: inline-block;
-  margin: 0 0 4.375rem;
-  padding: 5px;
-  background: var(--purple);
-  color: var(--paper);
-  font: 1.5rem/35px var(--font-display);
-}
-.masthead a {
-  color: var(--paper);
-  text-decoration: none;
-}
-.masthead a:hover {
-  color: var(--purple-hi);
-  text-decoration: none;
-}
-.nav-toggle {
-  font: inherit;
-  color: var(--paper);
-  background: none;
-  border: 0;
-  padding: 0 0.35em 0 0;
-  cursor: pointer;
-  line-height: inherit;
+  margin-inline: auto;
 }
 
 /* Display type scales with the viewport rather than sitting at one fixed size.

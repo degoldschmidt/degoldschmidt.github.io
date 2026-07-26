@@ -1,0 +1,57 @@
+{%- comment -%}
+  A bar, not the off-canvas sidebar it replaces. Below the nav breakpoint that
+  sidebar started closed, so a visitor arriving from the printed QR code — a
+  phone, in a poster hall, under a minute — saw no navigation at all until they
+  found a toggle they had no reason to look for. That is why the homepage
+  needed a poster banner bolted on to it.
+
+  This shows every destination at every width, and took ~90 lines of off-canvas
+  CSS and a ~40-line toggle state machine with it: the site now ships no
+  navigation JavaScript at all.
+
+  It WRAPS rather than scrolls or collapses. A link on a second row is still a
+  link; a link behind a hamburger, or off the end of a horizontal scroll strip,
+  is invisible — which is the failure being fixed here.
+{%- endcomment -%}
+<header class="topbar">
+  <div class="topbar__inner">
+    <a
+      class="topbar__brand"
+      href="{{ '/' | relative_url }}"
+      {%- if page.url == '/' %} aria-current="page"{% endif %}
+    >
+      {%- comment -%}
+        alt="" is deliberate. The link's accessible name comes from the wordmark
+        beside it; a described portrait would have a screen reader announce
+        "Dennis Goldschmidt Dennis Goldschmidt" on every page.
+      {%- endcomment -%}
+      <img
+        class="topbar__portrait"
+        src="{{ '/images/me.jpg' | relative_url }}"
+        alt=""
+        width="40"
+        height="40"
+      /><span>Dennis Goldschmidt</span>
+    </a>
+
+    <nav class="topbar__nav" aria-label="Main">
+      <ul>
+        {%- comment -%}
+          /poster leads: for the weeks it is switched on it is the most likely
+          destination, since the printed code points at the site root.
+        {%- endcomment -%}
+        {%- if site.data.poster.in_nav %}
+        <li>
+          <a href="{{ '/poster/' | relative_url }}"{% if page.url == '/poster/' %} aria-current="page"{% endif %}>/poster</a>
+        </li>
+        {%- endif %}
+        {%- for item in site.data.nav %}
+        {%- if item.external %}{% assign href = item.url %}{% else %}{% assign href = item.url | relative_url %}{% endif %}
+        <li>
+          <a href="{{ href }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
+        </li>
+        {%- endfor %}
+      </ul>
+    </nav>
+  </div>
+</header>
