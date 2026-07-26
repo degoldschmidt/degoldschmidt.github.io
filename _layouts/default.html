@@ -26,6 +26,14 @@
       </main>
     </div>
 
+    {%- comment -%}
+      Only pages that embed the simulation load it. Set `script_mbsim: true` in
+      front matter.
+    {%- endcomment -%}
+    {%- if page.script_mbsim %}
+    <script src="{{ '/assets/js/mbsim.js' | relative_url }}" defer></script>
+    {%- endif %}
+
     <script>
       (function () {
         var layout = document.getElementById("layout");

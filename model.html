@@ -1,0 +1,94 @@
+---
+title: the model
+crumb: /model
+script_mbsim: true
+---
+
+<h3>Context-dependent retrieval, as a playable model</h3>
+
+<h5 class="lead">
+  The same smell can mean danger or nothing at all, depending on where the fly
+  thinks it is. This is a cartoon of how a mushroom body could do that &mdash;
+  running live in your browser.
+</h5>
+
+{% include mbsim.html variant="full" %}
+
+<h3>What you are looking at</h3>
+
+<p>
+  The fly walks an endless grid of odour patches. Two things vary: the
+  <strong>visuo-spatial context</strong> &mdash; the panorama along the top,
+  green or blue &mdash; and the <strong>odour</strong> in the patch underfoot.
+  Odour identity runs anti-diagonally across the grid, so it is decorrelated
+  from position: &ldquo;odor 1&rdquo; is not simply &ldquo;the left column&rdquo;.
+</p>
+
+<p>
+  During training, <strong>odour 1 is punished, and only in the danger
+  context.</strong> Nothing is punished in the safe context. That asymmetry is
+  the whole experiment: it makes context an <em>occasion setter</em>. Context
+  does not reverse what the odour means &mdash; it gates whether the memory is
+  expressed at all.
+</p>
+
+<p>
+  Press <strong>danger</strong> or <strong>safe</strong> to override what the
+  fly sees while leaving the world unchanged. The shock switches off
+  automatically, because an override is a test trial. Watch the path: in the
+  danger context the fly reverses at the border of every odour-1 patch; in the
+  safe context it walks through the same patches without turning.
+</p>
+
+<h3>How it works</h3>
+
+<p>
+  Odour and context converge on <strong>Kenyon cells</strong>. Each combination
+  activates three pools: cells that code the odour regardless of context, cells
+  that code the context regardless of odour, and <em>conjunctive</em> cells that
+  fire only for that specific pairing. Conjunctive coding is the part that makes
+  retrieval context-dependent, and it is biologically available &mdash;
+  &gamma;d and ventral-accessory-calyx Kenyon cells carry visual input.
+</p>
+
+<p>
+  Learning is <strong>dopamine-gated depression</strong> of Kenyon-cell &rarr;
+  output-neuron synapses, restricted to cells that were active when the shock
+  arrived. Punishment depresses the <em>approach</em>-driving output neuron
+  rather than writing in avoidance, so a naive fly reads out exactly zero
+  &mdash; indifferent &mdash; and avoidance appears as that balance tips
+  negative.
+</p>
+
+<p>
+  Nothing in the locomotion is goal-directed. The fly runs roughly straight and
+  turns in discrete saccades; a negative memory just makes it turn more, and
+  more sharply, at a patch border. <strong>Avoidance is emergent</strong>, not
+  programmed.
+</p>
+
+<p>
+  Re-entering a punished patch <em>without</em> the shock relaxes the weights
+  back toward baseline &mdash; extinction, or memory re-evaluation. Switch the
+  shock off in the controls above and watch the matrix climb back toward zero.
+</p>
+
+<h3>What this is not</h3>
+
+<p>
+  It is not a result. There are no fitted parameters and no data anywhere in
+  it; every number on this page is produced by the equations, not measured. It
+  is a way to make an idea manipulable, and to be explicit about what the idea
+  actually predicts.
+</p>
+
+<p>
+  The plasticity rule follows the published mushroom-body literature &mdash;
+  Aso et al. 2014, Hige et al. 2015, Cohn et al. 2015, Owald et al. 2015. The
+  paradigm it simulates is shown in the figure on the
+  <a href="{{ '/projects.html' | relative_url }}">projects page</a>.
+  Roughly 340 lines of vanilla JavaScript, no libraries:
+  <a href="https://github.com/degoldschmidt/degoldschmidt.github.io/blob/master/assets/js/mbsim.js"
+    >read the source</a
+  >.
+</p>
