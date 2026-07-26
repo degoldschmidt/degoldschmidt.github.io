@@ -6,7 +6,7 @@ Working notes for the conference overhaul. Excluded from the build in
 **Dennis: add your review notes under "Dennis's review" at the bottom.**
 Anything there gets triaged into the sections above.
 
-Status as of 2026-07-26 — 8 commits on `conference-overhaul`, **nothing pushed**.
+Status as of 2026-07-26 — 15 commits on `conference-overhaul`, **nothing pushed**.
 
 ---
 
@@ -110,26 +110,41 @@ Not bugs — decisions, recorded so they are not rediscovered later.
   (17 MB); removed from git, from branch history, and from the Jekyll build.
 
 ### To do
-- [ ] **Build the top bar.** Replace `_includes/sidebar.html`, drop the
-      off-canvas CSS (~90 lines) and the toggle script (~40 lines), add the name
-      as wordmark. Net simplification — the toggle state machine goes away.
-      Then the homepage poster banner may become unnecessary, since /poster
-      would be visible in the nav.
-- [ ] **Body text is Lato 300.** A light weight at 16px, purple on near-white.
-      Legibility win available for free: bump to 400, which is already being
-      loaded. See "Typography" below.
+- [x] **Build the top bar.** Done. `_includes/sidebar.html` →
+      `_includes/topbar.html`; the off-canvas CSS and the toggle state machine
+      are gone, and with them the last navigation JavaScript on the site. The
+      bar wraps rather than collapsing — at 320px the nav drops to a second
+      row — so no breakpoint is involved and every link is visible at every
+      width. The masthead went too (the bar carries the portrait and the name),
+      and `crumb:` front matter with it. Verified 320/375/430/768/1440 across
+      all nine pages: no horizontal overflow, with /poster both in and out of
+      the nav.
+- [x] **Body text is Lato 300 → 400.** Done, one word, no extra download.
 - [ ] **Homepage: replace the model with a project gallery.** Fly-on-the-ball
       setup, fly tracking / local search, two-photon imaging. NEEDS ASSETS —
       nothing suitable exists in the repo yet. Prefer short muted looping MP4
       over GIF (10-50x smaller). Budget <=3 MB each.
       The model moves to /model.html only, still linked from the homepage.
 - [ ] **Poster page**: link ICN 2026 properly once venue fields are filled.
+- [ ] **`.poster-id` now repeats the top bar.** The bar shows your portrait and
+      your name; 60px below it, `/poster/` shows the same portrait and the same
+      name again. Suggest dropping both from `.poster-id` and keeping only the
+      affiliation line — someone who has just spoken to you needs "Felsenberg
+      Lab, FMI Basel", not your name twice. Left alone deliberately: it is
+      poster *copy*, which you said you want to write yourself.
+
+### Decided while building the top bar
+- **`_includes/poster-banner.html` stays.** It survives the top bar because the
+  two do different jobs, and they already have separate flags. `in_nav: true`
+  makes /poster reachable from every page, forever — that is navigation. The
+  banner is the landing cue on the one page the printed QR code actually hits:
+  it carries the poster number, the venue, the question, and "Scanned my
+  poster? Start here →". A nav item reading `/poster` does not tell someone
+  standing at your board that the thing in front of them is on this site.
+  It is ~20 lines and off by default, so it costs nothing out of season.
 
 ### Typography — assessment
-- **Body weight 300 is the real issue.** `body { font: 300 1rem/1.45 }`. Lato
-  300 is a light weight; at body size, in purple on near-white, it reads thin.
-  Weight 400 is already in the Google Fonts request, so this is a one-word
-  change with no extra download.
+- ~~**Body weight 300 is the real issue.**~~ Done — now 400.
 - **Sizes are now fluid** for h1/h2/h3/lead/hero (done). Body and small text
   still use 15 distinct literal sizes including near-duplicates — 0.8 vs
   0.8125rem, 1.5 vs 1.55rem — which is drift the token migration will fold in.
