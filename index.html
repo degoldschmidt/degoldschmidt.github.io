@@ -1,7 +1,9 @@
 ---
 # No `title:` on purpose — jekyll-seo-tag then falls back to site.title, so the
 # homepage is "Dennis Goldschmidt" rather than "de-goldschmidt | Dennis Goldschmidt".
-script_mbsim: true
+#
+# No `script_mbsim` any more: the simulation moved to /model.html, so this page
+# loads no JavaScript at all. Do not re-add it without re-adding the include.
 ---
 
 {% include poster-banner.html %}
@@ -26,12 +28,13 @@ script_mbsim: true
   </p>
 </div>
 
-{% include mbsim.html variant="mini" %}
+{% include gallery.html %}
 
 <div class="prose">
   <p>
-    Above is that idea as a model you can play with &mdash; the same odour drives
-    avoidance or indifference depending on the visual context.
+    That question also runs as a model you can play with &mdash; a cartoon of
+    the circuit, where the same odour drives avoidance or indifference
+    depending only on what the fly sees.
     <a href="{{ '/model.html' | relative_url }}">Try switching the context &rarr;</a>
   </p>
 
