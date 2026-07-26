@@ -98,7 +98,40 @@ Not bugs — decisions, recorded so they are not rediscovered later.
 
 ---
 
-## Dennis's review
+## Dennis's review — triaged 2026-07-26
 
-<!-- Write freely here. Rough notes are fine — I'll triage them into the
-     sections above. Page name + what's wrong is plenty. -->
+### Decided
+- **Navigation: switch sidebar -> horizontal top bar.** On a phone the sidebar
+  is closed by default, so a QR visitor sees no nav at all — the reason the
+  homepage needed a poster banner bolted on. A top bar shows /research,
+  /publications and /poster immediately on every device, and returns ~200px of
+  width to the content. Name becomes the wordmark, portrait beside it.
+- **Poster PDF: untracked, available on request.** Was accidentally committed
+  (17 MB); removed from git, from branch history, and from the Jekyll build.
+
+### To do
+- [ ] **Build the top bar.** Replace `_includes/sidebar.html`, drop the
+      off-canvas CSS (~90 lines) and the toggle script (~40 lines), add the name
+      as wordmark. Net simplification — the toggle state machine goes away.
+      Then the homepage poster banner may become unnecessary, since /poster
+      would be visible in the nav.
+- [ ] **Body text is Lato 300.** A light weight at 16px, purple on near-white.
+      Legibility win available for free: bump to 400, which is already being
+      loaded. See "Typography" below.
+- [ ] **Homepage: replace the model with a project gallery.** Fly-on-the-ball
+      setup, fly tracking / local search, two-photon imaging. NEEDS ASSETS —
+      nothing suitable exists in the repo yet. Prefer short muted looping MP4
+      over GIF (10-50x smaller). Budget <=3 MB each.
+      The model moves to /model.html only, still linked from the homepage.
+- [ ] **Poster page**: link ICN 2026 properly once venue fields are filled.
+
+### Typography — assessment
+- **Body weight 300 is the real issue.** `body { font: 300 1rem/1.45 }`. Lato
+  300 is a light weight; at body size, in purple on near-white, it reads thin.
+  Weight 400 is already in the Google Fonts request, so this is a one-word
+  change with no extra download.
+- **Sizes are now fluid** for h1/h2/h3/lead/hero (done). Body and small text
+  still use 15 distinct literal sizes including near-duplicates — 0.8 vs
+  0.8125rem, 1.5 vs 1.55rem — which is drift the token migration will fold in.
+- **Type pairing itself is fine.** Lato (body) + Fira Sans (display) is a
+  reasonable, legible combination and worth keeping.
