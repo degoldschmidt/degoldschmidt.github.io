@@ -12,3 +12,9 @@ Gemfile.lock
 # tracked here is public and permanently archived. Share via email or Zenodo.
 posters/
 HANDOFF.md
+
+# Source video. Only web derivatives belong in the repo, under assets/media/ —
+# see its README. A source clip is tens of MB and would live in git history
+# forever, which is how this repo reached 1.18 GB the first time.
+# Jekyll needs its own `exclude:` entry for this; .gitignore does not affect it.
+videos/
