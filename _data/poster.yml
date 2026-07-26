@@ -31,16 +31,39 @@ date: "2026-07-28" # ISO, e.g. 2026-09-08 — used for the status line
 question: "A closed-loop virtual reality approach to study context-dependent memory in <i>Drosophila</i>"
 
 # One short paragraph. What you did, not what you found.
+#
+# Two sentences by design: the phenomenon, then the instrument built to get at
+# it. A visitor needs a reason to care before an equipment description.
+#
+# Deliberately absent, and worth keeping absent — the poster has all of it, a
+# permanently public page should not: the identity of the output neuron,
+# calcium traces, the preliminary conditioning, effect sizes, driver lines.
+# "Output neurons" stays generic on purpose.
+#
+# Note the imaging is phrased as a CAPABILITY, not a practice: it runs on the
+# older ball setup, not yet in the VR. Change the tense here, not just the
+# claim, if that changes.
 approach: >-
-  Flies learn that an odour predicts punishment in one visual context but not
-  another. Using closed-loop visual VR, two-photon imaging and circuit-level
-  genetics, I ask where in the mushroom body that gating happens.
+  A fly can learn that an odour predicts a targeted infrared laser pulse, then
+  act on that memory in one place and ignore it in another &mdash; context
+  selects which memory is retrieved rather than simply cueing it. To put that
+  context under experimental control we rebuilt the setup as a closed-loop
+  virtual reality: a tethered fly walks on a ball and steers through a visual
+  world that turns with it, designed so the same output neurons can be imaged
+  while it moves.
 
-# Two or three. Stating predictions publicly timestamps the idea while the data
-# stays yours — this is the anti-scooping part of the page, not a risk.
-predictions:
-  - "If context binds at the Kenyon-cell layer, context-specific and odour-specific memories should be separable by silencing distinct KC subsets."
-  - "If instead it gates at the output neurons, the same KC population should drive opposite behaviour depending on the visual scene."
+# EMPTY ON PURPOSE — the "What we expect" section does not render at all while
+# this list is. Dropped for ICN 2026: the ones here were a guess at a mechanism
+# (Kenyon-cell layer versus output-neuron gating) rather than a claim Dennis
+# would defend at the board, and a setup-and-validation poster has no
+# predictions to stake yet.
+#
+# poster.html was NOT edited to remove the section — it is guarded by
+# `{% if p.predictions %}`, so refilling this list is all it takes to bring it
+# back. Two or three, if you do: stating predictions publicly timestamps the
+# idea while the data stays yours, which is the anti-scooping argument for
+# having them at all.
+predictions: []
 
 # --- publication status ------------------------------------------------------
 # "unpublished" | "preprint" | "published". Drives the status line and the CTA,
