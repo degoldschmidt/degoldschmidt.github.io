@@ -6,7 +6,10 @@ Working notes for the conference overhaul. Excluded from the build in
 **Dennis: add your review notes under "Dennis's review" at the bottom.**
 Anything there gets triaged into the sections above.
 
-Status as of 2026-07-26 — 15 commits on `conference-overhaul`, **nothing pushed**.
+Status as of 2026-07-26 — 24 commits on `conference-overhaul`, **nothing pushed**.
+
+The push is no longer blocked by anything missing from the site. What remains
+under "Blocking a push" is two review decisions only Dennis can make.
 
 ---
 
@@ -45,10 +48,20 @@ Small, and everything else waits on them.
 - [ ] **Poster PDF decision.** `pdf:` serves it publicly and permanently;
       `pdf_doi:` points at Zenodo, which can be restricted and earns a DOI;
       blank says "available on request". Blank is the safe default.
-- [ ] **Media.** Two-photon/calcium clip, behaviour tracking clip, a photo of
-      the rig. Encoding recipes are in the plan; budget is ≤3 MB per video.
-      This is the biggest remaining visual gap — the site still has no video and
-      nothing created after ~2017 except the paradigm figure.
+- [ ] **Media — 1 of 3 done.** The closed-loop rig clip is in
+      (`assets/media/fly-on-ball.mp4`, 573 KB) and live on the homepage. Still
+      needed: **behaviour tracking / local search**, and **two-photon**.
+      Recipes and the loop-picking method are in `assets/media/README.md`.
+      Drop sources in `videos/` — gitignored and excluded from the build.
+      For the two-photon clip, pick one that shows *method* (a field of view of
+      the mushroom body), not *result* (a response that differs by context).
+      This page is public, permanent, and pre-publication.
+- [ ] **Gallery captions.** `_data/gallery.yml` ships a **draft** caption and
+      alt text for the rig clip, written from watching the footage rather than
+      from knowing what the fly was doing. Correct it in place.
+- [ ] **Higher-resolution rig footage, if it exists.** The tight crop left the
+      clip at native 480 px, which is soft on a retina phone. If the pre-crop
+      original survives, the same framing can be re-cut at full resolution.
 - [ ] **Flip `active: true` and `in_nav: true`** in `_data/poster.yml` on the
       morning of the session. Flip both back afterwards.
 - [ ] **Test the printed QR** with two phones under hall-like lighting, not on
@@ -119,11 +132,13 @@ Not bugs — decisions, recorded so they are not rediscovered later.
       all nine pages: no horizontal overflow, with /poster both in and out of
       the nav.
 - [x] **Body text is Lato 300 → 400.** Done, one word, no extra download.
-- [ ] **Homepage: replace the model with a project gallery.** Fly-on-the-ball
-      setup, fly tracking / local search, two-photon imaging. NEEDS ASSETS —
-      nothing suitable exists in the repo yet. Prefer short muted looping MP4
-      over GIF (10-50x smaller). Budget <=3 MB each.
-      The model moves to /model.html only, still linked from the homepage.
+- [x] **Homepage: replace the model with a project gallery.** Done, with one
+      of three cards filled. The gallery component is data-driven from
+      `_data/gallery.yml`, so the remaining two clips are a data edit. Cards
+      autoplay muted loops on a near-black mount, with controls hidden until
+      hover on pointer devices — touch and reduced-motion keep them visible.
+      The model moved to `/model.html` and is still linked; the homepage now
+      loads no JavaScript at all.
 - [ ] **Poster page**: link ICN 2026 properly once venue fields are filled.
 - [ ] **`.poster-id` now repeats the top bar.** The bar shows your portrait and
       your name; 60px below it, `/poster/` shows the same portrait and the same
