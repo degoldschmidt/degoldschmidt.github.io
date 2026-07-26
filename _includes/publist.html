@@ -1,0 +1,27 @@
+{%- comment -%}
+  Renders one publication list. Usage:
+    {% include publist.html list=site.data.pubs.journals %}
+
+  The counter starts at size+1 and each item decrements, so entries render
+  newest-first as [n]…[1] and adding one can't desynchronise the numbering.
+{%- endcomment -%}
+{%- assign start = include.list | size | plus: 1 -%}
+<ol class="pub-list" style="counter-reset: item {{ start }}">
+  {%- for p in include.list %}
+  <li>
+    <span
+      >{{ p.authors }} ({{ p.year }}). &ldquo;{{ p.title }}&rdquo;. {{ p.venue }}.
+      {%- if p.doi %} doi:
+      <a href="https://doi.org/{{ p.doi }}">{{ p.doi }}</a>.{% endif %}
+      {%- if p.note %} {{ p.note }}{% endif %}
+      {%- if p.award %} <span class="award">{{ p.award }}</span>{% endif %}
+      {%- if p.code or p.data %}
+      <span class="pub-links">
+        {%- if p.code %}<a href="https://doi.org/{{ p.code }}">code</a>{% endif %}
+        {%- if p.data %}<a href="https://doi.org/{{ p.data }}">data</a>{% endif %}
+      </span>
+      {%- endif %}</span
+    >
+  </li>
+  {%- endfor %}
+</ol>

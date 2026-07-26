@@ -5,17 +5,35 @@
 # `authors` carries raw HTML on purpose (bold on Dennis's own name). Liquid does
 # not auto-escape, so it passes through.
 # `doi` is a bare identifier — pubs.html builds the https://doi.org/ URL from it.
+# `code` / `data` are optional bare DOIs, rendered as extra links.
+#
+# Last reconciled against Google Scholar and Crossref/OpenAlex, 2026-07-26.
 
 journals:
+  - authors: "Coban B, Harris SN, Guer B, Corrales M, Correia Da Silva AJ, Shevchuk D, Leptien K, <b>Goldschmidt D</b>, Schnaitmann C, Kempf A, Januszewski M, Ceffa N, Clayton M, Henry I, Lee SY, Dulac A, Cardona A, Zlatic M, Felsenberg J"
+    year: 2026
+    title: "Olfactory loss enhances visual learning in Drosophila through structural and functional reorganisation"
+    venue: "bioRxiv 2026.06.16.732444"
+    doi: "10.64898/2026.06.16.732444"
+
+  # Published version of the 2024 bioRxiv preprint (2024.06.26.600764), which
+  # this entry replaces — the title changed during review.
   - authors: "<b>Goldschmidt D</b>*, Guo Y, Chitnis SS, Christoforou C, Turner-Evans D, Ribeiro C, Hermundstad A, Jayaraman V, Haberkern H*"
-    year: 2024
-    title: "Exploration and exploitation are flexibly balanced during local search in flies"
-    venue: "bioRxiv 2024.06.26.600764"
-    doi: "10.1101/2024.06.26.600764"
+    year: 2026
+    title: "Recent experience and internal state shape local search strategies in flies"
+    venue: "Current Biology 36 (7), 1605-1620.e6"
+    doi: "10.1016/j.cub.2026.02.037"
+    code: "10.5281/zenodo.18483674"
+    data: "10.17632/5hdvknkps5.1"
     note: "*: equal contribution."
 
+  - authors: "Warnecke C, Schweizer JA, Zattera B, <b>Goldschmidt D</b>, Leptien K, Felsenberg J"
+    year: 2026
+    title: "Re-exposure to reward re-evaluates related memories"
+    venue: "Current Biology 36 (3), 565-575.e3"
+    doi: "10.1016/j.cub.2025.11.058"
+
   - authors: "<b>Goldschmidt D</b>*, Tastekin I*, Münch D, Park JY, Haberkern H, Serra L, Baltazar C, Jayaraman V, Rubin GM, Ribeiro C"
-    # Was 2022, which contradicted the DOI. Crossref: posted 2023-07-19 on bioRxiv.
     year: 2023
     title: "A neuronal substrate for translating nutrient state and resource density estimations into foraging decisions"
     venue: "bioRxiv 2023.07.19.549514"
@@ -31,7 +49,7 @@ journals:
   - authors: "Moreira JM*, Itskov PM*, <b>Goldschmidt D</b>*, Baltazar C, Steck K, Tastekin I, Walker SJ, Ribeiro C"
     year: 2019
     title: "optoPAD, a closed-loop optogenetics system to study the circuit basis of feeding behaviors"
-    venue: "Elife 8, e43924"
+    venue: "eLife 8, e43924"
     doi: "10.7554/eLife.43924"
     note: "*: equal contribution."
 
@@ -42,14 +60,12 @@ journals:
     doi: "10.1016/j.cois.2017.07.013"
     note: "*: equal contribution."
 
-  # DOI was "10.3389/fn-bot.2017.00020" — stray hyphen, 404'd since 2017.
   - authors: "<b>Goldschmidt D</b>, Manoonpong P, Dasgupta S"
     year: 2017
     title: "A Neurocomputational Model of Goal-Directed Navigation in Insect-Inspired Artificial Agents"
     venue: "Front. Neurorobot. 11:20"
     doi: "10.3389/fnbot.2017.00020"
 
-  # DOI had a trailing period inside the href — also 404'd.
   - authors: "Dasgupta S, <b>Goldschmidt D</b>, Wörgötter F, Manoonpong P"
     year: 2015
     title: "Distributed Recurrent Neural Forward Models with Synaptic Adaptation and CPG-based control for Complex Behaviors of Walking Robots"
@@ -66,12 +82,13 @@ conference:
   - authors: "<b>Goldschmidt D</b>, Manoonpong P, Dasgupta S"
     year: 2016
     title: "Reward-modulated learning of population-encoded vectors for insect-like navigation in embodied agents"
-    venue: "25th Annual Computational Neuroscience Meeting: CNS-2016, Jeju Island, Korea"
+    venue: "25th Annual Computational Neuroscience Meeting: CNS-2016, Jeju Island, Korea. BMC Neuroscience 17 (Suppl 1), 54"
+    doi: "10.1186/s12868-016-0283-6"
 
   - authors: "<b>Goldschmidt D</b>, Dasgupta S, Wörgötter F, Manoonpong P"
     year: 2015
     title: "A neural path integration mechanism for adaptive vector navigation in autonomous agents"
-    venue: "Neural Networks (IJCNN), 2015 International Joint Conference on, pp. 1-8, 12-17 July 2015"
+    venue: "International Joint Conference on Neural Networks (IJCNN) 2015, pp. 1-8"
     doi: "10.1109/IJCNN.2015.7280400"
 
   - authors: "<b>Goldschmidt D</b>, Dasgupta S, Wörgötter F, Manoonpong P"
@@ -82,7 +99,8 @@ conference:
   - authors: "Manoonpong P*, Dasgupta S*, <b>Goldschmidt D</b>, Wörgötter F"
     year: 2014
     title: "Reservoir-based Online Adaptive Forward Models with Neural Control for Complex Locomotion in a Hexapod Robot"
-    venue: "IJCNN International Joint Conference on Neural Networks 2014"
+    venue: "International Joint Conference on Neural Networks (IJCNN) 2014, pp. 3295-3302"
+    doi: "10.1109/IJCNN.2014.6889405"
     note: "*: equal contribution."
 
   - authors: "<b>Goldschmidt D</b>, Wörgötter F, Manoonpong P"
@@ -93,12 +111,14 @@ conference:
   - authors: "Manoonpong P, <b>Goldschmidt D</b>, Wörgötter F, Kovalev A, Heepe L, Gorb S"
     year: 2013
     title: "Using a Biological Material to Improve Locomotion of Hexapod Robots"
-    venue: "Living Machines: The International Conference on Biomimetics and Biohybrid Systems, London, UK, 29 July - 2 Aug 2013"
+    venue: "Living Machines 2013, London, UK. Lecture Notes in Computer Science, pp. 402-404"
+    doi: "10.1007/978-3-642-39802-5_48"
 
   - authors: "Zenker S, Erdal Aksoy E, <b>Goldschmidt D</b>, Wörgötter F, Manoonpong P"
     year: 2013
     title: "Visual Terrain Classification for Selecting Energy Efficient Gaits of a Hexapod Robot"
-    venue: "The 2013 IEEE/ASME International Conference on Advanced Intelligent Mechatronics, Wollongong, Australia, 9-12 July 2013"
+    venue: "IEEE/ASME International Conference on Advanced Intelligent Mechatronics 2013, Wollongong, Australia, pp. 577-584"
+    doi: "10.1109/AIM.2013.6584154"
 
   - authors: "<b>Goldschmidt D</b>, Hesse F, Wörgötter F, Manoonpong P"
     year: 2012
@@ -109,4 +129,5 @@ conference:
     year: 2012
     title: "Biologically Inspired Reactive Climbing Behavior of Hexapod Robots"
     venue: "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) 2012, Portugal, pp. 4632-4637"
+    doi: "10.1109/IROS.2012.6386135"
     award: "Best Paper Award Finalist and Best Student Paper Award Finalist."

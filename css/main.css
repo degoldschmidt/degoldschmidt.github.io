@@ -649,3 +649,20 @@ h5 a:hover {
   opacity: 0.7;
   font-size: 0.8125rem;
 }
+
+.pub-links {
+  white-space: nowrap;
+}
+.pub-links a {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.05rem 0.45rem;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  font: 600 0.75rem var(--font-display);
+}
+.pub-links a:hover {
+  background: var(--purple);
+  color: var(--paper);
+  text-decoration: none;
+}

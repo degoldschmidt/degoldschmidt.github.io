@@ -15,33 +15,7 @@ crumb: /publications
 </div>
 
 <h2>Journals &amp; pre-prints</h2>
-{%- assign start = site.data.pubs.journals | size | plus: 1 %}
-<ol class="pub-list" style="counter-reset: item {{ start }}">
-  {%- for p in site.data.pubs.journals %}
-  <li>
-    <span
-      >{{ p.authors }} ({{ p.year }}). &ldquo;{{ p.title }}&rdquo;. {{ p.venue
-      }}.{% if p.doi %} doi:
-      <a href="https://doi.org/{{ p.doi }}">{{ p.doi }}</a>.{% endif %}{% if
-      p.note %} {{ p.note }}{% endif %}{% if p.award %}
-      <span class="award">{{ p.award }}</span>{% endif %}</span
-    >
-  </li>
-  {%- endfor %}
-</ol>
+{% include publist.html list=site.data.pubs.journals %}
 
 <h2>Conference papers &amp; abstracts</h2>
-{%- assign start = site.data.pubs.conference | size | plus: 1 %}
-<ol class="pub-list" style="counter-reset: item {{ start }}">
-  {%- for p in site.data.pubs.conference %}
-  <li>
-    <span
-      >{{ p.authors }} ({{ p.year }}). &ldquo;{{ p.title }}&rdquo;. {{ p.venue
-      }}.{% if p.doi %} doi:
-      <a href="https://doi.org/{{ p.doi }}">{{ p.doi }}</a>.{% endif %}{% if
-      p.note %} {{ p.note }}{% endif %}{% if p.award %}
-      <span class="award">{{ p.award }}</span>{% endif %}</span
-    >
-  </li>
-  {%- endfor %}
-</ol>
+{% include publist.html list=site.data.pubs.conference %}
