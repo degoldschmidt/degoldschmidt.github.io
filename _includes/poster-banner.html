@@ -10,11 +10,7 @@
 {%- assign p = site.data.poster -%}
 {%- if p.active and p.venue != "" %}
 <aside class="pbanner">
-  <p class="pbanner__meta">
-    {%- if p.number != "" %}<strong>{{ p.number }}</strong> &middot; {% endif -%}
-    {{ p.venue }}{% if p.city != "" %}, {{ p.city }}{% endif %}
-    {%- if p.session != "" %} &middot; {{ p.session }}{% endif %}
-  </p>
+  {% include poster-where.html class="pbanner__meta" %}
   <p class="pbanner__q">{{ p.question }}</p>
   <p class="pbanner__cta">
     <a href="{{ '/poster/' | relative_url }}">Scanned my poster? Start here &rarr;</a>

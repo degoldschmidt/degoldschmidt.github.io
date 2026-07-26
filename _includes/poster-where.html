@@ -1,0 +1,40 @@
+{%- comment -%}
+  The "P-123 · ICN 2026, Lisbon · Tue 8 Sep, 14:00" line.
+
+    {% include poster-where.html class="poster-where" %}    on /poster/
+    {% include poster-where.html class="pbanner__meta" %}   in the homepage banner
+
+  This markup was byte-identical in both places. They had not drifted yet, but
+  every field added to one would have had to be added to the other — which is
+  exactly what `venue_url` would have been.
+
+  EVERY FIELD IS NORMALISED THROUGH `| default: ""` BEFORE BEING TESTED, and
+  that is not defensive noise. Measured in this Liquid version:
+
+    ""  == blank   -> FALSE      (`blank` matches neither empty string nor nil)
+    nil != blank   -> TRUE
+    nil != ""      -> TRUE       (so an unset YAML key passes a `!= ""` guard)
+    nil | default: "" != ""      -> FALSE   <- the only form that holds
+    ""  | default: "" != ""      -> FALSE
+
+  So `!= ""` silently passes for a key that is absent rather than empty, and
+  `!= blank` passes for both. `date:` with no value is exactly that case, and
+  it rendered "presented at  on ." before this.
+
+  Renders nothing at all without a venue: a line of bare separators is worse
+  than no line.
+{%- endcomment -%}
+{%- assign p = site.data.poster -%}
+{%- assign venue = p.venue | default: "" -%}
+{%- assign venue_url = p.venue_url | default: "" -%}
+{%- assign number = p.number | default: "" -%}
+{%- assign city = p.city | default: "" -%}
+{%- assign session = p.session | default: "" -%}
+{%- if venue != "" %}
+<p class="{{ include.class }}">
+  {%- if number != "" %}<strong>{{ number }}</strong> &middot; {% endif -%}
+  {%- if venue_url != "" %}<a href="{{ venue_url }}">{{ venue }}</a>{% else %}{{ venue }}{% endif -%}
+  {%- if city != "" %}, {{ city }}{% endif -%}
+  {%- if session != "" %} &middot; {{ session }}{% endif %}
+</p>
+{%- endif %}

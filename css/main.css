@@ -848,6 +848,21 @@ h3 {
   letter-spacing: 0.02em;
   opacity: 0.85;
 }
+/* The venue link is the only link on this purple panel, so it inherits --link
+   — a blue that measures 1.35:1 here and is effectively invisible. Paper
+   measures 7.73:1, and the underline carries the affordance that the colour
+   change no longer can. Hover goes to --purple-hi at 4.54:1.
+
+   Scoped to the banner: the same include renders on /poster/ against the page
+   background, where --link measures 5.98:1 and is correct. */
+.pbanner__meta a {
+  color: var(--paper);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+.pbanner__meta a:hover {
+  color: var(--purple-hi);
+}
 .pbanner__q {
   margin: 0 0 0.6rem;
   font: var(--text-lead) / 1.3 var(--font-display);

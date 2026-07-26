@@ -45,8 +45,17 @@ permalink: /poster/
   {%- elsif p.status == "preprint" and p.doi != "" -%}
   Preprint: <a href="https://doi.org/{{ p.doi }}">doi.org/{{ p.doi }}</a>.
   {%- else -%}
-  Unpublished work in progress{% if p.venue != "" %}, presented at {{ p.venue }}
-  {%- if p.date != "" %} on {{ p.date | date: "%-d %B %Y" }}{% endif %}{% endif %}.
+  {%- comment -%}
+    Normalised through `| default: ""` first. An unset `date:` in YAML is nil,
+    and Liquid evaluates BOTH `nil != ""` and `nil != blank` as TRUE — so
+    either guard let it through and this rendered "presented at  on ." with
+    both values silently empty. See _includes/poster-where.html for the
+    measured behaviour.
+  {%- endcomment -%}
+  {%- assign venue = p.venue | default: "" -%}
+  {%- assign pdate = p.date | default: "" -%}
+  Unpublished work in progress{% if venue != "" %}, presented at {{ venue }}
+  {%- if pdate != "" %} on {{ pdate | date: "%-d %B %Y" }}{% endif %}{% endif %}.
   The results are on the physical poster &mdash; get in touch and I will walk you
   through them.
   {%- endif %}
@@ -56,13 +65,7 @@ permalink: /poster/
   <h1 class="poster-q">{{ p.question }}</h1>
 </div>
 
-{%- if p.venue != "" %}
-<p class="poster-where">
-  {%- if p.number != "" %}<strong>{{ p.number }}</strong> &middot; {% endif -%}
-  {{ p.venue }}{% if p.city != "" %}, {{ p.city }}{% endif %}
-  {%- if p.session != "" %} &middot; {{ p.session }}{% endif %}
-</p>
-{%- endif %}
+{% include poster-where.html class="poster-where" %}
 
 <figure class="media">
   {%- comment -%}
