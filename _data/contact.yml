@@ -1,0 +1,25 @@
+# Follow-up routes. EVERY FIELD IS OPTIONAL — the contact block and the footer
+# render only what is filled in, so an empty value is simply omitted rather than
+# shipping a placeholder. Nothing here is guessed; fill in what you want public.
+#
+# Until `email` is set, the site has no contact route at all, which makes a
+# poster QR code a dead end. That is the one field worth doing first.
+
+# Split so the address is assembled in the page rather than sitting in the HTML
+# as one scrapable string. Not real security — just cheap friction.
+email_user: ""      # e.g. "dennis.goldschmidt"
+email_domain: ""    # e.g. "fmi.ch"
+
+orcid: ""           # bare iD, e.g. "0000-0002-1825-0097"
+scholar: "GBPYjXMAAAAJ"
+github: "degoldschmidt"
+
+bluesky: ""         # handle without the @, e.g. "degoldschmidt.bsky.social"
+mastodon: ""        # full URL, e.g. "https://neuromatch.social/@dennis"
+
+cv: ""              # path to a PDF in the repo, e.g. "/assets/goldschmidt-cv.pdf"
+cv_updated: ""      # e.g. "July 2026" — shown next to the link
+
+affiliation: "Felsenberg Lab, Friedrich Miescher Institute for Biomedical Research"
+affiliation_url: "https://www.fmi.ch/research-groups/groupleader.html?group=141"
+location: "Basel, Switzerland"

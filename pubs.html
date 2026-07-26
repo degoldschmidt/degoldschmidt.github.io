@@ -3,13 +3,18 @@ title: publications
 crumb: /publications
 ---
 
-<h5>
-  <a href="https://scholar.google.de/citations?user=GBPYjXMAAAAJ"
-    >Google scholar profile</a
-  >
-</h5>
+<div class="prose">
+  <h1>Publications</h1>
+  <p>
+    Also on
+    <a href="https://scholar.google.de/citations?user={{ site.data.contact.scholar }}"
+      >Google Scholar</a
+    >{%- if site.data.contact.orcid != "" %} and
+    <a href="https://orcid.org/{{ site.data.contact.orcid }}">ORCID</a>{%- endif %}.
+  </p>
+</div>
 
-<h3>Journals &amp; pre-prints:</h3>
+<h2>Journals &amp; pre-prints</h2>
 {%- assign start = site.data.pubs.journals | size | plus: 1 %}
 <ol class="pub-list" style="counter-reset: item {{ start }}">
   {%- for p in site.data.pubs.journals %}
@@ -25,7 +30,7 @@ crumb: /publications
   {%- endfor %}
 </ol>
 
-<h3>Conference papers &amp; abstracts:</h3>
+<h2>Conference papers &amp; abstracts</h2>
 {%- assign start = site.data.pubs.conference | size | plus: 1 %}
 <ol class="pub-list" style="counter-reset: item {{ start }}">
   {%- for p in site.data.pubs.conference %}

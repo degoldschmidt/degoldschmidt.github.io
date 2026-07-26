@@ -1,0 +1,56 @@
+---
+title: research
+crumb: /research
+redirect_from:
+  - /projects.html
+---
+
+<div class="prose">
+  <h1>Research</h1>
+  <p class="lead">
+    How does a brain decide which memory to use? I work on that in
+    <i>Drosophila</i>, combining closed-loop behaviour, two-photon imaging and
+    circuit-level genetics &mdash; and, where it helps, models simple enough to
+    run in a browser.
+  </p>
+</div>
+
+{%- for grp in site.data.projects.groups %}
+{%- assign items = site.data.projects.items | where: "group", grp.id %}
+{%- if items.size > 0 %}
+<section class="prose">
+  <h2>{{ grp.label }}</h2>
+  <p>{{ grp.blurb }}</p>
+</section>
+
+<div class="cards">
+  {%- for p in items %}
+  <figure class="card{% if p.link %} card--link{% endif %}">
+    {%- if p.link %}<a href="{{ p.link | relative_url }}">{% endif %}
+    <img
+      src="{{ p.image | relative_url }}"
+      alt="{{ p.alt | strip_newlines | strip }}"
+      loading="lazy" width="708" height="541"
+    />
+    {%- if p.link %}</a>{% endif %}
+    <figcaption>
+      <strong class="card__title">{{ p.title }}</strong>
+      <span class="card__text">{{ p.text }}</span>
+      {%- if p.link %}
+      <a class="card__more" href="{{ p.link | relative_url }}"
+        >{{ p.link_label | default: "more" }} &rarr;</a
+      >
+      {%- endif %}
+    </figcaption>
+  </figure>
+  {%- endfor %}
+</div>
+{%- endif %}
+{%- endfor %}
+
+<div class="prose">
+  <p>
+    The full list of papers is on the
+    <a href="{{ '/pubs.html' | relative_url }}">publications</a> page.
+  </p>
+</div>

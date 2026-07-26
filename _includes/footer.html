@@ -1,0 +1,22 @@
+{%- assign c = site.data.contact -%}
+{%- assign has_mail = false -%}
+{%- if c.email_user != "" and c.email_domain != "" %}{% assign has_mail = true %}{% endif -%}
+
+<footer class="footer">
+  <p class="footer__links">
+    {%- if has_mail %}
+    <a href="mailto:{{ c.email_user }}&#64;{{ c.email_domain }}">email</a>
+    {%- endif %}
+    {%- if c.orcid != "" %}<a href="https://orcid.org/{{ c.orcid }}">ORCID</a>{% endif %}
+    {%- if c.scholar != "" %}<a href="https://scholar.google.de/citations?user={{ c.scholar }}">Scholar</a>{% endif %}
+    {%- if c.github != "" %}<a href="https://github.com/{{ c.github }}">GitHub</a>{% endif %}
+    {%- if c.bluesky != "" %}<a href="https://bsky.app/profile/{{ c.bluesky }}">Bluesky</a>{% endif %}
+    {%- if c.mastodon != "" %}<a rel="me" href="{{ c.mastodon }}">Mastodon</a>{% endif %}
+    {%- if c.cv != "" %}<a href="{{ c.cv | relative_url }}">CV</a>{% endif %}
+    <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+  </p>
+  <p class="footer__meta">
+    {{ c.location }} &middot; built with Jekyll, no third-party JavaScript &middot;
+    <a href="https://github.com/{{ c.github }}/{{ c.github }}.github.io">source</a>
+  </p>
+</footer>

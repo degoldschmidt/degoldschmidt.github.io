@@ -1,6 +1,10 @@
+# /weblog is out of the nav: one post from 2017 whose body was never written.
+# Both /weblog.html and /blog/unix001-cronjob.html still resolve, so nothing
+# 404s — the blog is simply no longer advertised. Put it back the moment there
+# is something to read.
+#
+# /poster appears only once _data/poster.yml sets `in_nav: true`.
 - { label: "/about", url: /about.html }
-- { label: "/projects", url: /projects.html }
+- { label: "/research", url: /research.html }
 - { label: "/publications", url: /pubs.html }
-- { label: "/weblog", url: /weblog.html }
 - { label: "/code", url: "https://github.com/degoldschmidt", external: true }
-- { label: "/where_am_i", url: /where.html }

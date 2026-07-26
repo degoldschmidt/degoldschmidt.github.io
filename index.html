@@ -1,39 +1,58 @@
 ---
 # No `title:` on purpose — jekyll-seo-tag then falls back to site.title, so the
 # homepage is "Dennis Goldschmidt" rather than "de-goldschmidt | Dennis Goldschmidt".
+script_mbsim: true
 ---
 
-<h3>Hi, I am Dennis Goldschmidt,</h3>
+<div class="prose">
+  <h1>Dennis Goldschmidt</h1>
 
-<h5 class="lead">
-  I am a Postdoctoral fellow working in the
-  <a href="https://www.fmi.ch/research-groups/groupleader.html?group=141"
-    >Felsenberg Lab</a
-  >
-  at the Friedrich Miescher Institute for Biomedical Research in Basel,
-  Switzerland.
-</h5>
+  <p class="lead">
+    I am a postdoctoral fellow in the
+    <a href="{{ site.data.contact.affiliation_url }}">Felsenberg Lab</a> at the
+    Friedrich Miescher Institute for Biomedical Research in Basel, Switzerland.
+    I study how a fly&rsquo;s memories are re-evaluated &mdash; and how what it
+    sees decides which memories get used at all.
+  </p>
 
-<h5>
-  My current research focus is on studying the
-  <b>neuronal circuit mechanisms of memory re-evaluation</b> and specifically
-  <b>context-dependent memory retrieval</b>. To do so, I mainly
-</h5>
+  <p>
+    A smell that meant danger yesterday may mean nothing today, and a smell that
+    means danger in one place may be safe in another. My work asks how the brain
+    holds both of those facts at once: the
+    <strong>neuronal circuit mechanisms of memory re-evaluation</strong>, and
+    specifically <strong>context-dependent memory retrieval</strong>.
+  </p>
+</div>
 
-<h5>
+{% include mbsim.html variant="mini" %}
+
+<div class="prose">
+  <p>
+    Above is that idea as a model you can play with &mdash; the same odour drives
+    avoidance or indifference depending on the visual context.
+    <a href="{{ '/model.html' | relative_url }}">Try switching the context &rarr;</a>
+  </p>
+
+  <h2>How I work on it</h2>
   <ul>
     <li>
-      build experimental systems for real-time closed-loop two-photon imaging,
-      sensory stimulation, optogenetics, and video tracking, etc.
+      I build experimental systems for real-time closed-loop two-photon imaging,
+      sensory stimulation, optogenetics and video tracking.
     </li>
     <li>
-      measure and analyze fly brain activity during ongoing behavior and
-      learning,
+      I measure and analyse fly brain activity during ongoing behaviour and
+      learning.
     </li>
-    <li>genetically manipulate activity in the neural circuitry of fly brains,</li>
+    <li>I genetically manipulate activity in the neural circuitry of fly brains.</li>
     <li>
-      and develop computing pipelines for automated data analysis &amp;
-      visualizations.
+      And I develop computing pipelines for automated data analysis and
+      visualisation.
     </li>
   </ul>
-</h5>
+
+  <p>
+    More on the <a href="{{ '/research.html' | relative_url }}">research</a> and
+    <a href="{{ '/pubs.html' | relative_url }}">publications</a> pages, or
+    <a href="{{ '/about.html' | relative_url }}">get in touch</a>.
+  </p>
+</div>

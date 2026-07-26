@@ -8,7 +8,13 @@
       {% include sidebar.html %}
 
       <main class="content" id="main">
-        <h1 class="masthead">
+        {%- comment -%}
+          A <p>, not an <h1>: this is site chrome — a wordmark plus a breadcrumb
+          — not the page's heading. While it was the h1, every page had to start
+          its real title at h3 and use h5 for body copy, which is why h2 and h4
+          appear nowhere on the site. Each page now carries its own h1.
+        {%- endcomment -%}
+        <p class="masthead">
           <button
             type="button"
             id="menu-toggle"
@@ -20,9 +26,11 @@
             &#10500;</button
           ><a href="{{ '/' | relative_url }}">//de-goldschmidt</a
           >{%- if page.crumb %} <span class="masthead__crumb">{{ page.crumb }}</span>{%- endif %}
-        </h1>
+        </p>
 
         {{ content }}
+
+        {% include footer.html %}
       </main>
     </div>
 

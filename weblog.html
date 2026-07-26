@@ -3,11 +3,15 @@ title: weblog
 crumb: /weblog
 ---
 
+<div class="prose">
+  <h1>Weblog</h1>
+</div>
+
 {%- if site.posts.size > 0 %}
 <ul class="post-list">
   {%- for post in site.posts %}
   <li>
-    <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+    <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
     <p>{{ post.excerpt | strip_html | strip }}</p>
     <p>
       <span class="post-date"

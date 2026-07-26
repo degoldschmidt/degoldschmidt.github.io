@@ -1,57 +1,110 @@
-# Filters render in this order. `all` is the default (the old MixItUp config
-# loaded ".fmi, .phd" while the active highlight sat on "postdoc" — they never
-# matched). The old "software" and "open science" filters are gone: `soft`
-# matched zero cards (the art projects were tagged `software`, not `soft`) and
-# nothing was ever tagged `open`.
-filters:
-  - { id: all, label: "all" }
-  - { id: fmi, label: "postdoc" }
-  - { id: phd, label: "phd" }
-  - { id: neuro, label: "neural circuits" }
-  - { id: behav, label: "behavior" }
-  - { id: ml, label: "machine learning" }
-  - { id: hard, label: "hardware" }
-  - { id: soft, label: "software" }
-  - { id: art, label: "art & visualization" }
-  - { id: past, label: "completed projects" }
+# Grouped rather than filtered. With ~8 items a filter bar is noise, and four of
+# its ten buttons matched nothing because the ML/software/art work has no cards.
+#
+# `alt` describes the IMAGE CONTENT and must not repeat `title` — the title is
+# already the visible caption, so an alt that echoes it tells a screen-reader
+# user nothing new. All six shipped with alt="" before, marking a confocal image,
+# a rig photo and three model diagrams as decorative.
+#
+# `link` is optional. Cards without one are not interactive and must not look it.
 
-# Only cards with real images. The five held back below all pointed at
-# images/tbd.jpg, a grey "TBD" placeholder — five identical grey tiles read as
-# abandoned. Uncomment as images become available; no HTML or JS changes needed.
+groups:
+  - id: now
+    label: "Now"
+    blurb: >-
+      Postdoctoral work in the Felsenberg Lab: how visual context decides which
+      olfactory memories are retrieved.
+  - id: before
+    label: "Before"
+    blurb: >-
+      PhD work on the circuits and behaviour of foraging flies, and earlier work
+      on insect-inspired navigation in walking robots.
+  - id: tools
+    label: "Methods &amp; tools"
+    blurb: >-
+      The rigs and pipelines the experiments run on &mdash; closed-loop tracking,
+      optogenetics, and the analysis around them.
+
 items:
-  - title: "Neuronal Mechanisms of Context-Dependent Memory Retrieval"
+  - title: "Neuronal mechanisms of context-dependent memory retrieval"
+    group: now
     image: /images/portfolios/postdoc/memory.jpg
-    tags: [fmi, neuro]
+    alt: >-
+      Paradigm diagram: a contingency table pairing two odours with a green
+      danger panorama and a blue safe panorama, a fly walking on a ball inside a
+      closed-loop visual arena, and a 2D grid of alternating odour patches.
+    link: /model.html
+    link_label: "play with the model"
+    text: >-
+      A fly learns that an odour predicts punishment &mdash; but only in one
+      visual context. I ask where in the circuit that gating happens, using
+      closed-loop VR and two-photon imaging of the mushroom body.
 
-  - title: "Genetic Manipulations of Descending Neurons in the Fly Brain"
+  - title: "Genetic manipulation of descending neurons"
+    group: before
     image: /images/portfolios/phd/dn.jpg
-    tags: [phd, neuro]
+    alt: >-
+      Confocal image of a fly brain and ventral nerve cord, with a small
+      population of descending neurons labelled in green against grey neuropil.
+    text: >-
+      Descending neurons carry commands from the brain to the motor centres.
+      Silencing and activating identified subsets shows which of them gate the
+      transition between walking and local search.
 
-  - title: "Closed-Loop Video Tracking of Walking Fruit Flies"
-    image: /images/portfolios/phd/tracking2.jpg
-    tags: [phd, hard]
-
-  - title: "Adaptive Vector Navigation in Embodied Agents"
+  - title: "Adaptive vector navigation in embodied agents"
+    group: before
     image: /images/portfolios/past/vector.jpg
-    tags: [past]
+    alt: >-
+      Model schematic: head-direction, home-vector and global-vector neuron
+      arrays feeding an action-selection stage and a CPG-based locomotion
+      controller, beside the path-integration geometry between nest and feeder.
+    link: "https://doi.org/10.3389/fnbot.2017.00020"
+    link_label: "Front. Neurorobot. 2017"
+    text: >-
+      A neural model of path integration that lets a walking agent forage away
+      from its nest and return along a home vector, without a map.
 
-  - title: "Adaptive Obstacle Negotiation Behavior in Embodied Agents"
+  - title: "Adaptive obstacle negotiation in embodied agents"
+    group: before
     image: /images/portfolios/past/climb.jpg
-    tags: [past]
+    alt: >-
+      Learning-circuit diagram beside a simulated hexapod robot climbing a step,
+      and photographs of the physical AMOS hexapod performing the same climb.
+    link: "https://doi.org/10.3389/fnbot.2014.00003"
+    link_label: "Front. Neurorobot. 2014"
+    text: >-
+      A hexapod robot that learns to anticipate obstacles from its own sensory
+      history rather than being told the terrain in advance.
 
-  - title: "Development of an exoskeleton lower-limb robotic system"
+  - title: "Lower-limb exoskeleton"
+    group: before
     image: /images/portfolios/past/exo.jpg
-    tags: [past]
+    alt: >-
+      Two photographs of a person wearing a powered lower-limb exoskeleton, once
+      climbing stairs and once seated.
+    text: >-
+      Early engineering work on a powered lower-limb exoskeleton, before I moved
+      to neuroscience.
 
-  # Held back pending images:
-  # - title: "Differential effects of nutrient-specific deprivations on foraging
-  #           behaviors in Drosophila melanogaster"
-  #   tags: [phd, behav]
-  # - title: "Latent variable models for analyzing fly behavior"
-  #   tags: [phd, ml]
-  # - title: "Time-series analysis of fly behavior"
-  #   tags: [phd, ml]
-  # - title: "Interactive visualization of fly behavioral data"
-  #   tags: [art, soft]
-  # - title: "Generative art"
-  #   tags: [art, soft]
+  - title: "Closed-loop video tracking of walking flies"
+    group: tools
+    image: /images/portfolios/phd/tracking2.jpg
+    alt: >-
+      Photograph of a tracking rig: an aluminium-profile cage with an overhead
+      camera above a four-arena plate, with live tracking displayed on a monitor.
+    link: "https://doi.org/10.7554/eLife.43924"
+    link_label: "optoPAD, eLife 2019"
+    text: >-
+      Real-time tracking that closes the loop between what a fly does and what it
+      is exposed to, so optogenetic stimulation can be delivered contingent on
+      behaviour within milliseconds.
+
+# Held back pending images. Add an `image:` and an `alt:` and they appear.
+# - title: "Latent variable models for analysing fly behaviour"
+#   group: tools
+# - title: "Time-series analysis of fly behaviour"
+#   group: tools
+# - title: "Interactive visualisation of fly behavioural data"
+#   group: tools
+# - title: "Generative art"
+#   group: tools

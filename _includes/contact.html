@@ -1,0 +1,94 @@
+{%- comment -%}
+  Follow-up routes, rendered from _data/contact.yml. Every field is optional and
+  absent fields are omitted entirely, so nothing here can ship as a placeholder.
+
+  Usage: {% include contact.html compact=true %} on /poster, plain on /about.
+{%- endcomment -%}
+{%- assign c = site.data.contact -%}
+{%- assign has_mail = false -%}
+{%- if c.email_user != "" and c.email_domain != "" %}{% assign has_mail = true %}{% endif -%}
+
+<ul class="contact{% if include.compact %} contact--compact{% endif %}">
+  {%- if has_mail %}
+  <li>
+    <span class="contact__k">email</span>
+    {%- comment -%}
+      Assembled from two fields rather than sitting in the markup as one
+      scrapable string. Cheap friction, not security.
+    {%- endcomment -%}
+    <a class="contact__v" href="mailto:{{ c.email_user }}&#64;{{ c.email_domain }}"
+      >{{ c.email_user }}&#64;{{ c.email_domain }}</a
+    >
+  </li>
+  {%- endif %}
+
+  {%- if c.orcid != "" %}
+  <li>
+    <span class="contact__k">orcid</span>
+    <a class="contact__v" href="https://orcid.org/{{ c.orcid }}">{{ c.orcid }}</a>
+  </li>
+  {%- endif %}
+
+  {%- if c.cv != "" %}
+  <li>
+    <span class="contact__k">cv</span>
+    <a class="contact__v" href="{{ c.cv | relative_url }}"
+      >download (PDF){% if c.cv_updated != "" %} &middot; {{ c.cv_updated }}{% endif %}</a
+    >
+  </li>
+  {%- endif %}
+
+  {%- if c.scholar != "" %}
+  <li>
+    <span class="contact__k">scholar</span>
+    <a class="contact__v" href="https://scholar.google.de/citations?user={{ c.scholar }}"
+      >publication list</a
+    >
+  </li>
+  {%- endif %}
+
+  {%- if c.github != "" %}
+  <li>
+    <span class="contact__k">code</span>
+    <a class="contact__v" href="https://github.com/{{ c.github }}">github.com/{{ c.github }}</a>
+  </li>
+  {%- endif %}
+
+  {%- if c.bluesky != "" %}
+  <li>
+    <span class="contact__k">bluesky</span>
+    <a class="contact__v" href="https://bsky.app/profile/{{ c.bluesky }}">&#64;{{ c.bluesky }}</a>
+  </li>
+  {%- endif %}
+
+  {%- if c.mastodon != "" %}
+  <li>
+    <span class="contact__k">mastodon</span>
+    <a class="contact__v" rel="me" href="{{ c.mastodon }}">{{ c.mastodon | remove: "https://" }}</a>
+  </li>
+  {%- endif %}
+
+  {%- unless include.compact %}
+  <li>
+    <span class="contact__k">where</span>
+    <span class="contact__v"
+      >{%- if c.affiliation_url != "" -%}
+      <a href="{{ c.affiliation_url }}">{{ c.affiliation }}</a>
+      {%- else -%}{{ c.affiliation }}{%- endif -%}
+      {% if c.location != "" %}, {{ c.location }}{% endif %}</span
+    >
+  </li>
+  {%- endunless %}
+</ul>
+
+{%- unless has_mail %}
+{%- comment -%}
+  Visible only while building the site — a reminder that the single most
+  important follow-up route is still missing. Delete this block once email is set.
+{%- endcomment -%}
+<p class="contact__todo">
+  <strong>No email address is set yet.</strong> Add <code>email_user</code> and
+  <code>email_domain</code> to <code>_data/contact.yml</code> &mdash; without
+  them a visitor who scans the poster has no way to reach you.
+</p>
+{%- endunless %}

@@ -285,10 +285,26 @@ a:hover {
   line-height: inherit;
 }
 
+h1,
 h3 {
   margin: 0 0 0.625rem;
   font: 2rem/1.2 var(--font-body);
   color: var(--purple);
+}
+h2 {
+  margin: 2rem 0 0.625rem;
+  font: 1.55rem/1.25 var(--font-body);
+  color: var(--purple);
+}
+/* Body copy is <p> now. `.lead` is the one-paragraph intro under a title. */
+.prose,
+.prose p {
+  max-width: 44rem;
+}
+.lead {
+  font-size: 1.25rem;
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
 }
 h5 {
   margin: 0 0 1.25rem;
@@ -336,68 +352,60 @@ h5 a:hover {
   color: var(--link);
 }
 
-/* ---------- projects ---------- */
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem;
-  list-style: none;
-  margin: 0 0 1.5rem;
-  padding: 0;
-}
-.filters button {
-  padding: 5px 20px;
-  border: 0;
-  background: none;
-  cursor: pointer;
-  color: var(--purple);
-  font: 1rem var(--font-display);
-}
-.filters button:hover,
-.filters button.is-active {
-  background: var(--purple);
-  color: #fff;
-}
-.grid {
+/* ---------- research cards ---------- */
+.cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 1.25rem;
+  margin: 0 0 2.5rem;
+  max-width: 68rem;
 }
 .card {
-  position: relative;
-  overflow: hidden;
   margin: 0;
-  background: #666;
-}
-.card.is-hidden {
-  display: none; /* a class, not [hidden] — the UA rule loses to `display:grid` */
+  background: #fff;
+  border: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
 }
 .card img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 708 / 541; /* the real intrinsic ratio — 4/3 cropped the figures */
   object-fit: cover;
+  background: #eee;
 }
 .card figcaption {
-  padding: 0.6rem 0.7rem;
-  background: var(--accent);
-  color: var(--paper);
-  font: 1rem/1.3 var(--font-display);
+  padding: 0.75rem 0.85rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9375rem;
+  line-height: 1.4;
 }
-/* Slide-up only where hover exists. Under MixItUp the caption appeared on
-   :hover alone, so project titles were unreadable on touch devices. */
-@media (hover: hover) {
-  .card figcaption {
-    position: absolute;
-    inset-inline: 0;
-    bottom: 0;
-    transform: translateY(100%);
-    transition: transform 0.45s var(--ease);
-  }
-  .card:hover figcaption,
-  .card:focus-within figcaption {
-    transform: translateY(0);
-  }
+.card__title {
+  font: 600 1rem/1.3 var(--font-display);
+  color: var(--purple);
+}
+.card__text {
+  opacity: 0.85;
+}
+.card__more {
+  font: 600 0.8125rem var(--font-display);
+}
+/* Only linked cards get affordances. Six images that looked interactive and did
+   nothing was the worst thing about the old grid. */
+.card--link {
+  transition: border-color 0.2s var(--ease);
+}
+.card--link:hover,
+.card--link:focus-within {
+  border-color: var(--purple);
+}
+.card--link img {
+  transition: opacity 0.2s var(--ease);
+}
+.card--link:hover img {
+  opacity: 0.88;
 }
 
 /* ---------- weblog ---------- */
@@ -584,4 +592,60 @@ h5 a:hover {
 .sim__matrix th[scope="row"] {
   text-align: left;
   font-weight: 600;
+}
+
+/* ---------- contact + footer ---------- */
+.contact {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  max-width: 44rem;
+}
+.contact > li {
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.contact--compact > li {
+  border-bottom: 0;
+  padding: 0.15rem 0;
+}
+.contact__k {
+  flex: 0 0 5.5rem;
+  font: 600 0.75rem var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.7;
+}
+.contact__v {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.contact__todo {
+  max-width: 44rem;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--accent);
+  background: rgb(226 78 66 / 0.07);
+  font-size: 0.9375rem;
+}
+
+.footer {
+  margin-top: 4rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.875rem;
+}
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  margin: 0 0 0.4rem;
+}
+.footer__meta {
+  margin: 0;
+  opacity: 0.7;
+  font-size: 0.8125rem;
 }
