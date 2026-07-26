@@ -4,7 +4,11 @@
 # /poster/ is ALWAYS the current poster. When you present a new one, archive the
 # old page under /poster/<year>-<venue>/ and edit this file.
 
-in_nav: false # set true to show /poster in the sidebar during the meeting
+# The printed QR code points at the SITE ROOT, not at /poster/. `active` puts a
+# banner at the top of the homepage so someone who has just scanned it is not
+# dropped onto a generic bio page. Turn both on for the meeting, off afterwards.
+active: false # banner on the homepage
+in_nav: false # /poster in the sidebar
 
 # --- the meeting -------------------------------------------------------------
 venue: "" # e.g. "FENS Forum 2026"

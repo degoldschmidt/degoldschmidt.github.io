@@ -1,0 +1,23 @@
+{%- comment -%}
+  Shown at the top of the homepage while a poster is being presented, because
+  the printed QR code points at the site ROOT, not at /poster/. Without this a
+  visitor who has just scanned it lands on a generic bio page with no sign that
+  the poster they are standing in front of is represented here at all.
+
+  Controlled by `active: true` in _data/poster.yml — one flag, on for the
+  meeting and off afterwards. Renders nothing if the poster has no venue set.
+{%- endcomment -%}
+{%- assign p = site.data.poster -%}
+{%- if p.active and p.venue != "" %}
+<aside class="pbanner">
+  <p class="pbanner__meta">
+    {%- if p.number != "" %}<strong>{{ p.number }}</strong> &middot; {% endif -%}
+    {{ p.venue }}{% if p.city != "" %}, {{ p.city }}{% endif %}
+    {%- if p.session != "" %} &middot; {{ p.session }}{% endif %}
+  </p>
+  <p class="pbanner__q">{{ p.question }}</p>
+  <p class="pbanner__cta">
+    <a href="{{ '/poster/' | relative_url }}">Scanned my poster? Start here &rarr;</a>
+  </p>
+</aside>
+{%- endif %}

@@ -739,3 +739,38 @@ h5 a:hover {
   opacity: 0.75;
   overflow-wrap: anywhere;
 }
+
+/* ---------- poster banner (homepage) ---------- */
+.pbanner {
+  max-width: 44rem;
+  margin: 0 0 2rem;
+  padding: 0.9rem 1.1rem;
+  background: var(--purple);
+  color: var(--paper);
+}
+.pbanner__meta {
+  margin: 0 0 0.35rem;
+  font: 600 0.8125rem var(--font-display);
+  letter-spacing: 0.02em;
+  opacity: 0.85;
+}
+.pbanner__q {
+  margin: 0 0 0.6rem;
+  font: 1.25rem/1.25 var(--font-display);
+}
+.pbanner__cta {
+  margin: 0;
+}
+.pbanner__cta a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 1rem;
+  background: var(--paper);
+  color: var(--purple);
+  font: 600 0.9375rem var(--font-display);
+}
+.pbanner__cta a:hover {
+  background: var(--purple-hi);
+  text-decoration: none;
+}
