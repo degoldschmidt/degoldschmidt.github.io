@@ -14,16 +14,15 @@ Status as of 2026-07-26 — 15 commits on `conference-overhaul`, **nothing pushe
 
 Small, and everything else waits on them.
 
-- [ ] **`_data/contact.yml` — email.** Two lines. Until then `/about` renders a
-      visible red "no email address is set yet" notice, and `/poster/` has no
-      email button. For a page a QR code points at, this is the single most
-      important gap.
-      ```yaml
-      email_user: "…"
-      email_domain: "…"
-      ```
-- [ ] **ORCID, Bluesky/Mastodon, CV PDF** — same file, all optional. Blank
-      fields are omitted rather than rendered, so fill in whatever you want.
+- [x] **`_data/contact.yml` — email.** Done: `golddenn@fmi.ch`. The red notice
+      on `/about` is gone and `/poster/` has its "Email me about this work"
+      button. **Confirm the address is right before pushing** — it is the one
+      string on the site with no fallback if it is wrong, and I have no way to
+      verify it. Nothing in the repo or in git history corroborates it; the only
+      institutional address either ever contained is
+      `goldschmidtd@ini.phys.ethz.ch`, from ETH.
+- [x] **ORCID and Bluesky** — both set. Mastodon and the CV PDF are still
+      blank, which renders as omitted rather than broken. Add whenever.
 - [ ] **Read `/model.html` for scientific accuracy.** The plasticity rule and
       the conjunctive-KC assumption are mine, built from the published
       literature. You are the fly person — confirm nothing there would make a

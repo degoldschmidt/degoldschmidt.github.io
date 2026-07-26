@@ -7,14 +7,14 @@
 
 # Split so the address is assembled in the page rather than sitting in the HTML
 # as one scrapable string. Not real security — just cheap friction.
-email_user: ""      # e.g. "dennis.goldschmidt"
-email_domain: ""    # e.g. "fmi.ch"
+email_user: "golddenn"
+email_domain: "fmi.ch"
 
 orcid: "0000-0002-0603-7176" # verified against the public ORCID registry
 scholar: "GBPYjXMAAAAJ"
 github: "degoldschmidt"
 
-bluesky: ""         # handle without the @, e.g. "degoldschmidt.bsky.social"
+bluesky: "golddenn.bsky.social" # handle without the @
 mastodon: ""        # full URL, e.g. "https://neuromatch.social/@dennis"
 
 cv: ""              # path to a PDF in the repo, e.g. "/assets/goldschmidt-cv.pdf"
