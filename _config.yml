@@ -59,6 +59,10 @@ exclude:
   - vendor/
   - .jekyll-cache/
   - README.md
+  # Needs its own entry: the `README.md` line above is a path, so it matches
+  # only the one at the root. jekyll-readme-index would publish this one as
+  # /assets/media/.
+  - assets/media/README.md
   - ROADMAP.md
   - HANDOFF.md
   # .gitignore does NOT affect Jekyll — it copies anything on disk that is not

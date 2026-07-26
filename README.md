@@ -12,28 +12,37 @@ Static site built with **Jekyll**, which GitHub Pages runs natively on every
 push to `master` — there is no CI workflow and no build step to run yourself.
 
 It ships **no third-party JavaScript**: no jQuery, no Bootstrap, no analytics.
-The scripts on the site are the ~40-line nav toggle in `_layouts/default.html`
-and `assets/js/mbsim.js`, the interactive mushroom-body model. Styling is a
-single hand-written stylesheet, `css/main.css`.
+There is exactly one script, `assets/js/mbsim.js` — the interactive
+mushroom-body model — and it loads only on the two pages that embed it. The
+navigation needs none. Styling is a single hand-written stylesheet,
+`css/main.css`.
 
 ```
 _config.yml                  site config; `permalink` applies to posts only
-_layouts/default.html        page chrome + nav toggle script
+_layouts/default.html        page chrome
 _layouts/post.html           blog post wrapper
 _includes/head.html          <head>: fonts, stylesheet, SEO tags
-_includes/sidebar.html       sidebar, rendered from _data/nav.yml
+_includes/topbar.html        the top bar, rendered from _data/nav.yml
 _includes/contact.html       follow-up routes, from _data/contact.yml
 _includes/footer.html        site footer
+_includes/poster-banner.html homepage banner while a poster is being presented
 _includes/mbsim.html         embeds the simulation (variant: poster|mini|full)
 _data/nav.yml                the navigation — edit here, once
 _data/contact.yml            email, ORCID, CV, socials — all optional
+_data/poster.yml             everything that changes per conference
 _data/pubs.yml               publications (journals + conference)
 _data/projects.yml           research cards, grouped
 _posts/                      blog posts
 assets/js/mbsim.js           the interactive model (~370 lines, no libraries)
+assets/media/                web-derivative video and stills — see its README
 css/main.css                 the only stylesheet
 index.html about.html research.html pubs.html model.html weblog.html 404.html
 ```
+
+The nav is a bar, not a sidebar, and it wraps rather than collapsing behind a
+toggle — no breakpoint and no state machine are involved. That is deliberate:
+traffic arrives from a printed QR code on a phone, and a link hidden behind a
+hamburger is a link a visitor in a poster hall will not find.
 
 ## Editing
 
