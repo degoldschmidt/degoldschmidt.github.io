@@ -10,7 +10,7 @@
 email_user: ""      # e.g. "dennis.goldschmidt"
 email_domain: ""    # e.g. "fmi.ch"
 
-orcid: ""           # bare iD, e.g. "0000-0002-1825-0097"
+orcid: "0000-0002-0603-7176" # verified against the public ORCID registry
 scholar: "GBPYjXMAAAAJ"
 github: "degoldschmidt"
 
