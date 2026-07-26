@@ -6,16 +6,15 @@ Working notes for the conference overhaul. Excluded from the build in
 **Dennis: add your review notes under "Dennis's review" at the bottom.**
 Anything there gets triaged into the sections above.
 
-Status as of 2026-07-26 — 24 commits on `conference-overhaul`, **nothing pushed**.
+Status as of 2026-07-26 — 27 commits on `conference-overhaul`, **nothing pushed**.
 
-The push is no longer blocked by anything missing from the site. What remains
-under "Blocking a push" is two review decisions only Dennis can make.
+**Nothing blocks the push any more.** Everything under "Blocking a push" is
+decided. What is left is conference content, which can land after a first push
+rather than before it.
 
 ---
 
-## Blocking a push
-
-Small, and everything else waits on them.
+## Blocking a push — all clear
 
 - [x] **`_data/contact.yml` — email.** Done and **confirmed by Dennis on
       2026-07-26**: `golddenn@fmi.ch`. The red notice on `/about` is gone and
@@ -24,13 +23,32 @@ Small, and everything else waits on them.
       why it was queried — it is correct, so leave it alone.
 - [x] **ORCID and Bluesky** — both set. Mastodon and the CV PDF are still
       blank, which renders as omitted rather than broken. Add whenever.
+- [x] **`/model.html` scientific accuracy — settled by parking the model.**
+      Rather than review it under time pressure, the model was dropped from
+      view on 2026-07-26. See "Before bringing the model back" below.
+- [x] **The DOI-less abstracts — keep as plain text.** Decided 2026-07-26. No
+      code change was needed: `publist.html` already guards the DOI with
+      `{% if p.doi %}`, so entries without one have always rendered as plain
+      text. Note there are **three**, not two — Bernstein 2014, Bernstein 2013,
+      and the 2012 Frontiers/Bernstein abstract.
+
+## Before bringing the model back
+
+The model is parked, not deleted. `/model.html` still builds and the direct URL
+still resolves, so anything already sharing it keeps working — but nothing on
+the site points at it and search engines are told to ignore it.
+
 - [ ] **Read `/model.html` for scientific accuracy.** The plasticity rule and
       the conjunctive-KC assumption are mine, built from the published
       literature. You are the fly person — confirm nothing there would make a
       reviewer at your poster wince. Specifically: context entering at the KC
       layer rather than gating at the MBON.
-- [ ] **Decide what happens to the two Bernstein/CNS abstracts** with no DOI —
-      keep as plain text, or drop.
+- [ ] **To restore it, four places, all commented in situ:**
+      `model.html` front matter (drop `noindex` and `sitemap: false`) ·
+      `_data/projects.yml` (restore `link:` and `link_label:` on the memory
+      card) · `_includes/mbsim.html` (restore the "How it works →" link) ·
+      `poster.html` (restore `script_mbsim: true` **and** the include together,
+      or the page ships a dead script).
 
 ## Before the conference
 
