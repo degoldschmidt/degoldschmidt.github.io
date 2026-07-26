@@ -67,6 +67,60 @@ Caption it **"compressed for the web"**. Showing a lossy clip beside a ΔF/F
 claim is a small integrity issue worth pre-empting rather than being asked
 about at the poster.
 
+## Choosing a loop window
+
+For footage where the background changes continuously — the closed-loop
+panorama does exactly this — the cut point is worth picking by measurement
+rather than by eye. Dump per-frame chroma and search for the window whose ends
+meet:
+
+```sh
+ffmpeg -i src.mov -vf "<your crop>,fps=25,scale=48:48,signalstats,\
+metadata=print:file=stats.txt" -an -f null -
+```
+
+Then find `(start, length)` minimising the distance between frames. **Two
+things will mislead you here, and both cost me a wrong cut:**
+
+1. **The criterion is `frame[end+1]` vs `frame[start]`, not first vs last.**
+   When the clip wraps, the viewer sees the last frame and then the first, so
+   the first frame has to look like the *natural successor* of the last. First
+   vs last will read as one normal frame-step of difference in a good loop —
+   here that was 23 units, against a per-frame median of 6.6, and it looks
+   alarming until you realise it is exactly right.
+2. **Measure in the domain you cut in.** Stats taken on the full frame do not
+   predict a cropped loop: the crop sees a different slice of the panorama, so
+   the colour trajectory is different. Crop *and* resample to the output frame
+   rate before measuring.
+
+And cut with `select`, not `-ss`/`-t`: input seeking is not frame-exact and
+landed six frames off the window that was searched for. `trim` is frame-exact
+but its `start_frame=A:end_frame=B` form fails to parse here, so:
+
+```sh
+-vf "<crop>,fps=25,select=between(n\,START\,END),setpts=PTS-STARTPTS"
+```
+
+## Shipped assets
+
+**`fly-on-ball.mp4`** · 480×480 · 25 fps · 6.9 s · 573 KB · poster
+`fly-on-ball.jpg` (15 KB). Tethered fly walking on the ball inside the
+closed-loop panorama. Source `fly_on_ball_closed_loop.mov`, 1000×1000 @ 60 fps
+(not in the repo — see `videos/` in `.gitignore`).
+
+```sh
+ffmpeg -y -i videos/fly_on_ball_closed_loop.mov -map 0:v:0 \
+  -vf "crop=480:480:230:330,fps=25,select=between(n\,69\,241),setpts=PTS-STARTPTS" \
+  -c:v libx264 -profile:v high -pix_fmt yuv420p -crf 23 -preset slow \
+  -movflags +faststart -an assets/media/fly-on-ball.mp4
+```
+
+Note the crop is 480×480 out of a 1000×1000 source, so this is **native 480 px,
+not downscaled from 960**. It is soft on a retina phone, where a ~335 px card
+wants ~670 device px. Re-cropping from the pre-crop original, if it still
+exists at a higher resolution, is the only real fix — upscaling here would just
+add bytes.
+
 ## Why each flag
 
 | flag | why |
