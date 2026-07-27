@@ -52,14 +52,21 @@ layout: null
   --text-hero: clamp(1.6rem, 1.19rem + 1.76vw, 2.4rem);
 
   --gutter: clamp(1.25rem, 4vw, 3.4rem);
-  /* How wide a run of text is allowed to get. ONE KNOB — every text block
-     below uses it, so line length is tuned here and nowhere else.
+  /* The two widths the page grid is built from.
 
-     `none` lets text fill the content box, which is what was asked for. The
-     cost is real: at a 2560px viewport a paragraph runs about 300 characters
-     per line, against the 45-75 that is comfortable to read. If that starts to
-     bother you, put a value back — 68rem is roomy, 44rem was the old cap. */
-  --measure: none;
+     --measure      how wide a run of text may get.  68rem is ~1088px, ~130
+                    characters. Above the 45-75 that is textbook comfortable,
+                    deliberately: this page should read wide. It was briefly
+                    `none`, which put a paragraph at ~300 characters on a 2560px
+                    monitor — too far.
+     --measure-wide how wide figures, card grids and the banner may get. The
+                    difference between the two is what gives media something to
+                    break out INTO, so a wide screen gains content instead of
+                    empty margin.
+
+     Tune line length here and nowhere else. */
+  --measure: 68rem;
+  --measure-wide: 90rem;
   --font-body: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-display: "Fira Sans", var(--font-body);
   --ease: cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -272,20 +279,44 @@ a:hover {
   outline-color: var(--paper);
 }
 
-/* ---------- content (replaces container-fluid > row > col-md-12) ---------- */
-/* Fills the viewport, inset by the gutter. No outer cap: the page used to stop
-   at 80rem and centre, which on a wide monitor left a fixed column stranded in
-   the middle of the screen.
+/* ---------- content: the page grid ----------
 
-   The cap is not needed to keep text readable, because that is done where it
-   belongs — on the text. `.prose` holds every run of prose to 44rem, `.pub-list`
-   to 60rem, `.media` to 46rem. Grids are deliberately uncapped so they gain
-   columns on a wide screen instead of leaving it empty.
+     full  ├───────────────────────────────────────┤   edge to edge, unused today
+     wide  │   ├───────────────────────────────┤   │   every block starts here
+     text  │   ├─────────────────┤             │   │   prose stops early
+           gutter                                  gutter
 
-   So: measure is enforced per component, not by a container that also
-   constrains things which want the room. */
+   ONE left edge. An earlier version of this gave prose its own centred track
+   with media breaking out either side, which is a real editorial pattern — but
+   at this page width the breakout was only ~120px, so the homepage rendered
+   its banner, its prose and its gallery at three different left edges and read
+   as a bug rather than a device. Everything is flush now, and width is used by
+   letting the things that benefit from it stay wide while running text stops at
+   its measure. Alignment beats the extra 120px.
+
+   The wide track is a DEFINITE width, not `minmax(0, …)`. That distinction is
+   load-bearing and cost a measurement to find: with a minmax, the content track
+   and the gutters grow toward their maxima together, and when there is not
+   enough room grid splits the space equally between them. On a 390px phone an
+   earlier form of this gave the content 117px and handed the rest to margin.
+   `min(…, 100% - gutters)` resolves before any distribution, so content takes
+   what it needs first.
+
+   Horizontal padding is gone — the gutter is a track now, so a future
+   full-bleed child can actually reach the edge. Vertical padding stays. */
 .content {
-  padding: var(--gutter);
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(var(--gutter), 1fr)
+    [wide-start] min(var(--measure-wide), calc(100% - var(--gutter) * 2))
+    [wide-end] minmax(var(--gutter), 1fr) [full-end];
+  padding-block: var(--gutter);
+}
+/* Everything, including unclassed children — the bare <h2> section headings on
+   /publications rely on this. Running text then limits itself: see the
+   `max-width: var(--measure)` on .prose, and the tighter one on .pub-list. */
+.content > * {
+  grid-column: wide;
 }
 
 /* Display type scales with the viewport rather than sitting at one fixed size.
@@ -330,11 +361,16 @@ h3 {
    can't silently desynchronise the numbering the way the hard-coded 9/10 did. */
 /* Its own measure now. These are long unbroken citation lines, and with the
    80rem container gone they would otherwise run the full width of a monitor. */
+/* Tighter than prose, on purpose. A citation is an unbroken run of names,
+   title, journal and DOI with no sentence rhythm to help the eye back to the
+   next line, so it wants a shorter measure than a paragraph does. `min()`
+   rather than a bare literal, so it follows --measure down if that is ever
+   reduced but never exceeds it. */
 .pub-list {
   list-style: none;
   margin: 0 0 2rem;
   padding: 0;
-  max-width: var(--measure);
+  max-width: min(var(--measure), 56rem);
 }
 .pub-list > li {
   counter-increment: item -1;
@@ -365,6 +401,17 @@ h3 {
   border: 1px solid var(--rule);
   display: flex;
   flex-direction: column;
+}
+/* A group with one item rendered as a lone narrow card beside three empty
+   columns, which reads as a layout fault rather than a deliberate emphasis —
+   and it is the "Now" group, the most important on the page. Spanning two
+   tracks makes one item look chosen instead of stranded.
+
+   `:only-child` rather than a data flag: the condition IS "this group has one
+   card", so let the DOM answer it. Collapses to a single column on a phone,
+   where there is only one track to span. */
+.cards > .card:only-child {
+  grid-column: span 2;
 }
 .card img {
   display: block;
@@ -576,7 +623,6 @@ h3 {
   border: 1px solid var(--rule);
   padding: 0.5rem;
   isolation: isolate;
-  max-width: 46rem;
 }
 .media > figcaption {
   padding: 0.5rem 0.25rem 0;
