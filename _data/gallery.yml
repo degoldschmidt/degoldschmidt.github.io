@@ -32,17 +32,21 @@
     with every step it takes, so it steers through a visual world that never
     moves it.
 
-# Waiting on footage. Uncomment and fill in when the clips are encoded.
-#
-# - title: "Tracking and local search"
-#   video: /assets/media/tracking.mp4
-#   poster: /assets/media/tracking.jpg
-#   width: 960
-#   height: 540
-#   alt: >-
-#     …
-#   text: >-
-#     …
+- title: "Tracking and local search"
+  video: /assets/media/local-search.mp4
+  poster: /assets/media/local-search.jpg
+  width: 846
+  height: 960
+  # DRAFT — Dennis to correct. Written from the footage.
+  alt: >-
+    A fly's path traced around a small food patch at the centre of a circular
+    arena, the trail shifting from cyan to magenta as time passes, so the
+    tight looping search close to the patch is visible against the wider
+    excursions that came before.
+  text: >-
+    After finding food, a fly stops walking in straight lines and starts
+    circling the spot it left. The trace is coloured by time, and the search
+    tightens as the minutes pass.
 #
 # - title: "Two-photon imaging"
 #   video: /assets/media/two-photon.mp4
