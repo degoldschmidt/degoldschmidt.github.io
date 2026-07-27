@@ -195,15 +195,13 @@ a:hover {
   background: var(--purple);
   color: var(--paper);
 }
-/* Same max-width and gutter as .content, so the wordmark sits on the same
-   optical left edge as the page's h1 below it. */
+/* Same gutter as .content, so the wordmark sits on the same optical left edge
+   as the page's h1 below it. Both are uncapped — see the note on .content. */
 .topbar__inner {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0 1.5rem;
-  max-width: 80rem;
-  margin-inline: auto;
   padding: 0.4rem var(--gutter);
 }
 /* margin-right: auto pushes the nav to the far end while they share a row, and
@@ -267,13 +265,19 @@ a:hover {
 }
 
 /* ---------- content (replaces container-fluid > row > col-md-12) ---------- */
-/* Centred now. It used to be pushed right by the sidebar's 200px of padding;
-   with that gone, a left-flush column on a wide monitor would sit off-axis
-   from the bar above it. */
+/* Fills the viewport, inset by the gutter. No outer cap: the page used to stop
+   at 80rem and centre, which on a wide monitor left a fixed column stranded in
+   the middle of the screen.
+
+   The cap is not needed to keep text readable, because that is done where it
+   belongs — on the text. `.prose` holds every run of prose to 44rem, `.pub-list`
+   to 60rem, `.media` to 46rem. Grids are deliberately uncapped so they gain
+   columns on a wide screen instead of leaving it empty.
+
+   So: measure is enforced per component, not by a container that also
+   constrains things which want the room. */
 .content {
   padding: var(--gutter);
-  max-width: 80rem;
-  margin-inline: auto;
 }
 
 /* Display type scales with the viewport rather than sitting at one fixed size.
@@ -316,10 +320,13 @@ h3 {
 /* ---------- publications: descending [n] ----------
    counter-reset start value comes from Liquid (size + 1), so adding an entry
    can't silently desynchronise the numbering the way the hard-coded 9/10 did. */
+/* Its own measure now. These are long unbroken citation lines, and with the
+   80rem container gone they would otherwise run the full width of a monitor. */
 .pub-list {
   list-style: none;
   margin: 0 4.375rem 2rem 0;
   padding: 0;
+  max-width: 60rem;
 }
 .pub-list > li {
   counter-increment: item -1;
@@ -343,7 +350,6 @@ h3 {
   grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
   gap: 1.25rem;
   margin: 0 0 2.5rem;
-  max-width: 68rem;
 }
 .card {
   margin: 0;
@@ -426,7 +432,6 @@ h3 {
   list-style: none;
   margin: 2rem 0 2.5rem;
   padding: 0;
-  max-width: 68rem;
 }
 /* Near-black mount on every card. It started as the calcium/confocal variant —
    grayscale and green fluorescence read correctly against dark and wash out
