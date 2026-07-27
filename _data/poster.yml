@@ -8,7 +8,7 @@
 # banner at the top of the homepage so someone who has just scanned it is not
 # dropped onto a generic bio page. Turn both on for the meeting, off afterwards.
 active: true # banner on the homepage
-in_nav: false # /poster in the top bar
+in_nav: true # /poster in the top bar
 
 # --- the meeting -------------------------------------------------------------
 venue: "ICN 2026" # e.g. "FENS Forum 2026"
