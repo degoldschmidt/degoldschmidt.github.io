@@ -42,7 +42,7 @@
         {%- endcomment -%}
         {%- if site.data.poster.in_nav %}
         <li>
-          <a href="{{ '/poster/' | relative_url }}"{% if page.url == '/poster/' %} aria-current="page"{% endif %}>/poster</a>
+          <a class="is-poster" href="{{ '/poster/' | relative_url }}"{% if page.url == '/poster/' %} aria-current="page"{% endif %}>/poster</a>
         </li>
         {%- endif %}
         {%- for item in site.data.nav %}

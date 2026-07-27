@@ -45,6 +45,7 @@ layout: null
   --color-heading: var(--purple); /* h1-h3, card titles */
   --color-brand: var(--purple); /* identity: bar, banner, button fills+borders */
   --color-rule: var(--rule); /* hairlines and card borders */
+  --color-poster: #f7bae5; /* /poster in the bar — 5.26:1 on the brand purple */
 
   /* De-emphasised text. An explicit colour, never `opacity`.
      `opacity` looked like a free tonal step and was not, because this page has
@@ -336,6 +337,23 @@ a:hover {
   color: var(--purple-hi);
   background: rgb(255 255 255 / 0.14);
   text-decoration: none;
+}
+/* /poster picked out in pink while the conference is on. 5.26:1 on the bar, so
+   it is legible, and it marks the one destination a QR visitor is most likely
+   to want.
+
+   Its hover is INVERTED rather than inherited. The nav's normal hover colour is
+   --purple-hi #fea1d9, which measures 1.16:1 against this pink — the same
+   colour to the eye. Left alone, /poster would look permanently hovered and
+   then give no feedback when actually hovered. Brightening to paper (7.73:1)
+   restores the response and keeps the direction of travel sensible: every other
+   link warms toward pink on hover, this one is already pink and goes bright. */
+.topbar__nav a.is-poster {
+  color: var(--color-poster);
+}
+.topbar__nav a.is-poster:hover,
+.topbar__nav a.is-poster:focus-visible {
+  color: var(--paper);
 }
 /* Underline as well as tint: the current page must not be signalled by colour
    alone. `a[aria-current]` rather than `[aria-current]` so this outranks the
