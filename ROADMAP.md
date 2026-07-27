@@ -92,12 +92,24 @@ the site points at it and search engines are told to ignore it.
 - [ ] **History rewrite.** `git filter-repo --path pics --path vids
       --invert-paths` takes the repo from ~1.18 GB to ~20 MB. Rewrites every
       SHA. Only after the backup, and not on the conference critical path.
-- [ ] **Finish the design-token migration.** The fluid type scale is done. What
-      remains: semantic colour aliases (today `--purple` is simultaneously text
-      colour, brand colour and surface colour, used 21 times, so text cannot be
-      recoloured without recolouring the masthead), a spacing scale, and
-      snapping the ~10 off-scale spacing literals. Three commits; only the third
-      touches pixels.
+- [x] **Design overhaul — done 2026-07-27,** seven steps, one commit each:
+      page grid (`.content` is now gutter | content | gutter, prose stops at
+      `--measure` while media stays wide) · `opacity` retired as a colour, every
+      muted text now meets AA against the darkest pixel the mesh actually
+      renders · semantic colour aliases, so `--color-text` no longer drags the
+      masthead with it · five small type sizes folded to three · 23 spacing
+      literals snapped to a nine-step 4px grid · dead `.map` CSS and the unused
+      Lato 300 request removed.
+      Two things were **deliberately not** changed after checking: the display
+      type scale (its middle looked compressed, but `h3` renders on no page, so
+      what a reader meets is a working 1.41 / 1.23 / 1.30 progression), and the
+      nav — see below.
+- [ ] **Decide: drop `/code` from the top bar?** Measured on the homepage: five
+      items wrap to two rows on every common phone, costing **154px of chrome
+      before any content** at 320/360/390. Removing `/code` fits one row at 360
+      and 390 and saves 45px; it is still two rows at 320. GitHub is already in
+      the footer on every page, so nothing becomes unreachable. Left alone
+      because it is navigation, not styling — one line in `_data/nav.yml`.
 - [ ] **Weblog.** Either write one real post — "Building a closed-loop VR for
       walking flies" is safe, showcases the rig work, and gives `/poster/` a
       follow-up link — or leave it out of the nav as it is now.
