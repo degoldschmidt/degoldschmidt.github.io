@@ -43,10 +43,15 @@ items:
     # these two lines to put the card back:
     #   link: /model.html
     #   link_label: "play with the model"
+    # Kept in step with `approach:` in _data/poster.yml. Both describe the same
+    # work, and until now they disagreed: this said "punishment" where the VR
+    # uses an infrared laser, and claimed the circuit question was already being
+    # asked rather than that the setup was built to ask it.
     text: >-
-      A fly learns that an odour predicts punishment &mdash; but only in one
-      visual context. I ask where in the circuit that gating happens, using
-      closed-loop VR and two-photon imaging of the mushroom body.
+      A fly learns that an odour predicts a targeted infrared laser pulse
+      &mdash; but only in one visual context. I built a closed-loop virtual
+      reality to put that context under experimental control, designed so the
+      mushroom body can be imaged while the fly walks through it.
 
   - title: "Genetic manipulation of descending neurons"
     group: before

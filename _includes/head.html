@@ -13,12 +13,16 @@
 {%- comment -%}
   Fonts: one request, discovered during HTML parse. Replaces six render-blocking
   @imports that could not even be discovered until the parent CSS had parsed.
+
+  Lato 400 only. The request carried 300 as well until body copy moved off it —
+  a weight downloaded on every page load with nothing on the site using it.
+  Fira Sans keeps 400 and 600; 600 is the display weight for titles and labels.
 {%- endcomment -%}
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600&family=Lato:wght@300;400&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600&family=Lato:wght@400&display=swap"
 />
 
 {%- comment -%}

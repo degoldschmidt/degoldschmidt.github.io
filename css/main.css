@@ -332,7 +332,7 @@ h3 {
    80rem container gone they would otherwise run the full width of a monitor. */
 .pub-list {
   list-style: none;
-  margin: 0 4.375rem 2rem 0;
+  margin: 0 0 2rem;
   padding: 0;
   max-width: var(--measure);
 }
@@ -555,38 +555,6 @@ h3 {
   background: var(--amber);
   color: var(--accent);
   font: 600 0.75rem var(--font-display);
-}
-
-/* ---------- where ---------- */
-.map {
-  margin: 0;
-  max-width: 60rem;
-}
-/* The <a> is the positioning context, not .map — otherwise the pin centres on
-   the figure including its caption, and sits low. */
-.map__frame {
-  position: relative;
-  display: block;
-}
-.map__frame img {
-  display: block;
-  width: 100%;
-}
-/* `.map__frame img` (0,1,1) would otherwise stretch the pin to 100% width.
-   Two classes + element (0,2,1) wins without !important. */
-.map__frame img.map__pin {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 50px;
-  height: 50px;
-  margin: -50px 0 0 -25px; /* anchors the tip to the image centre */
-  pointer-events: none;
-}
-.map figcaption {
-  margin-top: 0.5rem;
-  font-size: 0.8rem;
-  opacity: 0.8;
 }
 
 /* ---------- motion ---------- */
