@@ -7,4 +7,5 @@
 - { label: "/about", url: /about.html }
 - { label: "/research", url: /research.html }
 - { label: "/publications", url: /pubs.html }
+- { label: "/outreach", url: /outreach.html }
 - { label: "/code", url: "https://github.com/degoldschmidt", external: true }

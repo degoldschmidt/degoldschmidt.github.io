@@ -671,6 +671,41 @@ h3 {
   }
 }
 
+/* ---------- seminar series (/outreach) ----------
+   A plain stacked list rather than the card grid: these entries have no images,
+   and .cards without an image is just a bordered paragraph. Held to the text
+   measure since it is all reading. */
+.series {
+  list-style: none;
+  margin: 0 0 var(--space-l);
+  padding: 0;
+  max-width: var(--measure);
+}
+.series__item {
+  padding: var(--space-s) 0;
+  border-bottom: 1px solid var(--color-rule);
+}
+.series__item:first-child {
+  border-top: 1px solid var(--color-rule);
+}
+/* Same uppercase key treatment as .contact__k, so the two read as one system. */
+.series__role {
+  margin: 0;
+  font: 600 var(--text-xs) var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+}
+.series__title {
+  margin: var(--space-3xs) 0 var(--space-2xs);
+  font: var(--text-h3) / 1.25 var(--font-body);
+  color: var(--color-heading);
+}
+.series__text {
+  margin: 0;
+  max-width: 44rem;
+}
+
 /* ---------- weblog ---------- */
 .post-list {
   list-style: none;

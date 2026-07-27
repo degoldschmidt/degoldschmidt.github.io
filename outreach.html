@@ -1,0 +1,66 @@
+---
+title: outreach
+---
+
+<div class="prose">
+  <h1>Outreach</h1>
+  <p class="lead">
+    Seminar series I help run, and have helped run. Both exist to give early
+    career researchers a room to present in and an audience worth presenting to.
+  </p>
+</div>
+
+{%- comment -%}
+  Rendered from _data/outreach.yml, grouped the same way /research is: what is
+  running now, then what has finished. The loop runs twice over the same data
+  rather than sorting into buckets in Liquid, which has no clean way to do it —
+  with two items that is cheaper than it looks, and it keeps the markup honest
+  about which group is which.
+{%- endcomment -%}
+{%- assign groups = "true,false" | split: "," -%}
+{%- for g in groups %}
+  {%- assign is_current = false -%}{% if g == "true" %}{% assign is_current = true %}{% endif -%}
+  {%- comment -%}
+    `current` is normalised to a real boolean before comparing. Liquid has no
+    parentheses and evaluates `and`/`or` right to left, so the obvious
+    `o.current == is_current or (is_current == false and o.current == nil)`
+    parses but does not mean what it reads as — it raised "Expected dotdot but
+    found comparison" and only produced the right answer by luck. An omitted
+    `current:` is nil, which this folds to false.
+  {%- endcomment -%}
+  {%- assign items = "" | split: "" -%}
+  {%- for o in site.data.outreach -%}
+    {%- assign oc = false -%}
+    {%- if o.current -%}{% assign oc = true %}{%- endif -%}
+    {%- if oc == is_current -%}
+      {%- assign items = items | push: o -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- if items.size > 0 %}
+<section class="prose">
+  <h2>{% if is_current %}Now{% else %}Before{% endif %}</h2>
+</section>
+
+<ul class="series">
+  {%- for o in items %}
+  <li class="series__item">
+    <p class="series__role">
+      {{ o.role }}{% if o.period != "" and o.period %} &middot; {{ o.period }}{% endif %}
+    </p>
+    <h3 class="series__title">
+      {%- if o.url != "" %}<a href="{{ o.url }}">{{ o.title }}</a>{% else %}{{ o.title }}{% endif -%}
+    </h3>
+    <p class="series__text">{{ o.text }}</p>
+  </li>
+  {%- endfor %}
+</ul>
+  {%- endif %}
+{%- endfor %}
+
+<div class="prose">
+  <p>
+    More about the research itself is on the
+    <a href="{{ '/research.html' | relative_url }}">research</a> page.
+  </p>
+</div>
