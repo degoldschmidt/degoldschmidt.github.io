@@ -604,7 +604,13 @@ h3 {
   background: #101014;
   isolation: isolate;
 }
+/* margin-top: auto pushes this to the foot of the card. Cards in a row stretch
+   to the tallest, and the clips have different aspect ratios — 1:1 for the rig,
+   0.88:1 for the arena — so without this each caption started wherever its own
+   video happened to end and the row had no common baseline. Any slack now
+   collects between the video and the caption instead of below it. */
 .gcard figcaption {
+  margin-top: auto;
   display: flex;
   flex-direction: column;
   gap: var(--space-3xs);
