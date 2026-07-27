@@ -28,7 +28,11 @@ groups:
 items:
   - title: "Neuronal mechanisms of context-dependent memory retrieval"
     group: now
-    image: /images/portfolios/postdoc/memory.jpg
+    image: /images/portfolios/postdoc/memory.png
+    # A diagram, so it is fitted rather than cropped — see .card--contain.
+    # Photographs can lose their edges to the card ratio; labelled figures
+    # cannot.
+    fit: contain
     alt: >-
       Paradigm diagram: a contingency table pairing two odours with a green
       danger panorama and a blue safe panorama, a fly walking on a ball inside a
