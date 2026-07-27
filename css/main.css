@@ -16,8 +16,18 @@ layout: null
    Replaces bootstrap.min.css + simple-sidebar.css + style.css + layout.css
    + normalize.css (~300 KB) with ~4 KB. */
 
-/* ---------- tokens ---------- */
+/* ---------- tokens ----------
+   Two layers. PRIMITIVES are raw colours and say nothing about use.
+   SEMANTIC ALIASES say what a colour is for, and are what rules should
+   reference. Nothing outside this block should use a primitive directly.
+
+   The split exists because one token was doing three unrelated jobs. --purple
+   was the body colour, the heading colour AND the masthead fill, across 18
+   declarations, so darkening body copy by a step would have darkened the top
+   bar and every button with it. They are the same value today and this commit
+   changes no pixels — the point is that they no longer have to be. */
 :root {
+  /* primitives */
   --purple: #6e377a;
   --purple-hi: #fea1d9;
   --paper: #f5f5f5;
@@ -29,6 +39,12 @@ layout: null
      and measures 5.98 / 5.00. */
   --link: #2a6496;
   --rule: rgb(110 55 122 / 0.2);
+
+  /* semantic aliases — use these, not the primitives above */
+  --color-text: var(--purple); /* body copy */
+  --color-heading: var(--purple); /* h1-h3, card titles */
+  --color-brand: var(--purple); /* identity: bar, banner, button fills+borders */
+  --color-rule: var(--rule); /* hairlines and card borders */
 
   /* De-emphasised text. An explicit colour, never `opacity`.
      `opacity` looked like a free tonal step and was not, because this page has
@@ -111,7 +127,7 @@ body {
      thin — and thinner still on the phone screens the QR code sends here. 400
      is already in the Google Fonts request, so this downloads nothing extra. */
   font: 400 1rem/1.45 var(--font-body);
-  color: var(--purple);
+  color: var(--color-text);
   background: transparent;
 }
 
@@ -199,7 +215,7 @@ img {
 }
 hr {
   border: 0;
-  border-top: 1px solid var(--rule);
+  border-top: 1px solid var(--color-rule);
   margin: 1.5rem 0;
 }
 a {
@@ -227,7 +243,7 @@ a:hover {
    here is a media query — flex-wrap breaks on the actual width of the actual
    labels, which a guessed breakpoint cannot do. */
 .topbar {
-  background: var(--purple);
+  background: var(--color-brand);
   color: var(--paper);
 }
 /* Same gutter as .content, so the wordmark sits on the same optical left edge
@@ -351,19 +367,19 @@ a:hover {
 h1 {
   margin: 0 0 0.625rem;
   font: var(--text-h1) / 1.15 var(--font-body);
-  color: var(--purple);
+  color: var(--color-heading);
 }
 h2 {
   margin: 2rem 0 0.625rem;
   font: var(--text-h2) / 1.25 var(--font-body);
-  color: var(--purple);
+  color: var(--color-heading);
 }
 /* h3 renders nowhere today, but it was styled at 2rem — LARGER than h2 — so if
    it were ever used the outline would read backwards. Sized below h2. */
 h3 {
   margin: 1.5rem 0 0.5rem;
   font: var(--text-h3) / 1.3 var(--font-body);
-  color: var(--purple);
+  color: var(--color-heading);
 }
 /* Body copy is <p> now. `.lead` is the one-paragraph intro under a title. */
 .prose,
@@ -418,7 +434,7 @@ h3 {
 .card {
   margin: 0;
   background: #fff;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--color-rule);
   display: flex;
   flex-direction: column;
 }
@@ -460,7 +476,7 @@ h3 {
 }
 .card__title {
   font: 600 1rem/1.3 var(--font-display);
-  color: var(--purple);
+  color: var(--color-heading);
 }
 .card__text {;
   color: var(--color-text-muted);
@@ -475,7 +491,7 @@ h3 {
 }
 .card--link:hover,
 .card--link:focus-within {
-  border-color: var(--purple);
+  border-color: var(--color-brand);
 }
 .card--link img {
   transition: opacity 0.2s var(--ease);
@@ -602,7 +618,7 @@ h3 {
 .post-list > li {
   margin-bottom: 2rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--color-rule);
 }
 .post,
 .post-meta {
@@ -640,7 +656,7 @@ h3 {
 .media {
   margin: 2rem 0;
   background: #fff;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--color-rule);
   padding: 0.5rem;
   isolation: isolate;
 }
@@ -694,20 +710,20 @@ h3 {
   min-height: 44px;
   min-width: 44px;
   padding: 0 0.85rem;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--color-rule);
   background: #fff;
-  color: var(--purple);
+  color: var(--color-brand);
   font: 0.9375rem var(--font-display);
   cursor: pointer;
 }
 .sim__btn:hover {
-  background: var(--purple);
+  background: var(--color-brand);
   color: var(--paper);
 }
 .sim__btn.is-active {
-  background: var(--purple);
+  background: var(--color-brand);
   color: var(--paper);
-  border-color: var(--purple);
+  border-color: var(--color-brand);
 }
 .sim__live {
   margin: 0.5rem 0.25rem 0;
@@ -734,7 +750,7 @@ h3 {
 }
 .sim__matrix th,
 .sim__matrix td {
-  border: 1px solid var(--rule);
+  border: 1px solid var(--color-rule);
   padding: 0.3rem 0.7rem;
   text-align: right;
   font-variant-numeric: tabular-nums;
@@ -756,7 +772,7 @@ h3 {
   gap: 0.75rem;
   align-items: baseline;
   padding: 0.35rem 0;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--color-rule);
 }
 .contact--compact > li {
   border-bottom: 0;
@@ -785,7 +801,7 @@ h3 {
 .footer {
   margin-top: 4rem;
   padding-top: 1.25rem;
-  border-top: 1px solid var(--rule);
+  border-top: 1px solid var(--color-rule);
   font-size: 0.875rem;
 }
 .footer__links {
@@ -807,12 +823,12 @@ h3 {
   display: inline-block;
   margin-left: 0.4rem;
   padding: 0.05rem 0.45rem;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--color-rule);
   border-radius: 3px;
   font: 600 0.75rem var(--font-display);
 }
 .pub-links a:hover {
-  background: var(--purple);
+  background: var(--color-brand);
   color: var(--paper);
   text-decoration: none;
 }
@@ -864,20 +880,20 @@ h3 {
   align-items: center;
   min-height: 48px;
   padding: 0 1.1rem;
-  border: 1px solid var(--purple);
+  border: 1px solid var(--color-brand);
   font: 600 1rem var(--font-display);
 }
 .poster-cta__primary {
-  background: var(--purple);
+  background: var(--color-brand);
   color: var(--paper);
 }
 .poster-cta__primary:hover {
   background: var(--purple-hi);
-  color: var(--purple);
+  color: var(--color-brand);
   text-decoration: none;
 }
 .poster-cta__secondary:hover {
-  background: var(--purple);
+  background: var(--color-brand);
   color: var(--paper);
   text-decoration: none;
 }
@@ -895,7 +911,7 @@ h3 {
   max-width: var(--measure);
   margin: 0 0 2rem;
   padding: 0.9rem 1.1rem;
-  background: var(--purple);
+  background: var(--color-brand);
   color: var(--paper);
 }
 .pbanner__meta {
@@ -932,7 +948,7 @@ h3 {
   min-height: 44px;
   padding: 0 1rem;
   background: var(--paper);
-  color: var(--purple);
+  color: var(--color-brand);
   font: 600 0.9375rem var(--font-display);
 }
 .pbanner__cta a:hover {
