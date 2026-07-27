@@ -27,7 +27,7 @@
       needs none.
     {%- endcomment -%}
     {%- if page.script_mbsim %}
-    <script src="{{ '/assets/js/mbsim.js' | relative_url }}" defer></script>
+    <script src="{{ '/assets/js/mbsim.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
     {%- endif %}
   </body>
 </html>

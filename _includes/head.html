@@ -21,7 +21,22 @@
   href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600&family=Lato:wght@300;400&display=swap"
 />
 
-<link rel="stylesheet" href="{{ '/css/main.css' | relative_url }}" />
+{%- comment -%}
+  Cache-busted on build time. Without this the stylesheet is one URL forever,
+  so a browser that cached it keeps using the old one — which is how a layout
+  change appeared to have no effect locally while the server was serving the
+  new file correctly.
+
+  It matters more in the field than in development: a visitor who scans the QR
+  code, gets a version of the site, and comes back after an update would
+  otherwise be served the stale stylesheet against fresh HTML.
+
+  `site.time` is the build timestamp, so the URL changes only when the site is
+  rebuilt, not on every request. Same treatment for the simulation, which has
+  the same problem and is worse to debug.
+{%- endcomment -%}
+{%- assign v = site.time | date: "%s" -%}
+<link rel="stylesheet" href="{{ '/css/main.css' | relative_url }}?v={{ v }}" />
 
 {%- comment -%}
   Favicon set, replacing a 460x460 portrait JPEG that was illegible at 16px and
