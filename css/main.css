@@ -52,6 +52,14 @@ layout: null
   --text-hero: clamp(1.6rem, 1.19rem + 1.76vw, 2.4rem);
 
   --gutter: clamp(1.25rem, 4vw, 3.4rem);
+  /* How wide a run of text is allowed to get. ONE KNOB — every text block
+     below uses it, so line length is tuned here and nowhere else.
+
+     `none` lets text fill the content box, which is what was asked for. The
+     cost is real: at a 2560px viewport a paragraph runs about 300 characters
+     per line, against the 45-75 that is comfortable to read. If that starts to
+     bother you, put a value back — 68rem is roomy, 44rem was the old cap. */
+  --measure: none;
   --font-body: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-display: "Fira Sans", var(--font-body);
   --ease: cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -309,7 +317,7 @@ h3 {
 /* Body copy is <p> now. `.lead` is the one-paragraph intro under a title. */
 .prose,
 .prose p {
-  max-width: 44rem;
+  max-width: var(--measure);
 }
 .lead {
   font-size: var(--text-lead);
@@ -326,7 +334,7 @@ h3 {
   list-style: none;
   margin: 0 4.375rem 2rem 0;
   padding: 0;
-  max-width: 60rem;
+  max-width: var(--measure);
 }
 .pub-list > li {
   counter-increment: item -1;
@@ -426,7 +434,7 @@ h3 {
    three of them. */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 21rem));
+  grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 30rem));
   justify-content: start;
   gap: 1.25rem;
   list-style: none;
@@ -522,7 +530,7 @@ h3 {
   list-style: none;
   margin: 0;
   padding: 0;
-  max-width: 44rem;
+  max-width: var(--measure);
 }
 .post-list > li {
   margin-bottom: 2rem;
@@ -531,7 +539,7 @@ h3 {
 }
 .post,
 .post-meta {
-  max-width: 44rem;
+  max-width: var(--measure);
 }
 .post-hero {
   margin: 1rem 0;
@@ -708,7 +716,7 @@ h3 {
   list-style: none;
   margin: 0 0 1.5rem;
   padding: 0;
-  max-width: 44rem;
+  max-width: var(--measure);
 }
 .contact > li {
   display: flex;
@@ -734,7 +742,7 @@ h3 {
   overflow-wrap: anywhere;
 }
 .contact__todo {
-  max-width: 44rem;
+  max-width: var(--measure);
   padding: 0.75rem 1rem;
   border-left: 3px solid var(--accent);
   background: rgb(226 78 66 / 0.07);
@@ -793,7 +801,7 @@ h3 {
   opacity: 0.85;
 }
 .poster-status {
-  max-width: 44rem;
+  max-width: var(--measure);
   margin: 0 0 1.5rem;
   padding: 0.6rem 0.85rem;
   background: rgb(255 204 102 / 0.22);
@@ -807,7 +815,7 @@ h3 {
   margin-bottom: 0.5rem;
 }
 .poster-where {
-  max-width: 44rem;
+  max-width: var(--measure);
   margin: 0 0 1.5rem;
   font: 0.9375rem var(--font-display);
   opacity: 0.85;
@@ -851,7 +859,7 @@ h3 {
 
 /* ---------- poster banner (homepage) ---------- */
 .pbanner {
-  max-width: 44rem;
+  max-width: var(--measure);
   margin: 0 0 2rem;
   padding: 0.9rem 1.1rem;
   background: var(--purple);
