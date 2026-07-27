@@ -87,6 +87,27 @@ layout: null
   --text-lead: clamp(1.125rem, 1.05rem + 0.32vw, 1.3rem);
   --text-hero: clamp(1.6rem, 1.19rem + 1.76vw, 2.4rem);
 
+  /* Small text: three steps, not five. Sizes below body had drifted to
+     0.75 / 0.8 / 0.8125 / 0.875 / 0.9375rem — 12, 12.8, 13, 14 and 15px, where
+     several pairs differ by less than a pixel and no reader could name the
+     distinction. Folded to:
+
+       --text-xs  12px  uppercase labels, pills, tags
+       --text-s   13px  captions, footer meta, small print
+       --text-m   15px  secondary body: card copy, buttons, status lines
+
+     Two sizes shift by at most 1px in the fold — 0.8rem tags down to 12, and
+     0.875rem footer text down to 13. Nothing else moves.
+
+     The display scale above is deliberately NOT touched. Its middle looked
+     compressed on paper (h2 25.6, h3 22.4, lead 20.8 at 1440), but h3 renders
+     on no page of this site, so what a reader actually meets is
+     h1 36 -> h2 25.6 -> lead 20.8 -> body 16: ratios of 1.41, 1.23, 1.30. That
+     is a working progression, and rescaling it would have been churn. */
+  --text-xs: 0.75rem;
+  --text-s: 0.8125rem;
+  --text-m: 0.9375rem;
+
   --gutter: clamp(1.25rem, 4vw, 3.4rem);
   /* The two widths the page grid is built from.
 
@@ -290,7 +311,7 @@ a:hover {
   display: block;
   padding: 0.7rem 0.55rem;
   color: var(--paper);
-  font: 0.9375rem / 1.4 var(--font-display);
+  font: var(--text-m) / 1.4 var(--font-display);
 }
 .topbar__nav a:hover,
 .topbar__nav a:focus-visible {
@@ -467,11 +488,11 @@ h3 {
   background: #fff;
 }
 .card figcaption {
-  padding: 0.75rem 0.85rem 0.9rem;
+  padding: var(--text-xs) 0.85rem 0.9rem;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  font-size: 0.9375rem;
+  font-size: var(--text-m);
   line-height: 1.4;
 }
 .card__title {
@@ -482,7 +503,7 @@ h3 {
   color: var(--color-text-muted);
 }
 .card__more {
-  font: 600 0.8125rem var(--font-display);
+  font: 600 var(--text-s) var(--font-display);
 }
 /* Only linked cards get affordances. Six images that looked interactive and did
    nothing was the worst thing about the old grid. */
@@ -551,8 +572,8 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
-  padding: 0.75rem 0.85rem 0.9rem;
-  font-size: 0.9375rem;
+  padding: var(--text-xs) 0.85rem 0.9rem;
+  font-size: var(--text-m);
   line-height: 1.4;
 }
 .gcard__title {
@@ -629,7 +650,7 @@ h3 {
 }
 .tag {
   color: var(--accent);
-  font: 600 0.8rem var(--font-display);
+  font: 600 var(--text-xs) var(--font-display);
 }
 .post-date {
   display: inline-block;
@@ -637,7 +658,7 @@ h3 {
   border-radius: 10px;
   background: var(--amber);
   color: var(--accent);
-  font: 600 0.75rem var(--font-display);
+  font: 600 var(--text-xs) var(--font-display);
 }
 
 /* ---------- motion ---------- */
@@ -662,7 +683,7 @@ h3 {
 }
 .media > figcaption {
   padding: 0.5rem 0.25rem 0;
-  font-size: 0.8125rem;
+  font-size: var(--text-s);
   line-height: 1.35;
   color: var(--color-text-muted);
 }
@@ -689,7 +710,7 @@ h3 {
 .sim__controls {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: var(--text-xs);
   align-items: center;
   padding: 0.5rem 0.25rem 0;
 }
@@ -700,7 +721,7 @@ h3 {
   flex-wrap: wrap;
 }
 .sim__label {
-  font: 600 0.75rem var(--font-display);
+  font: 600 var(--text-xs) var(--font-display);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--color-text-muted);
@@ -713,7 +734,7 @@ h3 {
   border: 1px solid var(--color-rule);
   background: #fff;
   color: var(--color-brand);
-  font: 0.9375rem var(--font-display);
+  font: var(--text-m) var(--font-display);
   cursor: pointer;
 }
 .sim__btn:hover {
@@ -727,14 +748,14 @@ h3 {
 }
 .sim__live {
   margin: 0.5rem 0.25rem 0;
-  font-size: 0.8125rem;
+  font-size: var(--text-s);
   min-height: 1.2em;
   color: var(--color-text-muted);
 }
 .sim__matrix {
-  margin: 0.75rem 0.25rem 0;
+  margin: var(--text-xs) 0.25rem 0;
   border-collapse: collapse;
-  font-size: 0.8125rem;
+  font-size: var(--text-s);
   width: 100%;
   max-width: 24rem;
 }
@@ -744,7 +765,7 @@ h3 {
 .sim__matrix caption {
   text-align: left;
   padding-bottom: 0.4rem;
-  font-size: 0.8125rem;
+  font-size: var(--text-s);
   line-height: 1.35;
   color: var(--color-text-muted);
 }
@@ -769,7 +790,7 @@ h3 {
 }
 .contact > li {
   display: flex;
-  gap: 0.75rem;
+  gap: var(--text-xs);
   align-items: baseline;
   padding: 0.35rem 0;
   border-bottom: 1px solid var(--color-rule);
@@ -780,7 +801,7 @@ h3 {
 }
 .contact__k {
   flex: 0 0 5.5rem;
-  font: 600 0.75rem var(--font-display);
+  font: 600 var(--text-xs) var(--font-display);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--color-text-muted);
@@ -792,17 +813,17 @@ h3 {
 }
 .contact__todo {
   max-width: var(--measure);
-  padding: 0.75rem 1rem;
+  padding: var(--text-xs) 1rem;
   border-left: 3px solid var(--accent);
   background: rgb(226 78 66 / 0.07);
-  font-size: 0.9375rem;
+  font-size: var(--text-m);
 }
 
 .footer {
   margin-top: 4rem;
   padding-top: 1.25rem;
   border-top: 1px solid var(--color-rule);
-  font-size: 0.875rem;
+  font-size: var(--text-s);
 }
 .footer__links {
   display: flex;
@@ -812,7 +833,7 @@ h3 {
 }
 .footer__meta {
   margin: 0;
-  font-size: 0.8125rem;
+  font-size: var(--text-s);
   color: var(--color-text-muted);
 }
 
@@ -825,7 +846,7 @@ h3 {
   padding: 0.05rem 0.45rem;
   border: 1px solid var(--color-rule);
   border-radius: 3px;
-  font: 600 0.75rem var(--font-display);
+  font: 600 var(--text-xs) var(--font-display);
 }
 .pub-links a:hover {
   background: var(--color-brand);
@@ -837,16 +858,16 @@ h3 {
    Phone-first: this page is read one-handed, standing up, in under a minute. */
 .poster-id {
   display: flex;
-  gap: 0.75rem;
+  gap: var(--text-xs);
   align-items: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: var(--text-xs);
 }
 .poster-id img {
   border-radius: 50%;
   flex: 0 0 auto;
 }
 .poster-id__aff {
-  font-size: 0.875rem;
+  font-size: var(--text-s);
   color: var(--color-text-muted);
 }
 .poster-status {
@@ -855,7 +876,7 @@ h3 {
   padding: 0.6rem 0.85rem;
   background: rgb(255 204 102 / 0.22);
   border-left: 3px solid var(--amber);
-  font-size: 0.9375rem;
+  font-size: var(--text-m);
   line-height: 1.45;
 }
 .poster-q {
@@ -866,7 +887,7 @@ h3 {
 .poster-where {
   max-width: var(--measure);
   margin: 0 0 1.5rem;
-  font: 0.9375rem var(--font-display);
+  font: var(--text-m) var(--font-display);
   color: var(--color-text-muted);
 }
 .poster-cta {
@@ -901,7 +922,7 @@ h3 {
    and selectable rather than hiding it in the address bar. */
 .poster-url {
   margin-top: 2rem;
-  font-size: 0.8125rem;
+  font-size: var(--text-s);
   overflow-wrap: anywhere;
   color: var(--color-text-muted);
 }
@@ -916,7 +937,7 @@ h3 {
 }
 .pbanner__meta {
   margin: 0 0 0.35rem;
-  font: 600 0.8125rem var(--font-display);
+  font: 600 var(--text-s) var(--font-display);
   letter-spacing: 0.02em;
   color: var(--color-on-brand-muted);
 }
@@ -949,7 +970,7 @@ h3 {
   padding: 0 1rem;
   background: var(--paper);
   color: var(--color-brand);
-  font: 600 0.9375rem var(--font-display);
+  font: 600 var(--text-m) var(--font-display);
 }
 .pbanner__cta a:hover {
   background: var(--purple-hi);
