@@ -108,6 +108,24 @@ layout: null
   --text-s: 0.8125rem;
   --text-m: 0.9375rem;
 
+  /* Spacing, on a 4px grid. 23 distinct literals mixing px and rem across 75
+     declarations became these nine steps. Everything was snapped to the nearest
+     step; the largest move is 2px (0.625rem -> 8px, on paragraph and heading
+     bottom margins), and most values were already exact.
+
+     20px earns its step rather than folding into 16: it is the heading top
+     margin and both grid gaps, four uses that would each have moved 4px — the
+     only drift big enough to see. */
+  --space-3xs: 0.25rem; /*  4px */
+  --space-2xs: 0.5rem; /*  8px */
+  --space-xs: 0.75rem; /* 12px */
+  --space-s: 1rem; /* 16px */
+  --space-sm: 1.25rem; /* 20px */
+  --space-m: 1.5rem; /* 24px */
+  --space-l: 2rem; /* 32px */
+  --space-xl: 2.5rem; /* 40px */
+  --space-2xl: 4rem; /* 64px */
+
   --gutter: clamp(1.25rem, 4vw, 3.4rem);
   /* The two widths the page grid is built from.
 
@@ -219,15 +237,15 @@ body::before {
 h1,
 h2,
 h3 {
-  margin: 1.25rem 0 0.625rem;
+  margin: var(--space-sm) 0 var(--space-2xs);
 }
 h4,
 h5,
 h6 {
-  margin: 0.625rem 0;
+  margin: var(--space-2xs) 0;
 }
 p {
-  margin: 0 0 0.625rem;
+  margin: 0 0 var(--space-2xs);
 }
 img {
   max-width: 100%;
@@ -237,7 +255,7 @@ img {
 hr {
   border: 0;
   border-top: 1px solid var(--color-rule);
-  margin: 1.5rem 0;
+  margin: var(--space-m) 0;
 }
 a {
   color: var(--link);
@@ -273,17 +291,17 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0 1.5rem;
-  padding: 0.4rem var(--gutter);
+  gap: 0 var(--space-m);
+  padding: var(--space-2xs) var(--gutter);
 }
 /* margin-right: auto pushes the nav to the far end while they share a row, and
    is simply ignored once the nav wraps below. */
 .topbar__brand {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: var(--space-2xs);
   margin-right: auto;
-  padding: 0.35rem 0;
+  padding: var(--space-3xs) 0;
   color: var(--paper);
   font: var(--text-h3) / 1.1 var(--font-display);
 }
@@ -309,7 +327,7 @@ a:hover {
    because they are tapped one-handed while standing up. */
 .topbar__nav a {
   display: block;
-  padding: 0.7rem 0.55rem;
+  padding: var(--space-xs) var(--space-2xs);
   color: var(--paper);
   font: var(--text-m) / 1.4 var(--font-display);
 }
@@ -386,19 +404,19 @@ a:hover {
    type still responds to a user's browser font-size setting, which a pure-vw
    value would ignore. */
 h1 {
-  margin: 0 0 0.625rem;
+  margin: 0 0 var(--space-2xs);
   font: var(--text-h1) / 1.15 var(--font-body);
   color: var(--color-heading);
 }
 h2 {
-  margin: 2rem 0 0.625rem;
+  margin: var(--space-l) 0 var(--space-2xs);
   font: var(--text-h2) / 1.25 var(--font-body);
   color: var(--color-heading);
 }
 /* h3 renders nowhere today, but it was styled at 2rem — LARGER than h2 — so if
    it were ever used the outline would read backwards. Sized below h2. */
 h3 {
-  margin: 1.5rem 0 0.5rem;
+  margin: var(--space-m) 0 var(--space-2xs);
   font: var(--text-h3) / 1.3 var(--font-body);
   color: var(--color-heading);
 }
@@ -410,7 +428,7 @@ h3 {
 .lead {
   font-size: var(--text-lead);
   line-height: 1.45;
-  margin-bottom: 2.5rem;
+  margin-bottom: var(--space-xl);
 }
 
 /* ---------- publications: descending [n] ----------
@@ -425,7 +443,7 @@ h3 {
    reduced but never exceeds it. */
 .pub-list {
   list-style: none;
-  margin: 0 0 2rem;
+  margin: 0 0 var(--space-l);
   padding: 0;
   max-width: min(var(--measure), 56rem);
 }
@@ -449,8 +467,8 @@ h3 {
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
-  gap: 1.25rem;
-  margin: 0 0 2.5rem;
+  gap: var(--space-sm);
+  margin: 0 0 var(--space-xl);
 }
 .card {
   margin: 0;
@@ -488,10 +506,10 @@ h3 {
   background: #fff;
 }
 .card figcaption {
-  padding: var(--text-xs) 0.85rem 0.9rem;
+  padding: var(--text-xs) var(--space-xs) var(--space-s);
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: var(--space-3xs);
   font-size: var(--text-m);
   line-height: 1.4;
 }
@@ -540,9 +558,9 @@ h3 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 30rem));
   justify-content: start;
-  gap: 1.25rem;
+  gap: var(--space-sm);
   list-style: none;
-  margin: 2rem 0 2.5rem;
+  margin: var(--space-l) 0 var(--space-xl);
   padding: 0;
 }
 /* Near-black mount on every card. It started as the calcium/confocal variant —
@@ -571,8 +589,8 @@ h3 {
 .gcard figcaption {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-  padding: var(--text-xs) 0.85rem 0.9rem;
+  gap: var(--space-3xs);
+  padding: var(--text-xs) var(--space-xs) var(--space-s);
   font-size: var(--text-m);
   line-height: 1.4;
 }
@@ -637,8 +655,8 @@ h3 {
   max-width: var(--measure);
 }
 .post-list > li {
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
+  margin-bottom: var(--space-l);
+  padding-bottom: var(--space-m);
   border-bottom: 1px solid var(--color-rule);
 }
 .post,
@@ -646,7 +664,7 @@ h3 {
   max-width: var(--measure);
 }
 .post-hero {
-  margin: 1rem 0;
+  margin: var(--space-s) 0;
 }
 .tag {
   color: var(--accent);
@@ -654,7 +672,7 @@ h3 {
 }
 .post-date {
   display: inline-block;
-  padding: 3px 7px;
+  padding: var(--space-3xs) var(--space-2xs);
   border-radius: 10px;
   background: var(--amber);
   color: var(--accent);
@@ -675,14 +693,14 @@ h3 {
    Neutral opaque surface so the pink mesh cannot tint the canvas, and a fixed
    aspect-ratio stage so there is no layout shift before the script boots. */
 .media {
-  margin: 2rem 0;
+  margin: var(--space-l) 0;
   background: #fff;
   border: 1px solid var(--color-rule);
-  padding: 0.5rem;
+  padding: var(--space-2xs);
   isolation: isolate;
 }
 .media > figcaption {
-  padding: 0.5rem 0.25rem 0;
+  padding: var(--space-2xs) var(--space-3xs) 0;
   font-size: var(--text-s);
   line-height: 1.35;
   color: var(--color-text-muted);
@@ -712,11 +730,11 @@ h3 {
   flex-wrap: wrap;
   gap: var(--text-xs);
   align-items: center;
-  padding: 0.5rem 0.25rem 0;
+  padding: var(--space-2xs) var(--space-3xs) 0;
 }
 .sim__group {
   display: flex;
-  gap: 0.25rem;
+  gap: var(--space-3xs);
   align-items: center;
   flex-wrap: wrap;
 }
@@ -730,7 +748,7 @@ h3 {
 .sim__btn {
   min-height: 44px;
   min-width: 44px;
-  padding: 0 0.85rem;
+  padding: 0 var(--space-xs);
   border: 1px solid var(--color-rule);
   background: #fff;
   color: var(--color-brand);
@@ -747,13 +765,13 @@ h3 {
   border-color: var(--color-brand);
 }
 .sim__live {
-  margin: 0.5rem 0.25rem 0;
+  margin: var(--space-2xs) var(--space-3xs) 0;
   font-size: var(--text-s);
   min-height: 1.2em;
   color: var(--color-text-muted);
 }
 .sim__matrix {
-  margin: var(--text-xs) 0.25rem 0;
+  margin: var(--text-xs) var(--space-3xs) 0;
   border-collapse: collapse;
   font-size: var(--text-s);
   width: 100%;
@@ -764,7 +782,7 @@ h3 {
    the table to match, pushing the data cells off-screen on a phone. */
 .sim__matrix caption {
   text-align: left;
-  padding-bottom: 0.4rem;
+  padding-bottom: var(--space-2xs);
   font-size: var(--text-s);
   line-height: 1.35;
   color: var(--color-text-muted);
@@ -772,7 +790,7 @@ h3 {
 .sim__matrix th,
 .sim__matrix td {
   border: 1px solid var(--color-rule);
-  padding: 0.3rem 0.7rem;
+  padding: var(--space-3xs) var(--space-xs);
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
@@ -784,7 +802,7 @@ h3 {
 /* ---------- contact + footer ---------- */
 .contact {
   list-style: none;
-  margin: 0 0 1.5rem;
+  margin: 0 0 var(--space-m);
   padding: 0;
   max-width: var(--measure);
 }
@@ -792,12 +810,12 @@ h3 {
   display: flex;
   gap: var(--text-xs);
   align-items: baseline;
-  padding: 0.35rem 0;
+  padding: var(--space-3xs) 0;
   border-bottom: 1px solid var(--color-rule);
 }
 .contact--compact > li {
   border-bottom: 0;
-  padding: 0.15rem 0;
+  padding: var(--space-3xs) 0;
 }
 .contact__k {
   flex: 0 0 5.5rem;
@@ -813,23 +831,23 @@ h3 {
 }
 .contact__todo {
   max-width: var(--measure);
-  padding: var(--text-xs) 1rem;
+  padding: var(--text-xs) var(--space-s);
   border-left: 3px solid var(--accent);
   background: rgb(226 78 66 / 0.07);
   font-size: var(--text-m);
 }
 
 .footer {
-  margin-top: 4rem;
-  padding-top: 1.25rem;
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-sm);
   border-top: 1px solid var(--color-rule);
   font-size: var(--text-s);
 }
 .footer__links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem 1rem;
-  margin: 0 0 0.4rem;
+  gap: var(--space-3xs) var(--space-s);
+  margin: 0 0 var(--space-2xs);
 }
 .footer__meta {
   margin: 0;
@@ -842,8 +860,8 @@ h3 {
 }
 .pub-links a {
   display: inline-block;
-  margin-left: 0.4rem;
-  padding: 0.05rem 0.45rem;
+  margin-left: var(--space-2xs);
+  padding: 0.05rem var(--space-2xs);
   border: 1px solid var(--color-rule);
   border-radius: 3px;
   font: 600 var(--text-xs) var(--font-display);
@@ -872,8 +890,8 @@ h3 {
 }
 .poster-status {
   max-width: var(--measure);
-  margin: 0 0 1.5rem;
-  padding: 0.6rem 0.85rem;
+  margin: 0 0 var(--space-m);
+  padding: var(--space-2xs) var(--space-xs);
   background: rgb(255 204 102 / 0.22);
   border-left: 3px solid var(--amber);
   font-size: var(--text-m);
@@ -882,25 +900,25 @@ h3 {
 .poster-q {
   font-size: var(--text-hero);
   line-height: 1.15;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-2xs);
 }
 .poster-where {
   max-width: var(--measure);
-  margin: 0 0 1.5rem;
+  margin: 0 0 var(--space-m);
   font: var(--text-m) var(--font-display);
   color: var(--color-text-muted);
 }
 .poster-cta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
-  margin: 0 0 1.5rem;
+  gap: var(--space-2xs);
+  margin: 0 0 var(--space-m);
 }
 .poster-cta a {
   display: inline-flex;
   align-items: center;
   min-height: 48px;
-  padding: 0 1.1rem;
+  padding: 0 var(--space-s);
   border: 1px solid var(--color-brand);
   font: 600 1rem var(--font-display);
 }
@@ -921,7 +939,7 @@ h3 {
 /* People photograph the URL as well as scanning the code, so keep it legible
    and selectable rather than hiding it in the address bar. */
 .poster-url {
-  margin-top: 2rem;
+  margin-top: var(--space-l);
   font-size: var(--text-s);
   overflow-wrap: anywhere;
   color: var(--color-text-muted);
@@ -930,13 +948,13 @@ h3 {
 /* ---------- poster banner (homepage) ---------- */
 .pbanner {
   max-width: var(--measure);
-  margin: 0 0 2rem;
-  padding: 0.9rem 1.1rem;
+  margin: 0 0 var(--space-l);
+  padding: var(--space-s) var(--space-s);
   background: var(--color-brand);
   color: var(--paper);
 }
 .pbanner__meta {
-  margin: 0 0 0.35rem;
+  margin: 0 0 var(--space-3xs);
   font: 600 var(--text-s) var(--font-display);
   letter-spacing: 0.02em;
   color: var(--color-on-brand-muted);
@@ -957,7 +975,7 @@ h3 {
   color: var(--purple-hi);
 }
 .pbanner__q {
-  margin: 0 0 0.6rem;
+  margin: 0 0 var(--space-2xs);
   font: var(--text-lead) / 1.3 var(--font-display);
 }
 .pbanner__cta {
@@ -967,7 +985,7 @@ h3 {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  padding: 0 1rem;
+  padding: 0 var(--space-s);
   background: var(--paper);
   color: var(--color-brand);
   font: 600 var(--text-m) var(--font-display);
