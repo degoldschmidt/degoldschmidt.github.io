@@ -19,6 +19,15 @@ HANDOFF.md
 # not a safeguard — "not in the repo" is.
 gallery-preview.html
 
+# Figure sources and the clip-art used to build them. Only the exported
+# derivative belongs in the repo — everything Jekyll finds under images/ is
+# published, and these are ~4.5 MB of working files that nothing references.
+# Untracked is not enough on its own: `git add -A` would sweep them in, which
+# is how the poster PDF got committed.
+images/portfolios/**/fig2_project_objectives*
+images/portfolios/**/*laser*icon*.png
+images/portfolios/**/*Laser*icon*.png
+
 # Source video. Only web derivatives belong in the repo, under assets/media/ —
 # see its README. A source clip is tens of MB and would live in git history
 # forever, which is how this repo reached 1.18 GB the first time.

@@ -70,5 +70,14 @@ exclude:
   # written into _site even though git ignores both.
   - posters/
   - videos/
+  # Figure sources and clip-art. Gitignored too, so GitHub Pages never sees
+  # them — Pages builds from the repo, not from a local _site. These entries
+  # only keep the local build matching production, which matters because
+  # _site is the thing you actually look at.
+  - images/portfolios/postdoc/fig2_project_objectives.svg
+  - images/portfolios/postdoc/fig2_project_objectives_small.svg
+  - images/portfolios/postdoc/fig2_project_objectives_small.png
+  - images/portfolios/postdoc/95-951286_laser-clipart-laser-beam-red-laser-beam-icon.png
+  - images/portfolios/postdoc/Industry-Laser-Beam-icon.png
   - LICENSE
   - serve.sh
