@@ -77,11 +77,9 @@ items:
     group: before
     image: /images/portfolios/phd/F1zyIkeXwAM_87C.jpeg
     # 2.94:1 against the card grid's 1.31:1 — the widest image on the site, and
-    # `cover` would crop off both cell bodies, which are the point of a bilateral
-    # pair. `surface: dark` because it is a confocal on near-black: letterboxing
-    # it into the default white mount would frame a dark image in white.
+    # `cover` would crop off both cell bodies, which are the point of a
+    # bilateral pair.
     fit: contain
-    surface: dark
     alt: >-
       Confocal image of a fly brain with one neuron of a bilateral pair labelled
       in magenta and the other in cyan, each running from a cell body at the

@@ -46,6 +46,9 @@ layout: null
   --color-brand: var(--purple); /* identity: bar, banner, button fills+borders */
   --color-rule: var(--rule); /* hairlines and card borders */
   --color-poster: #f7bae5; /* /poster in the bar — 5.26:1 on the brand purple */
+  /* Links on the dark card mount. --link is a blue tuned for a near-white page
+     and measures 3.04:1 on #101014 — it would have failed there. 11.49:1. */
+  --color-link-on-dark: #ffb6c1;
 
   /* De-emphasised text. An explicit colour, never `opacity`.
      `opacity` looked like a free tonal step and was not, because this page has
@@ -488,10 +491,15 @@ h3 {
   gap: var(--space-sm);
   margin: 0 0 var(--space-xl);
 }
+/* Dark mount for every card. It began as a variant for the confocal panels,
+   whose images are near-black and looked framed-by-mistake in a white card, and
+   turned out to suit the whole set — the figures are mostly dark or high
+   contrast, and it matches the gallery cards on the homepage, so the two
+   components now read as one system rather than two takes on the same idea. */
 .card {
   margin: 0;
-  background: #fff;
-  border: 1px solid var(--color-rule);
+  background: #101014;
+  border: 1px solid #101014;
   display: flex;
   flex-direction: column;
 }
@@ -511,38 +519,19 @@ h3 {
   width: 100%;
   aspect-ratio: 708 / 541; /* the real intrinsic ratio — 4/3 cropped the figures */
   object-fit: cover;
-  background: #eee;
+  background: #101014;
 }
 /* A uniform card ratio needs `cover`, and cropping a photograph is harmless.
    Cropping a diagram is not: the paradigm figure is 1.64:1 against the grid's
    1.31:1, so cover cut the "visuo-spatial context" label off its left edge and
    the odour grid off its right. Opt in per item with `fit: contain` in
-   _data/projects.yml. White rather than #eee behind it, because these are line
-   drawings on white and a grey surround would read as a border. */
+   _data/projects.yml. */
 .card--contain img {
   object-fit: contain;
-  background: #fff;
-}
-/* Dark mount for a card whose image is itself near-black — the confocal panels.
-   Letterboxing one of those into the white mount above frames a dark image in
-   white, which reads as a mistake. Same near-black and same text colours as the
-   gallery cards, so the two components stay one system. */
-.card--dark {
   background: #101014;
-  border-color: #101014;
-}
-.card--dark.card--contain img,
-.card--dark img {
-  background: #101014;
-}
-.card--dark .card__title {
-  color: #fff;
-}
-.card--dark .card__text {
-  color: #d8d8de;
 }
 .card figcaption {
-  padding: var(--text-xs) var(--space-xs) var(--space-s);
+  padding: var(--space-xs) var(--space-xs) var(--space-s);
   display: flex;
   flex-direction: column;
   gap: var(--space-3xs);
@@ -551,13 +540,14 @@ h3 {
 }
 .card__title {
   font: 600 1rem/1.3 var(--font-display);
-  color: var(--color-heading);
+  color: #fff;
 }
-.card__text {;
-  color: var(--color-text-muted);
+.card__text {
+  color: #d8d8de;
 }
 .card__more {
   font: 600 var(--text-s) var(--font-display);
+  color: var(--color-link-on-dark);
 }
 /* Only linked cards get affordances. Six images that looked interactive and did
    nothing was the worst thing about the old grid. */
@@ -566,7 +556,7 @@ h3 {
 }
 .card--link:hover,
 .card--link:focus-within {
-  border-color: var(--color-brand);
+  border-color: var(--color-link-on-dark);
 }
 .card--link img {
   transition: opacity 0.2s var(--ease);
@@ -632,7 +622,7 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: var(--space-3xs);
-  padding: var(--text-xs) var(--space-xs) var(--space-s);
+  padding: var(--space-xs) var(--space-xs) var(--space-s);
   font-size: var(--text-m);
   line-height: 1.4;
 }
