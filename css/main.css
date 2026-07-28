@@ -545,6 +545,14 @@ h3 {
 .card__text {
   color: #d8d8de;
 }
+/* Image credit. Distinguished from the card text by size, not by a dimmer
+   colour — anything lighter than #d8d8de starts eating into the contrast
+   margin on the near-black mount, and this line still has to be readable. */
+.card__credit {
+  font-size: var(--text-xs);
+  line-height: 1.35;
+  color: #d8d8de;
+}
 .card__more {
   font: 600 var(--text-s) var(--font-display);
   color: var(--color-link-on-dark);

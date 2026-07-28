@@ -35,6 +35,9 @@ redirect_from:
     <figcaption>
       <strong class="card__title">{{ p.title }}</strong>
       <span class="card__text">{{ p.text }}</span>
+      {%- if p.credit %}
+      <span class="card__credit">{{ p.credit }}</span>
+      {%- endif %}
       {%- if p.link %}
       <a class="card__more" href="{{ p.link | relative_url }}"
         >{{ p.link_label | default: "more" }} &rarr;</a
