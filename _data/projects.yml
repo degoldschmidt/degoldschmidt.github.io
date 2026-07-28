@@ -53,6 +53,26 @@ items:
       reality to put that context under experimental control, designed so the
       mushroom body can be imaged while the fly walks through it.
 
+  - title: "What shapes a fly's search after it finds food"
+    group: before
+    image: /images/portfolios/phd/img01_graphicalAbstract1.png
+    # A labelled diagram at 1.72:1 against the card grid's 1.31:1, so `cover`
+    # would crop the food visit off the left and the search pattern off the
+    # right — the two ends that carry the argument.
+    fit: contain
+    alt: >-
+      Graphical abstract: a fly that has visited food, with metabolic state
+      driving locomotor adjustments and sensory guidance feeding into short
+      and long trips, beside a trajectory whose loops widen over time into an
+      expanding search pattern.
+    link: "https://doi.org/10.1016/j.cub.2026.02.037"
+    link_label: "Curr. Biol. 2026"
+    text: >-
+      A fly that finds food does not walk away from it &mdash; it searches the
+      area it just left. How long it keeps searching, and how far it ranges,
+      depends on what it has recently eaten and how sated it is, so the pattern
+      widens as the memory of the meal fades.
+
   - title: "Genetic manipulation of descending neurons"
     group: before
     image: /images/portfolios/phd/dn.jpg
