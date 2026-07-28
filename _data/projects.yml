@@ -92,16 +92,29 @@ items:
       and on how rich the patch is. This work traces the neurons that carry
       those two estimates and turn them into a decision to stay or move on.
 
-  - title: "Genetic manipulation of descending neurons"
+  # Replaces two earlier cards. It cited the same DOI as a "Closed-loop video
+  # tracking of walking flies" card, so that one went; it then took the slot of
+  # "Genetic manipulation of descending neurons", which was dropped. Both their
+  # images — phd/tracking2.jpg and phd/dn.jpg — are now unused.
+  #
+  # In `before` rather than `tools`, which leaves the "Methods & tools" group
+  # with no items; research.html guards on size, so that heading and blurb stop
+  # rendering rather than appearing empty.
+  - title: "optoPAD"
     group: before
-    image: /images/portfolios/phd/dn.jpg
+    image: /images/portfolios/phd/optopad.jpg
     alt: >-
-      Confocal image of a fly brain and ventral nerve cord, with a small
-      population of descending neurons labelled in green against grey neuropil.
+      Duotone illustration: a hand shines a torch across a table of foods
+      &mdash; oatmeal, chocolate, tofu, greens and a doughnut &mdash; picking
+      some out of the dark and leaving others in shadow.
+    credit: "Illustration: Diogo Matias, Champalimaud Centre for the Unknown"
+    link: "https://doi.org/10.7554/eLife.43924"
+    link_label: "eLife 2019"
     text: >-
-      Descending neurons carry commands from the brain to the motor centres.
-      Silencing and activating identified subsets shows which of them gate the
-      transition between walking and local search.
+      A closed-loop system that detects the moment a fly starts to feed and
+      fires a light pulse within milliseconds, so neurons can be activated while
+      the animal eats rather than at some arbitrary time. It turns optogenetics
+      from something done to a fly into something done during a behaviour.
 
   - title: "Adaptive vector navigation in embodied agents"
     group: before
@@ -137,25 +150,6 @@ items:
     text: >-
       Early engineering work on a powered lower-limb exoskeleton, before I moved
       to neuroscience.
-
-  # Replaces an earlier "Closed-loop video tracking of walking flies" card that
-  # carried a rig photo but cited this same DOI — one paper, one card. The old
-  # image, phd/tracking2.jpg, is now unused.
-  - title: "optoPAD"
-    group: tools
-    image: /images/portfolios/phd/optopad.jpg
-    alt: >-
-      Duotone illustration: a hand shines a torch across a table of foods
-      &mdash; oatmeal, chocolate, tofu, greens and a doughnut &mdash; picking
-      some out of the dark and leaving others in shadow.
-    credit: "Illustration: Diogo Matias, Champalimaud Centre for the Unknown"
-    link: "https://doi.org/10.7554/eLife.43924"
-    link_label: "eLife 2019"
-    text: >-
-      A closed-loop system that detects the moment a fly starts to feed and
-      fires a light pulse within milliseconds, so neurons can be activated while
-      the animal eats rather than at some arbitrary time. It turns optogenetics
-      from something done to a fly into something done during a behaviour.
 
 # Held back pending images. Add an `image:` and an `alt:` and they appear.
 # - title: "Latent variable models for analysing fly behaviour"
