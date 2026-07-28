@@ -138,18 +138,23 @@ items:
       Early engineering work on a powered lower-limb exoskeleton, before I moved
       to neuroscience.
 
-  - title: "Closed-loop video tracking of walking flies"
+  # Replaces an earlier "Closed-loop video tracking of walking flies" card that
+  # carried a rig photo but cited this same DOI — one paper, one card. The old
+  # image, phd/tracking2.jpg, is now unused.
+  - title: "optoPAD"
     group: tools
-    image: /images/portfolios/phd/tracking2.jpg
+    image: /images/portfolios/phd/optopad.jpg
     alt: >-
-      Photograph of a tracking rig: an aluminium-profile cage with an overhead
-      camera above a four-arena plate, with live tracking displayed on a monitor.
+      Duotone illustration: a hand shines a torch across a table of foods
+      &mdash; oatmeal, chocolate, tofu, greens and a doughnut &mdash; picking
+      some out of the dark and leaving others in shadow.
     link: "https://doi.org/10.7554/eLife.43924"
-    link_label: "optoPAD, eLife 2019"
+    link_label: "eLife 2019"
     text: >-
-      Real-time tracking that closes the loop between what a fly does and what it
-      is exposed to, so optogenetic stimulation can be delivered contingent on
-      behaviour within milliseconds.
+      A closed-loop system that detects the moment a fly starts to feed and
+      fires a light pulse within milliseconds, so neurons can be activated while
+      the animal eats rather than at some arbitrary time. It turns optogenetics
+      from something done to a fly into something done during a behaviour.
 
 # Held back pending images. Add an `image:` and an `alt:` and they appear.
 # - title: "Latent variable models for analysing fly behaviour"
