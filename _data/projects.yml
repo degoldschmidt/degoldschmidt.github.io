@@ -73,6 +73,27 @@ items:
       depends on what it has recently eaten and how sated it is, so the pattern
       widens as the memory of the meal fades.
 
+  - title: "Turning hunger and patch richness into a decision"
+    group: before
+    image: /images/portfolios/phd/F1zyIkeXwAM_87C.jpeg
+    # 2.94:1 against the card grid's 1.31:1 — the widest image on the site, and
+    # `cover` would crop off both cell bodies, which are the point of a bilateral
+    # pair. `surface: dark` because it is a confocal on near-black: letterboxing
+    # it into the default white mount would frame a dark image in white.
+    fit: contain
+    surface: dark
+    alt: >-
+      Confocal image of a fly brain with one neuron of a bilateral pair labelled
+      in magenta and the other in cyan, each running from a cell body at the
+      outer edge to dense arborisations, meeting along a shared tract at the
+      midline.
+    link: "https://doi.org/10.1101/2023.07.19.549514"
+    link_label: "bioRxiv 2023"
+    text: >-
+      How long a fly stays at a patch of food depends both on how hungry it is
+      and on how rich the patch is. This work traces the neurons that carry
+      those two estimates and turn them into a decision to stay or move on.
+
   - title: "Genetic manipulation of descending neurons"
     group: before
     image: /images/portfolios/phd/dn.jpg

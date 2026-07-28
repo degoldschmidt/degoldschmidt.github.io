@@ -523,6 +523,24 @@ h3 {
   object-fit: contain;
   background: #fff;
 }
+/* Dark mount for a card whose image is itself near-black — the confocal panels.
+   Letterboxing one of those into the white mount above frames a dark image in
+   white, which reads as a mistake. Same near-black and same text colours as the
+   gallery cards, so the two components stay one system. */
+.card--dark {
+  background: #101014;
+  border-color: #101014;
+}
+.card--dark.card--contain img,
+.card--dark img {
+  background: #101014;
+}
+.card--dark .card__title {
+  color: #fff;
+}
+.card--dark .card__text {
+  color: #d8d8de;
+}
 .card figcaption {
   padding: var(--text-xs) var(--space-xs) var(--space-s);
   display: flex;

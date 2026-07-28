@@ -24,7 +24,7 @@ redirect_from:
 
 <div class="cards">
   {%- for p in items %}
-  <figure class="card{% if p.link %} card--link{% endif %}{% if p.fit == 'contain' %} card--contain{% endif %}">
+  <figure class="card{% if p.link %} card--link{% endif %}{% if p.fit == 'contain' %} card--contain{% endif %}{% if p.surface == 'dark' %} card--dark{% endif %}">
     {%- if p.link %}<a href="{{ p.link | relative_url }}">{% endif %}
     <img
       src="{{ p.image | relative_url }}"
