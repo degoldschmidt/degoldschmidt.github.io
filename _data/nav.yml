@@ -4,8 +4,12 @@
 # is something to read.
 #
 # /poster appears only once _data/poster.yml sets `in_nav: true`.
+#
+# /code was removed on 2026-07-28. Five items wrapped the bar to two rows on
+# every common phone — 154px of chrome before any content at 320/360/390 —
+# and GitHub is already in the footer of every page, so nothing became
+# unreachable. Put it back and the bar wraps again.
 - { label: "/about", url: /about.html }
 - { label: "/research", url: /research.html }
 - { label: "/publications", url: /pubs.html }
 - { label: "/outreach", url: /outreach.html }
-- { label: "/code", url: "https://github.com/degoldschmidt", external: true }
