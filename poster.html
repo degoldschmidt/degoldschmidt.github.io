@@ -67,23 +67,34 @@ permalink: /poster/
 
 {% include poster-where.html class="poster-where" %}
 
+{%- comment -%}
+  Screen 1's visual is the rig itself, not a diagram of the paradigm. Someone
+  who has just walked away from the board has seen the schematic; what they have
+  usually NOT seen is the apparatus running.
+
+  Autoplaying, like the homepage gallery — `muted` is what makes that legal and
+  `playsinline` stops iOS going fullscreen. Unlike the homepage this is the only
+  media on the page, so it costs 573 KB rather than several times that.
+
+  The contingency diagram this replaced explained danger vs safe zones. That
+  explanation now rests entirely on the "What we do" paragraph below, which is
+  worth knowing if that copy is ever cut.
+{%- endcomment -%}
 <figure class="media">
-  {%- comment -%}
-    Not lazy-loaded: this is now the first image on the page and above the fold
-    on a phone, so deferring it would leave screen 1 as text on a gradient for
-    exactly the visitor who has under a minute.
-  {%- endcomment -%}
-  <img
-    src="{{ '/images/portfolios/postdoc/memory.png' | relative_url }}"
-    alt="Paradigm diagram: a contingency table pairing two odours with a green
-         danger panorama and a blue safe panorama, a fly walking on a ball inside
-         a closed-loop visual arena, and a 2D grid of alternating odour patches."
-    width="1440" height="879"
-  />
+  <video
+    class="poster-media"
+    src="{{ '/assets/media/fly-on-ball.mp4' | relative_url }}"
+    poster="{{ '/assets/media/fly-on-ball.jpg' | relative_url }}"
+    width="480" height="480"
+    autoplay muted loop playsinline controls
+    aria-label="A tethered fly walks on a patterned foam ball inside the
+                closed-loop arena, with coloured vertical bars of the surrounding
+                display shifting as it turns."
+  ></video>
   <figcaption>
-    The contingency. Odour 1 is punished in the danger context only; the safe
-    context has no punishment at all. So context does not reverse what the odour
-    means &mdash; it gates whether the memory is used.
+    The rig. A tethered fly walks on an air-supported ball, and the panorama
+    around it turns with every step it takes &mdash; so it steers through a
+    visual world that never moves it.
   </figcaption>
 </figure>
 

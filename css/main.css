@@ -758,6 +758,17 @@ h3 {
   padding: var(--space-2xs);
   isolation: isolate;
 }
+/* The clip is 480px native and the .media surface is far wider on a desktop, so
+   left alone it would either upscale or float in a white field. Capped at its
+   own resolution and centred in the mount. */
+.poster-media {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  margin-inline: auto;
+  background: #101014;
+}
 .media > figcaption {
   padding: var(--space-2xs) var(--space-3xs) 0;
   font-size: var(--text-s);
