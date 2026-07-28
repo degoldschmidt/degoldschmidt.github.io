@@ -14,7 +14,7 @@ in_nav: true # /poster in the top bar
 venue: "ICN 2026" # e.g. "FENS Forum 2026"
 venue_url: "https://icn2026vancouver.com/" # e.g. "https://forum.fens.org/"
 city: "Vancouver, BC, Canada" # e.g. "Lisbon"
-number: "PS2.84" # e.g. "P-123"
+number: "PS2.82" # e.g. "P-123"
 session: "Tue 28 Jul, 16:00-18:00" # e.g. "Tue 8 Sep, 14:00-16:00"
 date: "2026-07-28" # ISO, e.g. 2026-09-08 — used for the status line
 

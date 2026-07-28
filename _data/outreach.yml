@@ -12,18 +12,19 @@
   role: "Co-organiser"
   url: "https://www.fmi.ch/courses/yiss/"
   current: true
-  period: "" # e.g. "since 2024"
+  period: "since 2025" # e.g. "since 2024"
   # DRAFT — says only what is known. Add what the series is for, who speaks,
   # and how often; nothing here is invented.
   text: >-
     A seminar series at the Friedrich Miescher Institute run by and for early
-    career researchers, which I help organise.
+    career researchers, which I help organizing.
 
 - title: "Future of Foraging"
   role: "Co-founder and co-organiser"
   url: "https://future-of-foraging-seminars.github.io/"
-  period: "" # e.g. "2020-2022"
+  period: "2021–2023" # e.g. "2020-2022"
   # DRAFT — as above.
   text: >-
-    An online seminar series on the neuroscience and behaviour of foraging,
-    which I co-founded and ran with colleagues.
+    I co-founded a virtual seminar series aimed to bring together neuroscientists, 
+    theorists, ecologists, and neuro-economists interested in exploring neural and 
+    theoretical mechanisms of foraging across multiple species.
